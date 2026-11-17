@@ -1,139 +1,1319 @@
 {
-  "meta": { "title": "InfluenceHub — Where Brands Meet Influence", "description": "Discover, connect and book verified UAE influencers. The smarter way to collaborate with creators." },
+  "meta": {
+    "title": "InfluenceHub — Where Brands Meet Influence",
+    "description": "Discover, connect and book verified UAE influencers. The smarter way to collaborate with creators."
+  },
   "common": {
-    "brand": "InfluenceHub", "tagline": "Where Brands Meet Influence", "positioning": "The smarter way to discover, connect and collaborate with influencers.",
-    "aed": "AED", "loading": "Loading…", "save": "Save", "saved": "Saved", "cancel": "Cancel", "submit": "Submit", "continue": "Continue", "back": "Back", "next": "Next", "edit": "Edit", "delete": "Delete", "remove": "Remove", "add": "Add", "create": "Create", "update": "Update", "search": "Search", "filters": "Filters", "clear": "Clear", "apply": "Apply", "viewAll": "View all", "viewProfile": "View profile", "close": "Close", "confirm": "Confirm", "yes": "Yes", "no": "No", "optional": "Optional", "required": "Required", "all": "All", "none": "None", "from": "From", "to": "to", "perService": "per service", "days": "{count, plural, one {# day} other {# days}}", "revisions": "{count, plural, =0 {No revisions} one {# revision} other {# revisions}}", "results": "{count, plural, =0 {No results} one {# result} other {# results}}", "followers": "Followers", "status": "Status", "actions": "Actions", "date": "Date", "amount": "Amount", "total": "Total", "details": "Details", "language": "Language", "english": "English", "arabic": "العربية", "error": "Something went wrong. Please try again.", "notFound": "We couldn't find that page.", "empty": "Nothing here yet.", "sandboxData": "Sandbox data", "sandboxDataHint": "Synthetic data from the sandbox provider — not real statistics.", "sampleData": "Sample data", "lastUpdated": "Last updated {date}", "page": "Page {page} of {pages}", "previous": "Previous", "copy": "Copy", "copied": "Copied", "download": "Download", "upload": "Upload", "yesDelete": "Yes, delete", "na": "—", "unlimited": "Unlimited"
+    "brand": "InfluenceHub",
+    "tagline": "Where Brands Meet Influence",
+    "positioning": "The smarter way to discover, connect and collaborate with influencers.",
+    "aed": "AED",
+    "loading": "Loading…",
+    "save": "Save",
+    "saved": "Saved",
+    "cancel": "Cancel",
+    "submit": "Submit",
+    "continue": "Continue",
+    "back": "Back",
+    "next": "Next",
+    "edit": "Edit",
+    "delete": "Delete",
+    "remove": "Remove",
+    "add": "Add",
+    "create": "Create",
+    "update": "Update",
+    "search": "Search",
+    "filters": "Filters",
+    "clear": "Clear",
+    "apply": "Apply",
+    "viewAll": "View all",
+    "viewProfile": "View profile",
+    "close": "Close",
+    "confirm": "Confirm",
+    "yes": "Yes",
+    "no": "No",
+    "optional": "Optional",
+    "required": "Required",
+    "all": "All",
+    "none": "None",
+    "from": "From",
+    "to": "to",
+    "perService": "per service",
+    "days": "{count, plural, one {# day} other {# days}}",
+    "revisions": "{count, plural, =0 {No revisions} one {# revision} other {# revisions}}",
+    "results": "{count, plural, =0 {No results} one {# result} other {# results}}",
+    "followers": "Followers",
+    "status": "Status",
+    "actions": "Actions",
+    "date": "Date",
+    "amount": "Amount",
+    "total": "Total",
+    "details": "Details",
+    "language": "Language",
+    "english": "English",
+    "arabic": "العربية",
+    "error": "Something went wrong. Please try again.",
+    "notFound": "We couldn't find that page.",
+    "empty": "Nothing here yet.",
+    "sandboxData": "Sandbox data",
+    "sandboxDataHint": "Synthetic data from the sandbox provider — not real statistics.",
+    "sampleData": "Sample data",
+    "lastUpdated": "Last updated {date}",
+    "page": "Page {page} of {pages}",
+    "previous": "Previous",
+    "copy": "Copy",
+    "copied": "Copied",
+    "download": "Download",
+    "upload": "Upload",
+    "yesDelete": "Yes, delete",
+    "na": "—",
+    "unlimited": "Unlimited"
   },
   "nav": {
-    "home": "Home", "browse": "Browse creators", "categories": "Categories", "howItWorks": "How it works", "forBusinesses": "For businesses", "forInfluencers": "For creators", "pricing": "Pricing", "about": "About", "contact": "Contact", "faq": "FAQ", "login": "Log in", "register": "Get started", "logout": "Log out", "dashboard": "Dashboard", "aiDiscovery": "AI discovery", "terms": "Terms and Conditions", "privacy": "Privacy Policy", "account": "Account", "cart": "Cart", "notifications": "Notifications", "skip": "Skip to content"
+    "home": "Home",
+    "browse": "Browse creators",
+    "categories": "Categories",
+    "howItWorks": "How it works",
+    "forBusinesses": "For businesses",
+    "forInfluencers": "For creators",
+    "pricing": "Pricing",
+    "about": "About",
+    "contact": "Contact",
+    "faq": "FAQ",
+    "login": "Log in",
+    "register": "Get started",
+    "logout": "Log out",
+    "dashboard": "Dashboard",
+    "aiDiscovery": "AI discovery",
+    "terms": "Terms and Conditions",
+    "privacy": "Privacy Policy",
+    "account": "Account",
+    "cart": "Cart",
+    "notifications": "Notifications",
+    "skip": "Skip to content"
   },
   "home": {
-    "heroTitle": "Where brands meet influence.", "heroSubtitle": "Discover verified UAE creators, compare transparent rates and book campaigns with the confidence of an e-commerce checkout.",
-    "searchPlaceholder": "Search creators, niches or services…", "industry": "Industry", "service": "Service", "platform": "Platform", "location": "Emirate", "budget": "Max budget (AED)", "anyIndustry": "Any industry", "anyService": "Any service", "anyPlatform": "Any platform", "anyLocation": "All emirates", "searchButton": "Search",
-    "aiCtaTitle": "Describe your campaign. We'll find the creators.", "aiCtaBody": "Our AI discovery assistant turns a sentence like “10 Dubai dermatologists for a clinic launch” into a ranked shortlist from real marketplace profiles — with reasons for every match.", "aiCtaButton": "Try AI discovery",
-    "categoriesTitle": "Browse by industry", "featuredTitle": "Featured creators", "topRatedTitle": "Top-rated creators", "trendingTitle": "High-engagement creators", "popularServicesTitle": "Popular services", "offers": "{count, plural, one {# offer} other {# offers}}",
-    "howTitle": "How InfluenceHub works", "how1Title": "Discover", "how1Body": "Search and filter UAE creators by industry, platform, emirate, audience and verified performance.", "how2Title": "Connect", "how2Body": "Unlock direct messaging with a one-time contact fee, request quotations or book listed services.", "how3Title": "Book & pay", "how3Body": "Add services from multiple creators to one cart and pay securely. Funds are tracked on an auditable ledger.", "how4Title": "Collaborate", "how4Body": "Brief, review drafts, request revisions, approve and track publication in one campaign workspace.",
-    "businessBenefitsTitle": "Built for brands", "businessBenefits": ["Transparent rate cards in AED", "API-verified statistics where available", "Explainable performance grades", "One checkout for multi-creator campaigns", "Approval workflows and delivery evidence"],
-    "influencerBenefitsTitle": "Built for creators", "influencerBenefits": ["A premium profile and rate card", "Pricing guidance from your own data", "Quotations, bookings and payouts in one place", "You control what is public", "No passwords shared — official logins only"],
-    "trustTitle": "Trust and verification", "trustBody": "Social statistics come from official Instagram and TikTok APIs where the creator has authorised access, and are labelled with their source and last sync time. Identity, medical qualification and advertiser-permit checks are separate from performance grades.",
-    "trust1": "Official API connections — never scraping", "trust2": "Every metric shows its source and freshness", "trust3": "Medical creators verified separately", "trust4": "Immutable financial ledger and audit trail",
-    "testimonialsTitle": "What our early partners say", "testimonialsNote": "Illustrative testimonials for the pre-launch site.",
-    "testimonials": [ { "quote": "We shortlisted five clinic-friendly creators in an afternoon instead of two weeks.", "author": "Marketing lead, healthcare group (illustrative)" }, { "quote": "Finally a rate card I can share without endless DMs.", "author": "Food creator, Sharjah (illustrative)" }, { "quote": "One invoice for a ten-creator launch. Our finance team was delighted.", "author": "Retail brand manager (illustrative)" } ],
-    "faqTitle": "Frequently asked questions", "ctaTitle": "Ready to launch your next campaign?", "ctaBusiness": "I'm a business", "ctaCreator": "I'm a creator", "statsCreators": "{count} creators", "statsCategories": "{count} industries"
+    "heroTitle": "Where brands meet influence.",
+    "heroSubtitle": "Discover verified UAE creators, compare transparent rates and book campaigns with the confidence of an e-commerce checkout.",
+    "searchPlaceholder": "Search creators, niches or services…",
+    "industry": "Industry",
+    "service": "Service",
+    "platform": "Platform",
+    "location": "Emirate",
+    "budget": "Max budget (AED)",
+    "anyIndustry": "Any industry",
+    "anyService": "Any service",
+    "anyPlatform": "Any platform",
+    "anyLocation": "All emirates",
+    "searchButton": "Search",
+    "aiCtaTitle": "Describe your campaign. We'll find the creators.",
+    "aiCtaBody": "Our AI discovery assistant turns a sentence like “10 Dubai dermatologists for a clinic launch” into a ranked shortlist from real marketplace profiles — with reasons for every match.",
+    "aiCtaButton": "Try AI discovery",
+    "categoriesTitle": "Browse by industry",
+    "featuredTitle": "Featured creators",
+    "topRatedTitle": "Top-rated creators",
+    "trendingTitle": "High-engagement creators",
+    "popularServicesTitle": "Popular services",
+    "offers": "{count, plural, one {# offer} other {# offers}}",
+    "howTitle": "How InfluenceHub works",
+    "how1Title": "Discover",
+    "how1Body": "Search and filter UAE creators by industry, platform, emirate, audience and verified performance.",
+    "how2Title": "Connect",
+    "how2Body": "Unlock direct messaging with a one-time contact fee, request quotations or book listed services.",
+    "how3Title": "Book & pay",
+    "how3Body": "Add services from multiple creators to one cart and pay securely. Funds are tracked on an auditable ledger.",
+    "how4Title": "Collaborate",
+    "how4Body": "Brief, review drafts, request revisions, approve and track publication in one campaign workspace.",
+    "businessBenefitsTitle": "Built for brands",
+    "businessBenefits": [
+      "Transparent rate cards in AED",
+      "API-verified statistics where available",
+      "Explainable performance grades",
+      "One checkout for multi-creator campaigns",
+      "Approval workflows and delivery evidence"
+    ],
+    "influencerBenefitsTitle": "Built for creators",
+    "influencerBenefits": [
+      "A premium profile and rate card",
+      "Pricing guidance from your own data",
+      "Quotations, bookings and payouts in one place",
+      "You control what is public",
+      "No passwords shared — official logins only"
+    ],
+    "trustTitle": "Trust and verification",
+    "trustBody": "Social statistics come from official Instagram and TikTok APIs where the creator has authorised access, and are labelled with their source and last sync time. Identity, medical qualification and advertiser-permit checks are separate from performance grades.",
+    "trust1": "Official API connections — never scraping",
+    "trust2": "Every metric shows its source and freshness",
+    "trust3": "Medical creators verified separately",
+    "trust4": "Immutable financial ledger and audit trail",
+    "testimonialsTitle": "What our early partners say",
+    "testimonialsNote": "Illustrative testimonials for the pre-launch site.",
+    "testimonials": [
+      {
+        "quote": "We shortlisted five clinic-friendly creators in an afternoon instead of two weeks.",
+        "author": "Marketing lead, healthcare group (illustrative)"
+      },
+      {
+        "quote": "Finally a rate card I can share without endless DMs.",
+        "author": "Food creator, Sharjah (illustrative)"
+      },
+      {
+        "quote": "One invoice for a ten-creator launch. Our finance team was delighted.",
+        "author": "Retail brand manager (illustrative)"
+      }
+    ],
+    "faqTitle": "Frequently asked questions",
+    "ctaTitle": "Ready to launch your next campaign?",
+    "ctaBusiness": "I'm a business",
+    "ctaCreator": "I'm a creator",
+    "statsCreators": "{count} creators",
+    "statsCategories": "{count} industries"
   },
   "faq": {
     "items": [
-      { "q": "Is browsing creators free?", "a": "Yes. All public creator profiles, public metrics, services and rates can be viewed without payment. Saving creators requires a free account." },
-      { "q": "Why is there a contact fee?", "a": "Initiating direct contact requires a one-time contact fee (shown before payment). It keeps enquiries serious and protects creators from spam. Booking a listed service also unlocks messaging." },
-      { "q": "Where do the statistics come from?", "a": "From official Instagram and TikTok APIs when the creator has connected their account and granted permission. Each figure shows its source, verification state and last update. Missing metrics are shown as unavailable — never estimated." },
-      { "q": "What does the performance grade mean?", "a": "A 0–100 score (S, A, B, C, D) based on verified reach, views, engagement, audience quality and consistency. It is not an identity check. Creators without enough verified data are shown as “Not Yet Rated”." },
-      { "q": "How are payments handled?", "a": "Payments are processed by a licensed payment provider. InfluenceHub records each booking, commission, VAT and creator payout separately on an immutable ledger." },
-      { "q": "Do creators need a UAE advertiser permit?", "a": "UAE rules may require creators to hold an advertiser permit for paid content. Creators can add permit details for review, but InfluenceHub's verification badges are not a legal permit." },
-      { "q": "Can I get a refund?", "a": "Refunds are handled according to the contact-fee policy and booking terms. Disputes on campaigns are reviewed by our team." }
+      {
+        "q": "Is browsing creators free?",
+        "a": "Yes. All public creator profiles, public metrics, services and rates can be viewed without payment. Saving creators requires a free account."
+      },
+      {
+        "q": "Why is there a contact fee?",
+        "a": "Initiating direct contact requires a one-time contact fee (shown before payment). It keeps enquiries serious and protects creators from spam. Booking a listed service also unlocks messaging."
+      },
+      {
+        "q": "Where do the statistics come from?",
+        "a": "From official Instagram and TikTok APIs when the creator has connected their account and granted permission. Each figure shows its source, verification state and last update. Missing metrics are shown as unavailable — never estimated."
+      },
+      {
+        "q": "What does the performance grade mean?",
+        "a": "A 0–100 score (S, A, B, C, D) based on verified reach, views, engagement, audience quality and consistency. It is not an identity check. Creators without enough verified data are shown as “Not Yet Rated”."
+      },
+      {
+        "q": "How are payments handled?",
+        "a": "Payments are processed by a licensed payment provider. InfluenceHub records each booking, commission, VAT and creator payout separately on an immutable ledger."
+      },
+      {
+        "q": "Do creators need a UAE advertiser permit?",
+        "a": "UAE rules may require creators to hold an advertiser permit for paid content. Creators can add permit details for review, but InfluenceHub's verification badges are not a legal permit."
+      },
+      {
+        "q": "Can I get a refund?",
+        "a": "Refunds are handled according to the contact-fee policy and booking terms. Disputes on campaigns are reviewed by our team."
+      }
     ]
   },
   "auth": {
-    "loginTitle": "Welcome back", "loginSubtitle": "Log in to manage campaigns, messages and bookings.", "email": "Email", "password": "Password", "totp": "Authenticator code", "totpHint": "Enter the 6-digit code from your authenticator app.", "forgot": "Forgot password?", "loginButton": "Log in", "noAccount": "New to InfluenceHub?", "createAccount": "Create an account", "or": "or",
-    "continueGoogle": "Continue with Google", "continueInstagram": "Continue with Instagram", "continueTiktok": "Continue with TikTok", "sandboxLogin": "Sandbox login (development)",
-    "registerTitle": "Join InfluenceHub", "registerSubtitle": "Choose how you'll use the platform.", "asBusiness": "I'm a business", "asBusinessBody": "Discover and book creators for your brand.", "asInfluencer": "I'm a creator", "asInfluencerBody": "Showcase your work, set rates and get booked.",
-    "businessTitle": "Create a business account", "influencerTitle": "Create a creator account", "businessName": "Business name", "contactPerson": "Contact person", "phone": "Mobile number", "phoneHint": "UAE number, e.g. 050 123 4567", "emirate": "Emirate", "city": "City", "category": "Business category", "website": "Website", "description": "About your business", "tradeLicence": "Trade licence number", "fullName": "Full legal name", "displayName": "Public display name",
-    "acceptTerms": "I agree to the Terms and Conditions and Privacy Policy.", "registerButton": "Create account", "haveAccount": "Already have an account?", "passwordHint": "At least 10 characters with upper- and lower-case letters and a number.", "neverPasswords": "We never ask for your Instagram or TikTok password.",
-    "verifyEmailTitle": "Verify your email", "verifyEmailSuccess": "Your email has been verified.", "verifyEmailFailed": "This verification link is invalid or has expired.", "forgotTitle": "Reset your password", "forgotBody": "Enter your email and we'll send a reset link if an account exists.", "forgotSent": "If an account exists for that email, a reset link is on its way.", "resetTitle": "Choose a new password", "resetDone": "Password updated. You can now log in.", "sendLink": "Send reset link", "newPassword": "New password",
-    "twoFactorSetupTitle": "Secure your admin account", "twoFactorSetupBody": "Administrator accounts require two-factor authentication. Add this key to an authenticator app, then enter the 6-digit code.", "secretKey": "Secret key", "enable2fa": "Enable two-factor authentication",
-    "errors": { "INVALID_CREDENTIALS": "Incorrect email or password.", "ACCOUNT_LOCKED": "Too many attempts. Try again in 15 minutes.", "ACCOUNT_SUSPENDED": "This account is suspended. Contact support.", "TOTP_REQUIRED": "Enter your authenticator code.", "TOTP_INVALID": "That code is not valid.", "EMAIL_IN_USE": "An account with this email already exists.", "oauth_denied": "Sign-in was cancelled.", "oauth_failed": "Sign-in failed. Please try again.", "google_login_business_only": "Google sign-in is available for business accounts." }
+    "loginTitle": "Welcome back",
+    "loginSubtitle": "Log in to manage campaigns, messages and bookings.",
+    "email": "Email",
+    "password": "Password",
+    "totp": "Authenticator code",
+    "totpHint": "Enter the 6-digit code from your authenticator app.",
+    "forgot": "Forgot password?",
+    "loginButton": "Log in",
+    "noAccount": "New to InfluenceHub?",
+    "createAccount": "Create an account",
+    "or": "or",
+    "continueGoogle": "Continue with Google",
+    "continueInstagram": "Continue with Instagram",
+    "continueTiktok": "Continue with TikTok",
+    "sandboxLogin": "Sandbox login (development)",
+    "registerTitle": "Join InfluenceHub",
+    "registerSubtitle": "Choose how you'll use the platform.",
+    "asBusiness": "I'm a business",
+    "asBusinessBody": "Discover and book creators for your brand.",
+    "asInfluencer": "I'm a creator",
+    "asInfluencerBody": "Showcase your work, set rates and get booked.",
+    "businessTitle": "Create a business account",
+    "influencerTitle": "Create a creator account",
+    "businessName": "Business name",
+    "contactPerson": "Contact person",
+    "phone": "Mobile number",
+    "phoneHint": "UAE number, e.g. 050 123 4567",
+    "emirate": "Emirate",
+    "city": "City",
+    "category": "Business category",
+    "website": "Website",
+    "description": "About your business",
+    "tradeLicence": "Trade licence number",
+    "fullName": "Full legal name",
+    "displayName": "Public display name",
+    "acceptTerms": "I agree to the Terms and Conditions and Privacy Policy.",
+    "registerButton": "Create account",
+    "haveAccount": "Already have an account?",
+    "passwordHint": "At least 10 characters with upper- and lower-case letters and a number.",
+    "neverPasswords": "We never ask for your Instagram or TikTok password.",
+    "verifyEmailTitle": "Verify your email",
+    "verifyEmailSuccess": "Your email has been verified.",
+    "verifyEmailFailed": "This verification link is invalid or has expired.",
+    "forgotTitle": "Reset your password",
+    "forgotBody": "Enter your email and we'll send a reset link if an account exists.",
+    "forgotSent": "If an account exists for that email, a reset link is on its way.",
+    "resetTitle": "Choose a new password",
+    "resetDone": "Password updated. You can now log in.",
+    "sendLink": "Send reset link",
+    "newPassword": "New password",
+    "twoFactorSetupTitle": "Secure your admin account",
+    "twoFactorSetupBody": "Administrator accounts require two-factor authentication. Add this key to an authenticator app, then enter the 6-digit code.",
+    "secretKey": "Secret key",
+    "enable2fa": "Enable two-factor authentication",
+    "errors": {
+      "INVALID_CREDENTIALS": "Incorrect email or password.",
+      "ACCOUNT_LOCKED": "Too many attempts. Try again in 15 minutes.",
+      "ACCOUNT_SUSPENDED": "This account is suspended. Contact support.",
+      "TOTP_REQUIRED": "Enter your authenticator code.",
+      "TOTP_INVALID": "That code is not valid.",
+      "EMAIL_IN_USE": "An account with this email already exists.",
+      "oauth_denied": "Sign-in was cancelled.",
+      "oauth_failed": "Sign-in failed. Please try again.",
+      "google_login_business_only": "Google sign-in is available for business accounts."
+    }
   },
-  "validation": { "required": "This field is required.", "email": "Enter a valid email address.", "phone": "Enter a valid UAE number (e.g. 050 123 4567).", "passwordMin": "Password must be at least 10 characters.", "passwordComplexity": "Use upper- and lower-case letters and a number.", "acceptTerms": "You must accept the terms to continue.", "promoBelowPrice": "Promotional price must be lower than the price.", "minimumAbovePrice": "Minimum price cannot exceed the price.", "invalid": "Please check this field." },
+  "validation": {
+    "required": "This field is required.",
+    "email": "Enter a valid email address.",
+    "phone": "Enter a valid UAE number (e.g. 050 123 4567).",
+    "passwordMin": "Password must be at least 10 characters.",
+    "passwordComplexity": "Use upper- and lower-case letters and a number.",
+    "acceptTerms": "You must accept the terms to continue.",
+    "promoBelowPrice": "Promotional price must be lower than the price.",
+    "minimumAbovePrice": "Minimum price cannot exceed the price.",
+    "invalid": "Please check this field."
+  },
   "enums": {
-    "emirate": { "DUBAI": "Dubai", "ABU_DHABI": "Abu Dhabi", "SHARJAH": "Sharjah", "AJMAN": "Ajman", "UMM_AL_QUWAIN": "Umm Al Quwain", "RAS_AL_KHAIMAH": "Ras Al Khaimah", "FUJAIRAH": "Fujairah" },
-    "platform": { "INSTAGRAM": "Instagram", "TIKTOK": "TikTok", "CROSS_PLATFORM": "Cross-platform", "OFFLINE": "Offline / content" },
-    "grade": { "S": "S", "A": "A", "B": "B", "C": "C", "D": "D", "NOT_RATED": "Not Yet Rated" },
-    "gender": { "FEMALE": "Female", "MALE": "Male", "UNDISCLOSED": "Prefer not to say" },
-    "verification": { "API_VERIFIED": "API verified", "MANUALLY_SUBMITTED": "Self-reported", "PENDING_VERIFICATION": "Pending verification", "UNAVAILABLE": "Unavailable", "EXPIRED": "Expired", "SUSPICIOUS": "Under review" },
-    "verificationStatus": { "UNVERIFIED": "Not verified", "PENDING": "Pending review", "VERIFIED": "Verified", "REJECTED": "Rejected", "EXPIRED": "Expired" },
-    "metric": { "FOLLOWERS": "Followers", "AVG_REEL_VIEWS": "Avg. Reel views", "AVG_STORY_VIEWS": "Avg. Story views", "AVG_VIDEO_VIEWS": "Avg. video views", "ENGAGEMENT_RATE": "Engagement", "FOLLOWING": "Following", "MEDIA_COUNT": "Posts", "AVG_LIKES": "Avg. likes", "AVG_COMMENTS": "Avg. comments", "REACH": "Avg. reach", "IMPRESSIONS": "Impressions", "TOTAL_LIKES": "Total likes", "VIDEO_COUNT": "Videos" },
-    "source": { "INSTAGRAM_API": "Instagram API", "TIKTOK_API": "TikTok API", "MANUAL": "Submitted by creator", "SANDBOX": "Sandbox", "DEMO_SEED": "Demo" },
-    "campaignStatus": { "DRAFT": "Draft", "ENQUIRY": "Enquiry", "QUOTATION_REQUESTED": "Quotation requested", "QUOTATION_SUBMITTED": "Quotation submitted", "AWAITING_ACCEPTANCE": "Awaiting acceptance", "PAYMENT_PENDING": "Payment pending", "CONFIRMED": "Confirmed", "IN_PROGRESS": "In progress", "CONTENT_SUBMITTED": "Content submitted", "AWAITING_APPROVAL": "Awaiting approval", "REVISION_REQUESTED": "Revision requested", "APPROVED": "Approved", "PUBLISHED": "Published", "COMPLETED": "Completed", "CANCELLED": "Cancelled", "DISPUTED": "Disputed" },
-    "orderStatus": { "PENDING_PAYMENT": "Awaiting payment", "PAID": "Paid", "PARTIALLY_REFUNDED": "Partially refunded", "REFUNDED": "Refunded", "CANCELLED": "Cancelled", "FAILED": "Failed" },
-    "paymentStatus": { "CREATED": "Created", "PENDING": "Pending", "SUCCEEDED": "Succeeded", "FAILED": "Failed", "CANCELLED": "Cancelled", "REFUNDED": "Refunded", "PARTIALLY_REFUNDED": "Partially refunded" },
-    "quotationStatus": { "REQUESTED": "Requested", "SUBMITTED": "Submitted", "ACCEPTED": "Accepted", "REJECTED": "Rejected", "EXPIRED": "Expired", "WITHDRAWN": "Withdrawn" },
-    "deliverableStatus": { "PENDING": "Pending", "SUBMITTED": "Submitted", "REVISION_REQUESTED": "Revision requested", "APPROVED": "Approved", "PUBLISHED": "Published" },
-    "accountStatus": { "CONNECTED": "Connected", "TOKEN_EXPIRED": "Reconnect required", "REVOKED": "Revoked", "DISCONNECTED": "Disconnected", "ERROR": "Error" },
-    "payoutStatus": { "PENDING": "Pending", "ON_HOLD": "On hold", "SCHEDULED": "Scheduled", "PROCESSING": "Processing", "PAID": "Paid", "FAILED": "Failed" },
-    "complianceStatus": { "NOT_REQUIRED": "Not required", "PENDING_REVIEW": "Compliance review pending", "APPROVED": "Compliance approved", "REJECTED": "Compliance rejected" },
-    "taxTreatment": { "STANDARD": "Standard rated (5%)", "ZERO_RATED": "Zero rated", "EXEMPT": "Exempt", "OUT_OF_SCOPE": "Out of scope" },
-    "language": { "ar": "Arabic", "en": "English", "hi": "Hindi", "ur": "Urdu", "ml": "Malayalam", "ta": "Tamil", "tl": "Tagalog / Filipino", "ru": "Russian", "fr": "French", "fa": "Persian", "bn": "Bengali", "zh": "Chinese" },
-    "userStatus": { "PENDING": "Pending", "ACTIVE": "Active", "SUSPENDED": "Suspended", "DELETED": "Deleted" },
-    "userType": { "BUSINESS": "Business", "INFLUENCER": "Creator", "ADMIN": "Administrator" }
+    "emirate": {
+      "DUBAI": "Dubai",
+      "ABU_DHABI": "Abu Dhabi",
+      "SHARJAH": "Sharjah",
+      "AJMAN": "Ajman",
+      "UMM_AL_QUWAIN": "Umm Al Quwain",
+      "RAS_AL_KHAIMAH": "Ras Al Khaimah",
+      "FUJAIRAH": "Fujairah"
+    },
+    "platform": {
+      "INSTAGRAM": "Instagram",
+      "TIKTOK": "TikTok",
+      "CROSS_PLATFORM": "Cross-platform",
+      "OFFLINE": "Offline / content"
+    },
+    "grade": {
+      "S": "S",
+      "A": "A",
+      "B": "B",
+      "C": "C",
+      "D": "D",
+      "NOT_RATED": "Not Yet Rated"
+    },
+    "gender": {
+      "FEMALE": "Female",
+      "MALE": "Male",
+      "UNDISCLOSED": "Prefer not to say"
+    },
+    "verification": {
+      "API_VERIFIED": "API verified",
+      "MANUALLY_SUBMITTED": "Self-reported",
+      "PENDING_VERIFICATION": "Pending verification",
+      "UNAVAILABLE": "Unavailable",
+      "EXPIRED": "Expired",
+      "SUSPICIOUS": "Under review"
+    },
+    "verificationStatus": {
+      "UNVERIFIED": "Not verified",
+      "PENDING": "Pending review",
+      "VERIFIED": "Verified",
+      "REJECTED": "Rejected",
+      "EXPIRED": "Expired"
+    },
+    "metric": {
+      "FOLLOWERS": "Followers",
+      "AVG_REEL_VIEWS": "Avg. Reel views",
+      "AVG_STORY_VIEWS": "Avg. Story views",
+      "AVG_VIDEO_VIEWS": "Avg. video views",
+      "ENGAGEMENT_RATE": "Engagement",
+      "FOLLOWING": "Following",
+      "MEDIA_COUNT": "Posts",
+      "AVG_LIKES": "Avg. likes",
+      "AVG_COMMENTS": "Avg. comments",
+      "REACH": "Avg. reach",
+      "IMPRESSIONS": "Impressions",
+      "TOTAL_LIKES": "Total likes",
+      "VIDEO_COUNT": "Videos"
+    },
+    "source": {
+      "INSTAGRAM_API": "Instagram API",
+      "TIKTOK_API": "TikTok API",
+      "MANUAL": "Submitted by creator",
+      "SANDBOX": "Sandbox",
+      "DEMO_SEED": "Demo"
+    },
+    "campaignStatus": {
+      "DRAFT": "Draft",
+      "ENQUIRY": "Enquiry",
+      "QUOTATION_REQUESTED": "Quotation requested",
+      "QUOTATION_SUBMITTED": "Quotation submitted",
+      "AWAITING_ACCEPTANCE": "Awaiting acceptance",
+      "PAYMENT_PENDING": "Payment pending",
+      "CONFIRMED": "Confirmed",
+      "IN_PROGRESS": "In progress",
+      "CONTENT_SUBMITTED": "Content submitted",
+      "AWAITING_APPROVAL": "Awaiting approval",
+      "REVISION_REQUESTED": "Revision requested",
+      "APPROVED": "Approved",
+      "PUBLISHED": "Published",
+      "COMPLETED": "Completed",
+      "CANCELLED": "Cancelled",
+      "DISPUTED": "Disputed"
+    },
+    "orderStatus": {
+      "PENDING_PAYMENT": "Awaiting payment",
+      "PAID": "Paid",
+      "PARTIALLY_REFUNDED": "Partially refunded",
+      "REFUNDED": "Refunded",
+      "CANCELLED": "Cancelled",
+      "FAILED": "Failed"
+    },
+    "paymentStatus": {
+      "CREATED": "Created",
+      "PENDING": "Pending",
+      "SUCCEEDED": "Succeeded",
+      "FAILED": "Failed",
+      "CANCELLED": "Cancelled",
+      "REFUNDED": "Refunded",
+      "PARTIALLY_REFUNDED": "Partially refunded"
+    },
+    "quotationStatus": {
+      "REQUESTED": "Requested",
+      "SUBMITTED": "Submitted",
+      "ACCEPTED": "Accepted",
+      "REJECTED": "Rejected",
+      "EXPIRED": "Expired",
+      "WITHDRAWN": "Withdrawn"
+    },
+    "deliverableStatus": {
+      "PENDING": "Pending",
+      "SUBMITTED": "Submitted",
+      "REVISION_REQUESTED": "Revision requested",
+      "APPROVED": "Approved",
+      "PUBLISHED": "Published"
+    },
+    "accountStatus": {
+      "CONNECTED": "Connected",
+      "TOKEN_EXPIRED": "Reconnect required",
+      "REVOKED": "Revoked",
+      "DISCONNECTED": "Disconnected",
+      "ERROR": "Error"
+    },
+    "payoutStatus": {
+      "PENDING": "Pending",
+      "ON_HOLD": "On hold",
+      "SCHEDULED": "Scheduled",
+      "PROCESSING": "Processing",
+      "PAID": "Paid",
+      "FAILED": "Failed"
+    },
+    "complianceStatus": {
+      "NOT_REQUIRED": "Not required",
+      "PENDING_REVIEW": "Compliance review pending",
+      "APPROVED": "Compliance approved",
+      "REJECTED": "Compliance rejected"
+    },
+    "taxTreatment": {
+      "STANDARD": "Standard rated (5%)",
+      "ZERO_RATED": "Zero rated",
+      "EXEMPT": "Exempt",
+      "OUT_OF_SCOPE": "Out of scope"
+    },
+    "language": {
+      "ar": "Arabic",
+      "en": "English",
+      "hi": "Hindi",
+      "ur": "Urdu",
+      "ml": "Malayalam",
+      "ta": "Tamil",
+      "tl": "Tagalog / Filipino",
+      "ru": "Russian",
+      "fr": "French",
+      "fa": "Persian",
+      "bn": "Bengali",
+      "zh": "Chinese"
+    },
+    "userStatus": {
+      "PENDING": "Pending",
+      "ACTIVE": "Active",
+      "SUSPENDED": "Suspended",
+      "DELETED": "Deleted"
+    },
+    "userType": {
+      "BUSINESS": "Business",
+      "INFLUENCER": "Creator",
+      "ADMIN": "Administrator"
+    }
   },
   "search": {
-    "title": "Browse creators", "subtitle": "All public profiles are free to view.", "keyword": "Keyword", "category": "Category", "platform": "Platform", "emirate": "Emirate", "language": "Language", "gender": "Gender", "grade": "Performance grade", "minFollowers": "Min. followers", "maxFollowers": "Max. followers", "minReelViews": "Min. Reel views", "minStoryViews": "Min. Story views", "minVideoViews": "Min. video views", "minEngagement": "Min. engagement %", "minPrice": "Min. price", "maxPrice": "Max. price", "serviceType": "Service", "verifiedOnly": "Identity verified only", "medicalVerifiedOnly": "Medical credentials verified", "availableOnly": "Available now",
-    "sort": "Sort by", "sorts": { "relevance": "Relevance", "grade": "Highest grade", "followers": "Most followers", "views": "Highest average views", "engagement": "Highest engagement", "price_asc": "Lowest price", "price_desc": "Highest price", "newest": "Recently joined" },
-    "noResults": "No creators match these filters.", "noResultsHint": "Try removing a filter or broadening your location.", "startingFrom": "From", "engagementShort": "Eng."
+    "title": "Browse creators",
+    "subtitle": "All public profiles are free to view.",
+    "keyword": "Keyword",
+    "category": "Category",
+    "platform": "Platform",
+    "emirate": "Emirate",
+    "language": "Language",
+    "gender": "Gender",
+    "grade": "Performance grade",
+    "minFollowers": "Min. followers",
+    "maxFollowers": "Max. followers",
+    "minReelViews": "Min. Reel views",
+    "minStoryViews": "Min. Story views",
+    "minVideoViews": "Min. video views",
+    "minEngagement": "Min. engagement %",
+    "minPrice": "Min. price",
+    "maxPrice": "Max. price",
+    "serviceType": "Service",
+    "verifiedOnly": "Identity verified only",
+    "medicalVerifiedOnly": "Medical credentials verified",
+    "availableOnly": "Available now",
+    "sort": "Sort by",
+    "sorts": {
+      "relevance": "Relevance",
+      "grade": "Highest grade",
+      "followers": "Most followers",
+      "views": "Highest average views",
+      "engagement": "Highest engagement",
+      "price_asc": "Lowest price",
+      "price_desc": "Highest price",
+      "newest": "Recently joined"
+    },
+    "noResults": "No creators match these filters.",
+    "noResultsHint": "Try removing a filter or broadening your location.",
+    "startingFrom": "From",
+    "engagementShort": "Eng."
   },
   "profile": {
-    "about": "About", "services": "Services & rates", "packages": "Packages", "performance": "Performance", "metrics": "Verified statistics", "audience": "Audience", "reviews": "Reviews", "noReviews": "No reviews yet.", "verifiedIdentity": "Identity verified", "medicalVerified": "Medical credentials verified", "permitOnFile": "Advertiser permit on file", "gradeTitle": "Performance grade", "gradeDisclaimer": "Performance grades measure verified reach and engagement. They do not verify identity, qualifications or account ownership.", "notRatedReason": "Not enough verified data yet.", "coverage": "Data coverage {value}%",
-    "components": { "reelViews": "Short-video views", "storyViews": "Story views", "followers": "Followers", "engagement": "Engagement", "audienceQuality": "Audience quality", "consistency": "Consistency" },
-    "contact": "Message creator", "contactLocked": "Unlock contact", "contactFee": "One-time contact fee {amount} (incl. VAT)", "contactUnlocked": "Contact unlocked", "useFreeContact": "Use a free contact credit", "requestQuote": "Request a quotation", "addToCart": "Add to cart", "addedToCart": "Added to cart", "save": "Save creator", "saved": "Saved", "loginToSave": "Log in as a business to save, contact or book.",
-    "delivery": "Delivery", "usageRights": "Usage rights", "exclusivity": "Exclusivity", "promo": "Promo", "audienceInUae": "{value}% of audience in UAE", "lastSync": "Synced {date}", "source": "Source", "sample": "Avg. of {count} posts", "connectedPlatforms": "Connected platforms", "briefPlaceholder": "Optional brief for this service…", "quoteBrief": "Describe your campaign", "quoteBudget": "Budget (AED, optional)", "sendRequest": "Send request", "quoteSent": "Quotation request sent.", "paymentSuccess": "Payment received — contact unlocked.", "paymentFailed": "Payment did not complete.", "languages": "Languages", "location": "Location", "specialities": "Specialities"
+    "about": "About",
+    "services": "Services & rates",
+    "packages": "Packages",
+    "performance": "Performance",
+    "metrics": "Verified statistics",
+    "audience": "Audience",
+    "reviews": "Reviews",
+    "noReviews": "No reviews yet.",
+    "verifiedIdentity": "Identity verified",
+    "medicalVerified": "Medical credentials verified",
+    "permitOnFile": "Advertiser permit on file",
+    "gradeTitle": "Performance grade",
+    "gradeDisclaimer": "Performance grades measure verified reach and engagement. They do not verify identity, qualifications or account ownership.",
+    "notRatedReason": "Not enough verified data yet.",
+    "coverage": "Data coverage {value}%",
+    "components": {
+      "reelViews": "Short-video views",
+      "storyViews": "Story views",
+      "followers": "Followers",
+      "engagement": "Engagement",
+      "audienceQuality": "Audience quality",
+      "consistency": "Consistency"
+    },
+    "contact": "Message creator",
+    "contactLocked": "Unlock contact",
+    "contactFee": "One-time contact fee {amount} (incl. VAT)",
+    "contactUnlocked": "Contact unlocked",
+    "useFreeContact": "Use a free contact credit",
+    "requestQuote": "Request a quotation",
+    "addToCart": "Add to cart",
+    "addedToCart": "Added to cart",
+    "save": "Save creator",
+    "saved": "Saved",
+    "loginToSave": "Log in as a business to save, contact or book.",
+    "delivery": "Delivery",
+    "usageRights": "Usage rights",
+    "exclusivity": "Exclusivity",
+    "promo": "Promo",
+    "audienceInUae": "{value}% of audience in UAE",
+    "lastSync": "Synced {date}",
+    "source": "Source",
+    "sample": "Avg. of {count} posts",
+    "connectedPlatforms": "Connected platforms",
+    "briefPlaceholder": "Optional brief for this service…",
+    "quoteBrief": "Describe your campaign",
+    "quoteBudget": "Budget (AED, optional)",
+    "sendRequest": "Send request",
+    "quoteSent": "Quotation request sent.",
+    "paymentSuccess": "Payment received — contact unlocked.",
+    "paymentFailed": "Payment did not complete.",
+    "languages": "Languages",
+    "location": "Location",
+    "specialities": "Specialities"
   },
   "ai": {
-    "title": "AI discovery", "subtitle": "Describe what you need in English or Arabic. Results come only from real marketplace profiles.", "placeholder": "e.g. Find 10 Dubai-based dermatologists for a clinic promotion", "refinePlaceholder": "Refine: “only TikTok”, “under 2,000 AED”, “in Abu Dhabi”…", "ask": "Find creators", "refine": "Refine", "newSearch": "New search", "understood": "Here's what I understood", "why": "Why this match", "helpful": "Helpful", "notHelpful": "Not helpful", "thanks": "Thanks for the feedback", "relaxed": "No exact matches, so I relaxed: {fields}.", "noMatches": "No creators match yet.", "openInBrowse": "Open in browse", "parser": "Parsed by {parser}",
-    "examples": ["Find 10 Dubai-based dermatologists for a clinic promotion", "Find food influencers in Sharjah with at least 20,000 followers", "Find Malayalam-speaking creators in Dubai with affordable Reel prices", "Find TikTok influencers for a supermarket opening", "ابحث عن مؤثرين في أبوظبي في مجال المطاعم"],
-    "reasons": { "SPECIALITY_MATCH": "Specialises in {value}", "CATEGORY_MATCH": "Works in {value}", "LOCATION_MATCH": "Based in {value}", "LANGUAGE_MATCH": "Creates content in {value}", "PLATFORM_MATCH": "Active on {value}", "FOLLOWERS_MEET": "{value} followers (≥ {min})", "OFFERS_SERVICE": "Offers {value} from AED {price}", "WITHIN_BUDGET": "From AED {price} — within your AED {budget} budget", "AFFORDABLE": "Affordable rates from AED {price}", "PERFORMANCE_GRADE": "Performance grade {grade}", "HIGH_ENGAGEMENT": "{value}% engagement", "IDENTITY_VERIFIED": "Identity verified", "MEDICAL_CREDENTIAL_VERIFIED": "Medical credentials verified", "KEYWORD_MATCH": "Mentions {value}" },
-    "suggestions": { "TRY_PARENT_CATEGORY": "Try the broader industry instead of a speciality", "TRY_ALL_EMIRATES": "Search all emirates", "LOWER_FOLLOWER_MINIMUM": "Lower the follower minimum", "INCREASE_BUDGET": "Increase the budget", "BROWSE_CATEGORY": "Browse the category directly" }
+    "title": "AI discovery",
+    "subtitle": "Describe what you need in English or Arabic. Results come only from real marketplace profiles.",
+    "placeholder": "e.g. Find 10 Dubai-based dermatologists for a clinic promotion",
+    "refinePlaceholder": "Refine: “only TikTok”, “under 2,000 AED”, “in Abu Dhabi”…",
+    "ask": "Find creators",
+    "refine": "Refine",
+    "newSearch": "New search",
+    "understood": "Here's what I understood",
+    "why": "Why this match",
+    "helpful": "Helpful",
+    "notHelpful": "Not helpful",
+    "thanks": "Thanks for the feedback",
+    "relaxed": "No exact matches, so I relaxed: {fields}.",
+    "noMatches": "No creators match yet.",
+    "openInBrowse": "Open in browse",
+    "parser": "Parsed by {parser}",
+    "examples": [
+      "Find 10 Dubai-based dermatologists for a clinic promotion",
+      "Find food influencers in Sharjah with at least 20,000 followers",
+      "Find Malayalam-speaking creators in Dubai with affordable Reel prices",
+      "Find TikTok influencers for a supermarket opening",
+      "ابحث عن مؤثرين في أبوظبي في مجال المطاعم"
+    ],
+    "reasons": {
+      "SPECIALITY_MATCH": "Specialises in {value}",
+      "CATEGORY_MATCH": "Works in {value}",
+      "LOCATION_MATCH": "Based in {value}",
+      "LANGUAGE_MATCH": "Creates content in {value}",
+      "PLATFORM_MATCH": "Active on {value}",
+      "FOLLOWERS_MEET": "{value} followers (≥ {min})",
+      "OFFERS_SERVICE": "Offers {value} from AED {price}",
+      "WITHIN_BUDGET": "From AED {price} — within your AED {budget} budget",
+      "AFFORDABLE": "Affordable rates from AED {price}",
+      "PERFORMANCE_GRADE": "Performance grade {grade}",
+      "HIGH_ENGAGEMENT": "{value}% engagement",
+      "IDENTITY_VERIFIED": "Identity verified",
+      "MEDICAL_CREDENTIAL_VERIFIED": "Medical credentials verified",
+      "KEYWORD_MATCH": "Mentions {value}"
+    },
+    "suggestions": {
+      "TRY_PARENT_CATEGORY": "Try the broader industry instead of a speciality",
+      "TRY_ALL_EMIRATES": "Search all emirates",
+      "LOWER_FOLLOWER_MINIMUM": "Lower the follower minimum",
+      "INCREASE_BUDGET": "Increase the budget",
+      "BROWSE_CATEGORY": "Browse the category directly"
+    }
   },
   "business": {
-    "nav": { "overview": "Overview", "discover": "Discover creators", "ai": "AI recommendations", "categories": "Categories", "saved": "Saved creators", "cart": "Shopping cart", "orders": "My orders", "campaigns": "My campaigns", "messages": "Messages", "quotations": "Quotations", "payments": "Payments", "reviews": "Reviews", "notifications": "Notifications", "profile": "Business profile", "settings": "Settings" },
-    "overview": { "title": "Welcome back", "active": "Active campaigns", "pending": "Pending bookings", "completed": "Completed campaigns", "spending": "Total spending", "saved": "Saved creators", "quotes": "Quotations to review", "recent": "Recent activity", "noActivity": "No campaign activity yet. Start by discovering creators.", "completeOnboarding": "Complete your business profile to get better recommendations." },
-    "onboarding": { "title": "Tell us about your business", "subtitle": "We use this to tailor recommendations. You can change it any time.", "goals": "Campaign goals", "goalOptions": { "awareness": "Brand awareness", "launch": "Product launch", "footfall": "Store footfall", "bookings": "Appointments / bookings", "sales": "Online sales", "event": "Event promotion" }, "platforms": "Preferred platforms", "monthlyBudget": "Typical monthly budget (AED)", "targetEmirates": "Target emirates", "finish": "Finish setup" },
-    "cart": { "title": "Shopping cart", "empty": "Your cart is empty.", "subtotal": "Subtotal", "discount": "Discount", "serviceFee": "Service fee", "vat": "VAT ({rate}%)", "total": "Total", "discountCode": "Discount code", "campaignTitle": "Campaign name (optional)", "checkout": "Proceed to secure payment", "unavailable": "Some items are no longer available. Remove them to continue.", "perLine": "Each creator receives a separate campaign workspace after payment." },
-    "orders": { "title": "My orders", "order": "Order", "items": "Items", "invoice": "Invoice", "pay": "Complete payment", "paymentSuccess": "Payment received. Your campaigns are confirmed.", "paymentFailed": "The payment did not complete. You can try again.", "refunds": "Refunds", "empty": "No orders yet." },
-    "payments": { "title": "Payments & invoices", "purpose": { "ORDER": "Booking", "CONTACT": "Contact fee" }, "invoices": "Invoices", "payments": "Payments" },
-    "profile": { "title": "Business profile", "verification": "Business verification", "verificationBody": "Upload your trade licence to receive a verified business badge.", "requestVerification": "Submit for verification", "trn": "VAT TRN (15 digits)", "licenceAuthority": "Licensing authority", "licenceExpiry": "Licence expiry", "logo": "Logo" }
+    "nav": {
+      "overview": "Overview",
+      "discover": "Discover creators",
+      "ai": "AI recommendations",
+      "categories": "Categories",
+      "saved": "Saved creators",
+      "cart": "Shopping cart",
+      "orders": "My orders",
+      "campaigns": "My campaigns",
+      "messages": "Messages",
+      "quotations": "Quotations",
+      "payments": "Payments",
+      "reviews": "Reviews",
+      "notifications": "Notifications",
+      "profile": "Business profile",
+      "settings": "Settings"
+    },
+    "overview": {
+      "title": "Welcome back",
+      "active": "Active campaigns",
+      "pending": "Pending bookings",
+      "completed": "Completed campaigns",
+      "spending": "Total spending",
+      "saved": "Saved creators",
+      "quotes": "Quotations to review",
+      "recent": "Recent activity",
+      "noActivity": "No campaign activity yet. Start by discovering creators.",
+      "completeOnboarding": "Complete your business profile to get better recommendations."
+    },
+    "onboarding": {
+      "title": "Tell us about your business",
+      "subtitle": "We use this to tailor recommendations. You can change it any time.",
+      "goals": "Campaign goals",
+      "goalOptions": {
+        "awareness": "Brand awareness",
+        "launch": "Product launch",
+        "footfall": "Store footfall",
+        "bookings": "Appointments / bookings",
+        "sales": "Online sales",
+        "event": "Event promotion"
+      },
+      "platforms": "Preferred platforms",
+      "monthlyBudget": "Typical monthly budget (AED)",
+      "targetEmirates": "Target emirates",
+      "finish": "Finish setup"
+    },
+    "cart": {
+      "title": "Shopping cart",
+      "empty": "Your cart is empty.",
+      "subtotal": "Subtotal",
+      "discount": "Discount",
+      "serviceFee": "Service fee",
+      "vat": "VAT ({rate}%)",
+      "total": "Total",
+      "discountCode": "Discount code",
+      "campaignTitle": "Campaign name (optional)",
+      "checkout": "Proceed to secure payment",
+      "unavailable": "Some items are no longer available. Remove them to continue.",
+      "perLine": "Each creator receives a separate campaign workspace after payment."
+    },
+    "orders": {
+      "title": "My orders",
+      "order": "Order",
+      "items": "Items",
+      "invoice": "Invoice",
+      "pay": "Complete payment",
+      "paymentSuccess": "Payment received. Your campaigns are confirmed.",
+      "paymentFailed": "The payment did not complete. You can try again.",
+      "refunds": "Refunds",
+      "empty": "No orders yet."
+    },
+    "payments": {
+      "title": "Payments & invoices",
+      "purpose": {
+        "ORDER": "Booking",
+        "CONTACT": "Contact fee"
+      },
+      "invoices": "Invoices",
+      "payments": "Payments"
+    },
+    "profile": {
+      "title": "Business profile",
+      "verification": "Business verification",
+      "verificationBody": "Upload your trade licence to receive a verified business badge.",
+      "requestVerification": "Submit for verification",
+      "trn": "VAT TRN (15 digits)",
+      "licenceAuthority": "Licensing authority",
+      "licenceExpiry": "Licence expiry",
+      "logo": "Logo"
+    }
   },
   "influencer": {
-    "nav": { "overview": "Overview", "profile": "My profile", "accounts": "Connected accounts", "analytics": "Social analytics", "grade": "Performance grade", "rateCards": "Rate cards", "services": "My services", "packages": "Custom packages", "requests": "Booking requests", "campaigns": "Active campaigns", "deliverables": "Deliverables", "messages": "Messages", "earnings": "Earnings", "payouts": "Payouts", "reviews": "Reviews", "availability": "Availability", "verification": "Verification", "settings": "Settings" },
-    "overview": { "title": "Creator studio", "followers": "Followers", "reelViews": "Avg. Reel views", "storyViews": "Avg. Story views", "videoViews": "Avg. video views", "engagement": "Engagement", "grade": "Grade", "pendingRequests": "Pending requests", "activeCampaigns": "Active campaigns", "earnings": "Lifetime net earnings", "enquiries": "Enquiries (30 days)", "publishHint": "Your profile is not public yet. Complete it and publish to appear in search.", "connectHint": "Connect Instagram or TikTok to verify your statistics and get graded." },
-    "accounts": { "title": "Connected accounts", "subtitle": "Connect through the official Instagram and TikTok login. We never see your password.", "connectInstagram": "Connect Instagram", "connectTiktok": "Connect TikTok", "sandbox": "Sandbox connect", "syncNow": "Sync now", "disconnect": "Disconnect", "disconnectConfirm": "Disconnect this account? Its access token will be revoked. Historical statistics are kept.", "lastSynced": "Last synced", "neverSynced": "Not synced yet", "permissions": "Permissions", "granted": "Granted", "notGranted": "Not granted", "syncHistory": "Recent syncs", "eligibility": "Instagram insights require a Professional (Business or Creator) account. TikTok does not provide Story views or private analytics.", "notConfigured": "{platform} connection is not configured on this environment yet.", "connected": "Account connected.", "syncQueued": "Sync queued.", "manualTitle": "Submit a metric manually", "manualBody": "Self-reported figures are labelled and reviewed. They count less towards your grade than API-verified data.", "metric": "Metric", "value": "Value", "sampleSize": "Number of posts", "submit": "Submit for review", "errors": { "oauth_state_invalid": "The connection link expired. Please try again.", "oauth_session_mismatch": "Please complete the connection in the same logged-in session.", "social_account_linked_elsewhere": "This account is already linked to another InfluenceHub creator.", "oauth_denied": "Connection was cancelled.", "oauth_failed": "Connection failed. Please try again.", "provider_not_configured": "This provider is not configured yet." } },
-    "analytics": { "title": "Social analytics", "history": "Growth history", "noData": "No statistics yet — connect an account to start tracking." },
-    "grade": { "title": "Performance grade", "score": "Score", "breakdown": "Score breakdown", "weight": "Weight", "confidence": "Confidence", "history": "Grade history", "explain": "Each component is normalised for your platform and category, weighted by how verified and fresh the data is. Self-reported and stale data counts less.", "flags": "Data quality flags", "recompute": "Recalculate" },
-    "services": { "title": "Rate cards", "subtitle": "Set your prices. Suggestions are advisory — your price is what businesses pay.", "add": "Add service", "serviceType": "Service type", "title_": "Title", "titleAr": "Title (Arabic)", "description": "Description", "price": "Your price (AED)", "promoPrice": "Promotional price", "promoEnds": "Promotion ends", "minimumPrice": "Minimum price you accept", "deliveryDays": "Delivery time (days)", "revisions": "Revisions included", "usageRights": "Usage rights", "usageRightsDays": "Paid usage (days)", "exclusivityDays": "Category exclusivity (days)", "taxTreatment": "Tax treatment", "active": "Active", "paused": "Paused", "suggested": "Suggested", "suggestedRange": "Suggested range AED {low}–{high}", "suggestionBasis": { "BENCHMARK": "Based on a UAE benchmark", "FORMULA": "Based on your verified metrics" }, "sampleWarning": "Benchmarks are sample data until market research is recorded.", "useSuggestion": "Use suggestion", "empty": "You haven't added any services yet.", "archive": "Archive" },
-    "packages": { "title": "Custom packages", "add": "Create package", "items": "Included services", "quantity": "Qty", "empty": "No packages yet." },
-    "requests": { "title": "Booking requests & quotations", "respond": "Send quotation", "decline": "Decline", "items": "Line items", "addItem": "Add line", "validDays": "Valid for (days)", "note": "Note to business", "brief": "Brief", "budget": "Budget" },
-    "earnings": { "title": "Earnings & payouts", "pending": "Pending (campaign not completed / hold)", "available": "Available for payout", "paid": "Paid out", "hold": "Earnings are released after campaign completion plus a {days}-day hold.", "commissions": "Booking earnings", "payouts": "Payouts", "gross": "Gross", "commission": "Commission", "net": "Net" },
-    "availability": { "title": "Availability", "subtitle": "Block dates when you can't take bookings.", "accepting": "Accepting new bookings", "from": "From", "to": "To", "note": "Note", "block": "Block dates", "empty": "No blocked dates." },
-    "verification": { "title": "Verification", "identity": "Identity verification", "identityBody": "Upload an Emirates ID or passport (front/back). Documents are private and only visible to verification staff.", "medical": "Medical qualification", "medicalBody": "Healthcare creators must provide a valid licence (DHA, DOH or MOHAP). Medical campaigns require compliance review.", "profession": "Profession", "speciality": "Speciality", "authority": "Licensing authority", "licenceNumber": "Licence number", "licenceExpiry": "Licence expiry", "document": "Supporting document", "permit": "UAE advertiser permit", "permitBody": "Add your advertiser permit details. A verification badge is not a legal permit.", "permitNumber": "Permit number", "permitExpiry": "Permit expiry", "submit": "Submit for review", "submitted": "Submitted for review." },
-    "profile": { "title": "My profile", "public": "Public profile", "publicHint": "When on, your profile appears in search.", "visibility": "Visibility controls", "showCity": "Show city", "showGender": "Show gender", "showAudience": "Show audience insights", "showStoryViews": "Show Story views", "showLanguages": "Show languages", "bio": "Biography", "bioAr": "Biography (Arabic)", "displayNameAr": "Display name (Arabic)", "categories": "Categories (first is primary)", "niches": "Content niches (comma separated)", "specialities": "Specialities (comma separated)", "audienceLocations": "Audience locations (comma separated country codes)", "photo": "Profile photo", "viewPublic": "View public profile", "onboardingTitle": "Set up your creator profile" }
+    "nav": {
+      "overview": "Overview",
+      "profile": "My profile",
+      "accounts": "Connected accounts",
+      "analytics": "Social analytics",
+      "grade": "Performance grade",
+      "rateCards": "Rate cards",
+      "services": "My services",
+      "packages": "Custom packages",
+      "requests": "Booking requests",
+      "campaigns": "Active campaigns",
+      "deliverables": "Deliverables",
+      "messages": "Messages",
+      "earnings": "Earnings",
+      "payouts": "Payouts",
+      "reviews": "Reviews",
+      "availability": "Availability",
+      "verification": "Verification",
+      "settings": "Settings"
+    },
+    "overview": {
+      "title": "Creator studio",
+      "followers": "Followers",
+      "reelViews": "Avg. Reel views",
+      "storyViews": "Avg. Story views",
+      "videoViews": "Avg. video views",
+      "engagement": "Engagement",
+      "grade": "Grade",
+      "pendingRequests": "Pending requests",
+      "activeCampaigns": "Active campaigns",
+      "earnings": "Lifetime net earnings",
+      "enquiries": "Enquiries (30 days)",
+      "publishHint": "Your profile is not public yet. Complete it and publish to appear in search.",
+      "connectHint": "Connect Instagram or TikTok to verify your statistics and get graded."
+    },
+    "accounts": {
+      "title": "Connected accounts",
+      "subtitle": "Connect through the official Instagram and TikTok login. We never see your password.",
+      "connectInstagram": "Connect Instagram",
+      "connectTiktok": "Connect TikTok",
+      "sandbox": "Sandbox connect",
+      "syncNow": "Sync now",
+      "disconnect": "Disconnect",
+      "disconnectConfirm": "Disconnect this account? Its access token will be revoked. Historical statistics are kept.",
+      "lastSynced": "Last synced",
+      "neverSynced": "Not synced yet",
+      "permissions": "Permissions",
+      "granted": "Granted",
+      "notGranted": "Not granted",
+      "syncHistory": "Recent syncs",
+      "eligibility": "Instagram insights require a Professional (Business or Creator) account. TikTok does not provide Story views or private analytics.",
+      "notConfigured": "{platform} connection is not configured on this environment yet.",
+      "connected": "Account connected.",
+      "syncQueued": "Sync queued.",
+      "manualTitle": "Submit a metric manually",
+      "manualBody": "Self-reported figures are labelled and reviewed. They count less towards your grade than API-verified data.",
+      "metric": "Metric",
+      "value": "Value",
+      "sampleSize": "Number of posts",
+      "submit": "Submit for review",
+      "errors": {
+        "oauth_state_invalid": "The connection link expired. Please try again.",
+        "oauth_session_mismatch": "Please complete the connection in the same logged-in session.",
+        "social_account_linked_elsewhere": "This account is already linked to another InfluenceHub creator.",
+        "oauth_denied": "Connection was cancelled.",
+        "oauth_failed": "Connection failed. Please try again.",
+        "provider_not_configured": "This provider is not configured yet."
+      }
+    },
+    "analytics": {
+      "title": "Social analytics",
+      "history": "Growth history",
+      "noData": "No statistics yet — connect an account to start tracking."
+    },
+    "grade": {
+      "title": "Performance grade",
+      "score": "Score",
+      "breakdown": "Score breakdown",
+      "weight": "Weight",
+      "confidence": "Confidence",
+      "history": "Grade history",
+      "explain": "Each component is normalised for your platform and category, weighted by how verified and fresh the data is. Self-reported and stale data counts less.",
+      "flags": "Data quality flags",
+      "recompute": "Recalculate"
+    },
+    "services": {
+      "title": "Rate cards",
+      "subtitle": "Set your prices. Suggestions are advisory — your price is what businesses pay.",
+      "add": "Add service",
+      "serviceType": "Service type",
+      "title_": "Title",
+      "titleAr": "Title (Arabic)",
+      "description": "Description",
+      "price": "Your price (AED)",
+      "promoPrice": "Promotional price",
+      "promoEnds": "Promotion ends",
+      "minimumPrice": "Minimum price you accept",
+      "deliveryDays": "Delivery time (days)",
+      "revisions": "Revisions included",
+      "usageRights": "Usage rights",
+      "usageRightsDays": "Paid usage (days)",
+      "exclusivityDays": "Category exclusivity (days)",
+      "taxTreatment": "Tax treatment",
+      "active": "Active",
+      "paused": "Paused",
+      "suggested": "Suggested",
+      "suggestedRange": "Suggested range AED {low}–{high}",
+      "suggestionBasis": {
+        "BENCHMARK": "Based on a UAE benchmark",
+        "FORMULA": "Based on your verified metrics"
+      },
+      "sampleWarning": "Benchmarks are sample data until market research is recorded.",
+      "useSuggestion": "Use suggestion",
+      "empty": "You haven't added any services yet.",
+      "archive": "Archive"
+    },
+    "packages": {
+      "title": "Custom packages",
+      "add": "Create package",
+      "items": "Included services",
+      "quantity": "Qty",
+      "empty": "No packages yet."
+    },
+    "requests": {
+      "title": "Booking requests & quotations",
+      "respond": "Send quotation",
+      "decline": "Decline",
+      "items": "Line items",
+      "addItem": "Add line",
+      "validDays": "Valid for (days)",
+      "note": "Note to business",
+      "brief": "Brief",
+      "budget": "Budget"
+    },
+    "earnings": {
+      "title": "Earnings & payouts",
+      "pending": "Pending (campaign not completed / hold)",
+      "available": "Available for payout",
+      "paid": "Paid out",
+      "hold": "Earnings are released after campaign completion plus a {days}-day hold.",
+      "commissions": "Booking earnings",
+      "payouts": "Payouts",
+      "gross": "Gross",
+      "commission": "Commission",
+      "net": "Net"
+    },
+    "availability": {
+      "title": "Availability",
+      "subtitle": "Block dates when you can't take bookings.",
+      "accepting": "Accepting new bookings",
+      "from": "From",
+      "to": "To",
+      "note": "Note",
+      "block": "Block dates",
+      "empty": "No blocked dates."
+    },
+    "verification": {
+      "title": "Verification",
+      "identity": "Identity verification",
+      "identityBody": "Upload an Emirates ID or passport (front/back). Documents are private and only visible to verification staff.",
+      "medical": "Medical qualification",
+      "medicalBody": "Healthcare creators must provide a valid licence (DHA, DOH or MOHAP). Medical campaigns require compliance review.",
+      "profession": "Profession",
+      "speciality": "Speciality",
+      "authority": "Licensing authority",
+      "licenceNumber": "Licence number",
+      "licenceExpiry": "Licence expiry",
+      "document": "Supporting document",
+      "permit": "UAE advertiser permit",
+      "permitBody": "Add your advertiser permit details. A verification badge is not a legal permit.",
+      "permitNumber": "Permit number",
+      "permitExpiry": "Permit expiry",
+      "submit": "Submit for review",
+      "submitted": "Submitted for review."
+    },
+    "profile": {
+      "title": "My profile",
+      "public": "Public profile",
+      "publicHint": "When on, your profile appears in search.",
+      "visibility": "Visibility controls",
+      "showCity": "Show city",
+      "showGender": "Show gender",
+      "showAudience": "Show audience insights",
+      "showStoryViews": "Show Story views",
+      "showLanguages": "Show languages",
+      "bio": "Biography",
+      "bioAr": "Biography (Arabic)",
+      "displayNameAr": "Display name (Arabic)",
+      "categories": "Categories (first is primary)",
+      "niches": "Content niches (comma separated)",
+      "specialities": "Specialities (comma separated)",
+      "audienceLocations": "Audience locations (comma separated country codes)",
+      "photo": "Profile photo",
+      "viewPublic": "View public profile",
+      "onboardingTitle": "Set up your creator profile"
+    }
   },
-  "campaign": { "title": "Campaign", "brief": "Brief", "deliverables": "Deliverables", "timeline": "Timeline", "mentions": "Required mentions", "hashtags": "Required hashtags", "deadline": "Posting deadline", "approvalRequired": "Approval required", "usageRights": "Usage rights", "contract": "Contract terms", "agreedAmount": "Agreed amount", "compliance": "Compliance", "start": "Start work", "submitDraft": "Submit draft", "draftUrl": "Draft link", "draftNotes": "Notes", "approve": "Approve", "requestRevision": "Request revision", "revisionComment": "What should change?", "publish": "Mark as published", "publishedUrl": "Live post URL", "complete": "Mark campaign complete", "cancel": "Cancel campaign", "dispute": "Raise a dispute", "disputeReason": "Reason", "disputeDetails": "Details", "review": "Leave a review", "rating": "Rating", "comment": "Comment", "reviewThanks": "Thanks for your review.", "revisionsUsed": "Revisions {used}/{max}", "evidence": "Delivery evidence", "editBrief": "Edit brief", "empty": "No campaigns yet." },
-  "messages": { "title": "Messages", "empty": "No conversations yet.", "placeholder": "Write a message…", "send": "Send", "seen": "Seen", "block": "Block", "unblock": "Unblock", "report": "Report", "reportReason": "Why are you reporting this?", "locked": "This conversation is locked.", "attach": "Attach file", "selectConversation": "Select a conversation", "contactDetailsBlocked": "Sharing phone numbers, emails or external handles is disabled until a booking is made." },
+  "campaign": {
+    "title": "Campaign",
+    "brief": "Brief",
+    "deliverables": "Deliverables",
+    "timeline": "Timeline",
+    "mentions": "Required mentions",
+    "hashtags": "Required hashtags",
+    "deadline": "Posting deadline",
+    "approvalRequired": "Approval required",
+    "usageRights": "Usage rights",
+    "contract": "Contract terms",
+    "agreedAmount": "Agreed amount",
+    "compliance": "Compliance",
+    "start": "Start work",
+    "submitDraft": "Submit draft",
+    "draftUrl": "Draft link",
+    "draftNotes": "Notes",
+    "approve": "Approve",
+    "requestRevision": "Request revision",
+    "revisionComment": "What should change?",
+    "publish": "Mark as published",
+    "publishedUrl": "Live post URL",
+    "complete": "Mark campaign complete",
+    "cancel": "Cancel campaign",
+    "dispute": "Raise a dispute",
+    "disputeReason": "Reason",
+    "disputeDetails": "Details",
+    "review": "Leave a review",
+    "rating": "Rating",
+    "comment": "Comment",
+    "reviewThanks": "Thanks for your review.",
+    "revisionsUsed": "Revisions {used}/{max}",
+    "evidence": "Delivery evidence",
+    "editBrief": "Edit brief",
+    "empty": "No campaigns yet."
+  },
+  "messages": {
+    "title": "Messages",
+    "empty": "No conversations yet.",
+    "placeholder": "Write a message…",
+    "send": "Send",
+    "seen": "Seen",
+    "block": "Block",
+    "unblock": "Unblock",
+    "report": "Report",
+    "reportReason": "Why are you reporting this?",
+    "locked": "This conversation is locked.",
+    "attach": "Attach file",
+    "selectConversation": "Select a conversation",
+    "contactDetailsBlocked": "Sharing phone numbers, emails or external handles is disabled until a booking is made."
+  },
   "notifications": {
-    "title": "Notifications", "markAllRead": "Mark all as read", "empty": "You're all caught up.",
-    "WELCOME": { "title": "Welcome to InfluenceHub", "body": "Your account is ready." }, "EMAIL_VERIFY": { "title": "Verify your email", "body": "Check your inbox for the verification link." }, "PASSWORD_RESET": { "title": "Password reset requested", "body": "Use the link we emailed you." },
-    "SOCIAL_CONNECTED": { "title": "{platform} connected", "body": "@{username} is linked to your profile." }, "SOCIAL_DISCONNECTED": { "title": "{platform} disconnected", "body": "@{username} was disconnected." }, "SOCIAL_TOKEN_EXPIRED": { "title": "Reconnect {platform}", "body": "Access to @{username} expired." },
-    "VERIFICATION_APPROVED": { "title": "Verification approved", "body": "Your {type} verification was approved." }, "VERIFICATION_REJECTED": { "title": "Verification needs attention", "body": "Your {type} verification was not approved." },
-    "CONTACT_PURCHASED": { "title": "Contact unlocked", "body": "You can now message {name}." }, "NEW_ENQUIRY": { "title": "New enquiry", "body": "{business} wants to connect." }, "NEW_MESSAGE": { "title": "New message from {name}", "body": "{preview}" },
-    "QUOTATION_REQUESTED": { "title": "Quotation requested", "body": "{business} requested a quotation." }, "QUOTATION_SUBMITTED": { "title": "Quotation received", "body": "{name} sent quotation {number}." }, "QUOTATION_ACCEPTED": { "title": "Quotation accepted", "body": "Quotation {number} was accepted." },
-    "BOOKING_CONFIRMED": { "title": "New booking", "body": "{service} — order {number}." }, "PAYMENT_SUCCEEDED": { "title": "Payment received", "body": "AED {amount} for {reference}." }, "PAYMENT_FAILED": { "title": "Payment failed", "body": "Payment for {reference} did not complete." },
-    "CAMPAIGN_UPDATED": { "title": "Campaign {campaign} updated", "body": "Status: {status}" }, "DELIVERABLE_SUBMITTED": { "title": "Content submitted", "body": "New content for {campaign}." }, "DELIVERABLE_APPROVED": { "title": "Content approved", "body": "Content for {campaign} was approved." }, "REVISION_REQUESTED": { "title": "Revision requested", "body": "{campaign}: {comment}" }, "CAMPAIGN_COMPLETED": { "title": "Campaign completed", "body": "{campaign} is complete." },
-    "REVIEW_RECEIVED": { "title": "New review", "body": "You received a {rating}-star review." }, "REFUND_UPDATED": { "title": "Refund {status}", "body": "AED {amount}" }, "PAYOUT_UPDATED": { "title": "Payout {status}", "body": "AED {amount}" }, "DISPUTE_UPDATED": { "title": "Dispute update", "body": "{campaign}: {status}" }, "PHONE_OTP": { "title": "Verification code", "body": "Code sent." }
+    "title": "Notifications",
+    "markAllRead": "Mark all as read",
+    "empty": "You're all caught up.",
+    "WELCOME": {
+      "title": "Welcome to InfluenceHub",
+      "body": "Your account is ready."
+    },
+    "EMAIL_VERIFY": {
+      "title": "Verify your email",
+      "body": "Check your inbox for the verification link."
+    },
+    "PASSWORD_RESET": {
+      "title": "Password reset requested",
+      "body": "Use the link we emailed you."
+    },
+    "SOCIAL_CONNECTED": {
+      "title": "{platform} connected",
+      "body": "@{username} is linked to your profile."
+    },
+    "SOCIAL_DISCONNECTED": {
+      "title": "{platform} disconnected",
+      "body": "@{username} was disconnected."
+    },
+    "SOCIAL_TOKEN_EXPIRED": {
+      "title": "Reconnect {platform}",
+      "body": "Access to @{username} expired."
+    },
+    "VERIFICATION_APPROVED": {
+      "title": "Verification approved",
+      "body": "Your {type} verification was approved."
+    },
+    "VERIFICATION_REJECTED": {
+      "title": "Verification needs attention",
+      "body": "Your {type} verification was not approved."
+    },
+    "CONTACT_PURCHASED": {
+      "title": "Contact unlocked",
+      "body": "You can now message {name}."
+    },
+    "NEW_ENQUIRY": {
+      "title": "New enquiry",
+      "body": "{business} wants to connect."
+    },
+    "NEW_MESSAGE": {
+      "title": "New message from {name}",
+      "body": "{preview}"
+    },
+    "QUOTATION_REQUESTED": {
+      "title": "Quotation requested",
+      "body": "{business} requested a quotation."
+    },
+    "QUOTATION_SUBMITTED": {
+      "title": "Quotation received",
+      "body": "{name} sent quotation {number}."
+    },
+    "QUOTATION_ACCEPTED": {
+      "title": "Quotation accepted",
+      "body": "Quotation {number} was accepted."
+    },
+    "BOOKING_CONFIRMED": {
+      "title": "New booking",
+      "body": "{service} — order {number}."
+    },
+    "PAYMENT_SUCCEEDED": {
+      "title": "Payment received",
+      "body": "AED {amount} for {reference}."
+    },
+    "PAYMENT_FAILED": {
+      "title": "Payment failed",
+      "body": "Payment for {reference} did not complete."
+    },
+    "CAMPAIGN_UPDATED": {
+      "title": "Campaign {campaign} updated",
+      "body": "Status: {status}"
+    },
+    "DELIVERABLE_SUBMITTED": {
+      "title": "Content submitted",
+      "body": "New content for {campaign}."
+    },
+    "DELIVERABLE_APPROVED": {
+      "title": "Content approved",
+      "body": "Content for {campaign} was approved."
+    },
+    "REVISION_REQUESTED": {
+      "title": "Revision requested",
+      "body": "{campaign}: {comment}"
+    },
+    "CAMPAIGN_COMPLETED": {
+      "title": "Campaign completed",
+      "body": "{campaign} is complete."
+    },
+    "REVIEW_RECEIVED": {
+      "title": "New review",
+      "body": "You received a {rating}-star review."
+    },
+    "REFUND_UPDATED": {
+      "title": "Refund {status}",
+      "body": "AED {amount}"
+    },
+    "PAYOUT_UPDATED": {
+      "title": "Payout {status}",
+      "body": "AED {amount}"
+    },
+    "DISPUTE_UPDATED": {
+      "title": "Dispute update",
+      "body": "{campaign}: {status}"
+    },
+    "PHONE_OTP": {
+      "title": "Verification code",
+      "body": "Code sent."
+    }
   },
-  "settings": { "title": "Settings", "language": "Language", "languageHint": "Applies to the interface, emails and notifications.", "password": "Change password", "currentPassword": "Current password", "newPassword": "New password", "verifyPhone": "Verify phone", "sendCode": "Send code", "code": "Code", "verify": "Verify", "verified": "Verified", "notVerified": "Not verified", "emailNotifications": "Email notifications", "privacy": "Privacy & data", "export": "Download my data", "deleteAccount": "Request account deletion", "deleteHint": "Personal data is anonymised. Financial records are retained as required by law.", "deleteRequested": "Deletion request received.", "marketing": "Marketing emails" },
+  "settings": {
+    "title": "Settings",
+    "language": "Language",
+    "languageHint": "Applies to the interface, emails and notifications.",
+    "password": "Change password",
+    "currentPassword": "Current password",
+    "newPassword": "New password",
+    "verifyPhone": "Verify phone",
+    "sendCode": "Send code",
+    "code": "Code",
+    "verify": "Verify",
+    "verified": "Verified",
+    "notVerified": "Not verified",
+    "emailNotifications": "Email notifications",
+    "privacy": "Privacy & data",
+    "export": "Download my data",
+    "deleteAccount": "Request account deletion",
+    "deleteHint": "Personal data is anonymised. Financial records are retained as required by law.",
+    "deleteRequested": "Deletion request received.",
+    "marketing": "Marketing emails"
+  },
   "admin": {
-    "title": "Administration", "nav": { "dashboard": "Dashboard", "users": "Users", "verifications": "Verification queue", "categories": "Categories", "catalog": "Service catalogue", "benchmarks": "UAE pricing benchmarks", "grading": "Grade configuration", "orders": "Bookings", "campaigns": "Campaigns", "fees": "Contact fees & commission", "payments": "Payments", "refunds": "Refunds", "payouts": "Payouts", "disputes": "Disputes", "ai": "AI configuration", "moderation": "Content moderation", "reports": "Reports", "audit": "Audit logs", "integrations": "API integrations", "localization": "Localization", "settings": "Platform settings", "privacy": "Data requests" },
-    "dashboard": { "users": "Total users", "influencers": "Creators", "businesses": "Businesses", "verified": "Verified creators", "activeCampaigns": "Active campaigns", "completedOrders": "Completed orders", "gbv": "Gross booking value", "commission": "Commission revenue", "contactFees": "Contact fee revenue", "refunds": "Refunds", "pendingVerifications": "Pending verifications", "disputes": "Open disputes", "integrationHealth": "Integration health", "failedSyncs": "Failed syncs (24h)" },
-    "decide": "Decide", "approve": "Approve", "reject": "Reject", "suspend": "Suspend", "activate": "Activate", "feature": "Feature", "unfeature": "Unfeature", "notes": "Notes", "publishVersion": "Publish new version", "versionNotes": "Change notes", "weights": "Weights", "thresholds": "Grade thresholds", "distribution": "Grade distribution", "batchPayouts": "Create payouts for eligible earnings", "markPaid": "Mark paid", "reference": "Bank reference", "refundAmount": "Refund amount", "reason": "Reason", "issueRefund": "Issue refund", "resolve": "Resolve", "resolution": "Resolution", "outcome": "Campaign outcome", "revenueReport": "Revenue report", "groupBy": "Group by", "day": "Day", "week": "Week", "month": "Month", "byCategory": "By category", "byInfluencer": "By creator", "byBusiness": "By business", "reconcile": "Run reconciliation", "process": "Process", "sample": "Sample", "researched": "Researched", "localizationBody": "Interface text is managed in /packages/localization/messages (en.json, ar.json). Key parity between English and Arabic is enforced in CI.", "keys": "Translation keys", "saveSettings": "Save settings", "contactFee": "Contact fee (AED, excl. VAT)", "freeAllowance": "Free contacts per business", "accessDays": "Contact access (days)", "maxPerDay": "Max unlocks per day", "refundPolicy": "Refund policy", "commissionRate": "Default commission %", "commissionPayer": "Commission paid by", "splitShare": "Business share when split (%)", "minCommission": "Minimum commission (AED)", "maxCommission": "Maximum commission (AED)", "vatRate": "VAT rate %", "vatRegistered": "Platform VAT registered", "grantCredits": "Grant free contact credits", "quality": "Recommendation quality", "zeroRate": "Zero-result rate", "helpfulRate": "Helpful rate", "searches": "Searches", "flagged": "Flagged messages"
+    "title": "Administration",
+    "nav": {
+      "dashboard": "Dashboard",
+      "users": "Users",
+      "verifications": "Verification queue",
+      "categories": "Categories",
+      "catalog": "Service catalogue",
+      "benchmarks": "UAE pricing benchmarks",
+      "grading": "Grade configuration",
+      "orders": "Bookings",
+      "campaigns": "Campaigns",
+      "fees": "Contact fees & commission",
+      "payments": "Payments",
+      "refunds": "Refunds",
+      "payouts": "Payouts",
+      "disputes": "Disputes",
+      "ai": "AI configuration",
+      "moderation": "Content moderation",
+      "reports": "Reports",
+      "audit": "Audit logs",
+      "integrations": "API integrations",
+      "localization": "Localization",
+      "settings": "Platform settings",
+      "privacy": "Data requests"
+    },
+    "dashboard": {
+      "users": "Total users",
+      "influencers": "Creators",
+      "businesses": "Businesses",
+      "verified": "Verified creators",
+      "activeCampaigns": "Active campaigns",
+      "completedOrders": "Completed orders",
+      "gbv": "Gross booking value",
+      "commission": "Commission revenue",
+      "contactFees": "Contact fee revenue",
+      "refunds": "Refunds",
+      "pendingVerifications": "Pending verifications",
+      "disputes": "Open disputes",
+      "integrationHealth": "Integration health",
+      "failedSyncs": "Failed syncs (24h)"
+    },
+    "decide": "Decide",
+    "approve": "Approve",
+    "reject": "Reject",
+    "suspend": "Suspend",
+    "activate": "Activate",
+    "feature": "Feature",
+    "unfeature": "Unfeature",
+    "notes": "Notes",
+    "publishVersion": "Publish new version",
+    "versionNotes": "Change notes",
+    "weights": "Weights",
+    "thresholds": "Grade thresholds",
+    "distribution": "Grade distribution",
+    "batchPayouts": "Create payouts for eligible earnings",
+    "markPaid": "Mark paid",
+    "reference": "Bank reference",
+    "refundAmount": "Refund amount",
+    "reason": "Reason",
+    "issueRefund": "Issue refund",
+    "resolve": "Resolve",
+    "resolution": "Resolution",
+    "outcome": "Campaign outcome",
+    "revenueReport": "Revenue report",
+    "groupBy": "Group by",
+    "day": "Day",
+    "week": "Week",
+    "month": "Month",
+    "byCategory": "By category",
+    "byInfluencer": "By creator",
+    "byBusiness": "By business",
+    "reconcile": "Run reconciliation",
+    "process": "Process",
+    "sample": "Sample",
+    "researched": "Researched",
+    "localizationBody": "Interface text is managed in /packages/localization/messages (en.json, ar.json). Key parity between English and Arabic is enforced in CI.",
+    "keys": "Translation keys",
+    "saveSettings": "Save settings",
+    "contactFee": "Contact fee (AED, excl. VAT)",
+    "freeAllowance": "Free contacts per business",
+    "accessDays": "Contact access (days)",
+    "maxPerDay": "Max unlocks per day",
+    "refundPolicy": "Refund policy",
+    "commissionRate": "Default commission %",
+    "commissionPayer": "Commission paid by",
+    "splitShare": "Business share when split (%)",
+    "minCommission": "Minimum commission (AED)",
+    "maxCommission": "Maximum commission (AED)",
+    "vatRate": "VAT rate %",
+    "vatRegistered": "Platform VAT registered",
+    "grantCredits": "Grant free contact credits",
+    "quality": "Recommendation quality",
+    "zeroRate": "Zero-result rate",
+    "helpfulRate": "Helpful rate",
+    "searches": "Searches",
+    "flagged": "Flagged messages"
   },
   "pages": {
-    "how": { "title": "How InfluenceHub works", "intro": "A marketplace built around transparency: verified data, clear prices and accountable campaigns." },
-    "business": { "title": "For businesses", "intro": "Find the right UAE creators in minutes, compare like-for-like rates and run every campaign from brief to proof of publication.", "points": ["Search by industry, speciality, emirate, language and audience", "See verified statistics with sources and freshness", "Pay once for multi-creator campaigns, with VAT invoices", "Approve drafts, request revisions and track delivery", "AI discovery explains every recommendation"] },
-    "influencer": { "title": "For creators", "intro": "A premium storefront for your content services — with pricing guidance from your own verified data.", "points": ["Connect Instagram and TikTok through official logins", "Get an explainable performance grade", "Publish rate cards, packages and promotional prices", "Receive enquiries, quotations and bookings", "Track earnings and payouts transparently"] },
-    "pricing": { "title": "Pricing", "intro": "Simple, transparent pricing. Browsing is always free.", "browse": "Browsing & saving", "browseValue": "Free", "contact": "Direct contact", "contactValue": "One-time fee per creator", "contactNote": "Current fee shown before payment, incl. VAT. Booking a service also unlocks messaging.", "commission": "Booking commission", "commissionValue": "Percentage of booking value", "commissionNote": "Configured by InfluenceHub; shown at checkout. Creators see their net earnings before accepting.", "vat": "Prices are in AED and exclusive of 5% VAT unless stated." },
-    "about": { "title": "About InfluenceHub", "body": "InfluenceHub is a UAE-first influencer marketplace that brings e-commerce clarity to creator collaborations. We connect brands with creators across all seven emirates, in English and Arabic, built on official platform integrations and an auditable financial core." },
-    "contact": { "title": "Contact us", "body": "Questions about the platform, partnerships or verification? Reach our team.", "email": "Email", "address": "Dubai, United Arab Emirates" },
-    "terms": { "title": "Terms and Conditions", "notice": "Draft for legal review — not yet final.", "sections": [ { "h": "1. The service", "p": "InfluenceHub provides a marketplace where businesses discover, contact and book creators for marketing services in the United Arab Emirates." }, { "h": "2. Accounts", "p": "You must provide accurate information and keep your credentials secure. We may suspend accounts that breach these terms." }, { "h": "3. Contact fees and bookings", "p": "Contact fees and booking commissions are shown before payment. Prices are in AED. VAT applies where required." }, { "h": "4. Creator obligations", "p": "Creators are responsible for complying with UAE advertising rules, including any advertiser permit requirements and disclosure of paid content." }, { "h": "5. Medical content", "p": "Medical and healthcare campaigns are subject to additional compliance review and applicable health-authority advertising rules." }, { "h": "6. Disputes and refunds", "p": "Disputes are reviewed by InfluenceHub. Refunds are handled according to the applicable policy and booking terms." } ] },
-    "privacy": { "title": "Privacy Policy", "notice": "Draft for legal review — aligned with the UAE Personal Data Protection Law principles; not yet final.", "sections": [ { "h": "Data we collect", "p": "Account details, profile information, communications, transaction records and — with your authorisation — data from connected Instagram and TikTok accounts." }, { "h": "How we use it", "p": "To operate the marketplace, verify accounts, calculate performance grades, process payments, prevent fraud and meet legal obligations." }, { "h": "Social data", "p": "We only access data you authorise through official APIs. Access tokens are encrypted and you can disconnect at any time, which revokes our access." }, { "h": "Your rights", "p": "You can access, export and request deletion of your personal data from Settings. Financial records are retained as required by law." }, { "h": "Security", "p": "We use encryption, access controls, audit logging and monitoring to protect your data." } ] }
+    "how": {
+      "title": "How InfluenceHub works",
+      "intro": "A marketplace built around transparency: verified data, clear prices and accountable campaigns."
+    },
+    "business": {
+      "title": "For businesses",
+      "intro": "Find the right UAE creators in minutes, compare like-for-like rates and run every campaign from brief to proof of publication.",
+      "points": [
+        "Search by industry, speciality, emirate, language and audience",
+        "See verified statistics with sources and freshness",
+        "Pay once for multi-creator campaigns, with VAT invoices",
+        "Approve drafts, request revisions and track delivery",
+        "AI discovery explains every recommendation"
+      ]
+    },
+    "influencer": {
+      "title": "For creators",
+      "intro": "A premium storefront for your content services — with pricing guidance from your own verified data.",
+      "points": [
+        "Connect Instagram and TikTok through official logins",
+        "Get an explainable performance grade",
+        "Publish rate cards, packages and promotional prices",
+        "Receive enquiries, quotations and bookings",
+        "Track earnings and payouts transparently"
+      ]
+    },
+    "pricing": {
+      "title": "Pricing",
+      "intro": "Simple, transparent pricing. Browsing is always free.",
+      "browse": "Browsing & saving",
+      "browseValue": "Free",
+      "contact": "Direct contact",
+      "contactValue": "One-time fee per creator",
+      "contactNote": "Current fee shown before payment, incl. VAT. Booking a service also unlocks messaging.",
+      "commission": "Booking commission",
+      "commissionValue": "Percentage of booking value",
+      "commissionNote": "Configured by InfluenceHub; shown at checkout. Creators see their net earnings before accepting.",
+      "vat": "Prices are in AED and exclusive of 5% VAT unless stated."
+    },
+    "about": {
+      "title": "About InfluenceHub",
+      "body": "InfluenceHub is a UAE-first influencer marketplace that brings e-commerce clarity to creator collaborations. We connect brands with creators across all seven emirates, in English and Arabic, built on official platform integrations and an auditable financial core."
+    },
+    "contact": {
+      "title": "Contact us",
+      "body": "Questions about the platform, partnerships or verification? Reach our team.",
+      "email": "Email",
+      "address": "Dubai, United Arab Emirates"
+    },
+    "terms": {
+      "title": "Terms and Conditions",
+      "notice": "Draft for legal review — not yet final.",
+      "sections": [
+        {
+          "h": "1. The service",
+          "p": "InfluenceHub provides a marketplace where businesses discover, contact and book creators for marketing services in the United Arab Emirates."
+        },
+        {
+          "h": "2. Accounts",
+          "p": "You must provide accurate information and keep your credentials secure. We may suspend accounts that breach these terms."
+        },
+        {
+          "h": "3. Contact fees and bookings",
+          "p": "Contact fees and booking commissions are shown before payment. Prices are in AED. VAT applies where required."
+        },
+        {
+          "h": "4. Creator obligations",
+          "p": "Creators are responsible for complying with UAE advertising rules, including any advertiser permit requirements and disclosure of paid content."
+        },
+        {
+          "h": "5. Medical content",
+          "p": "Medical and healthcare campaigns are subject to additional compliance review and applicable health-authority advertising rules."
+        },
+        {
+          "h": "6. Disputes and refunds",
+          "p": "Disputes are reviewed by InfluenceHub. Refunds are handled according to the applicable policy and booking terms."
+        }
+      ]
+    },
+    "privacy": {
+      "title": "Privacy Policy",
+      "notice": "Draft for legal review — aligned with the UAE Personal Data Protection Law principles; not yet final.",
+      "sections": [
+        {
+          "h": "Data we collect",
+          "p": "Account details, profile information, communications, transaction records and — with your authorisation — data from connected Instagram and TikTok accounts."
+        },
+        {
+          "h": "How we use it",
+          "p": "To operate the marketplace, verify accounts, calculate performance grades, process payments, prevent fraud and meet legal obligations."
+        },
+        {
+          "h": "Social data",
+          "p": "We only access data you authorise through official APIs. Access tokens are encrypted and you can disconnect at any time, which revokes our access."
+        },
+        {
+          "h": "Your rights",
+          "p": "You can access, export and request deletion of your personal data from Settings. Financial records are retained as required by law."
+        },
+        {
+          "h": "Security",
+          "p": "We use encryption, access controls, audit logging and monitoring to protect your data."
+        }
+      ]
+    }
   },
-  "footer": { "rights": "© {year} InfluenceHub. All rights reserved.", "madeIn": "Built for the United Arab Emirates.", "company": "Company", "marketplace": "Marketplace", "legal": "Legal" },
-  "errors": { "PAYMENT_REQUIRED": "A contact fee is required to message this creator.", "CONTACT_ENTITLEMENT_REQUIRED": "Unlock contact with this creator first.", "CART_HAS_UNAVAILABLE_ITEMS": "Some cart items are no longer available.", "DISCOUNT_INVALID": "That discount code is not valid.", "INVALID_TRANSITION": "That action isn't available at this stage.", "COMPLIANCE_REVIEW_PENDING": "This medical campaign is awaiting compliance review.", "CONTACT_DETAILS_NOT_ALLOWED": "Sharing contact details is disabled until a booking is made.", "RATE_LIMITED": "You're doing that too often. Please wait a moment.", "SYNC_TOO_FREQUENT": "Please wait 10 minutes between manual syncs.", "NO_FREE_CONTACTS_LEFT": "You have no free contact credits left.", "FILE_TYPE_NOT_ALLOWED": "That file type isn't allowed.", "FILE_TOO_LARGE": "That file is too large.", "CSRF_INVALID": "Your session expired. Please refresh the page.", "UNAUTHENTICATED": "Please log in to continue.", "FORBIDDEN": "You don't have access to this.", "CATEGORY_REQUIRED_TO_PUBLISH": "Choose at least one category before publishing.", "REVISION_LIMIT_REACHED": "All included revisions have been used.", "QUOTATION_EXPIRED": "This quotation has expired.", "DAILY_LIMIT_REACHED": "Daily contact limit reached.", "INSUFFICIENT_PERMISSION": "Your admin role does not allow this action.", "ADMIN_2FA_REQUIRED": "Complete two-factor authentication to continue." }
+  "footer": {
+    "rights": "© {year} InfluenceHub. All rights reserved.",
+    "madeIn": "Built for the United Arab Emirates.",
+    "company": "Company",
+    "marketplace": "Marketplace",
+    "legal": "Legal"
+  },
+  "errors": {
+    "PAYMENT_REQUIRED": "A contact fee is required to message this creator.",
+    "CONTACT_ENTITLEMENT_REQUIRED": "Unlock contact with this creator first.",
+    "CART_HAS_UNAVAILABLE_ITEMS": "Some cart items are no longer available.",
+    "DISCOUNT_INVALID": "That discount code is not valid.",
+    "INVALID_TRANSITION": "That action isn't available at this stage.",
+    "COMPLIANCE_REVIEW_PENDING": "This medical campaign is awaiting compliance review.",
+    "CONTACT_DETAILS_NOT_ALLOWED": "Sharing contact details is disabled until a booking is made.",
+    "RATE_LIMITED": "You're doing that too often. Please wait a moment.",
+    "SYNC_TOO_FREQUENT": "Please wait 10 minutes between manual syncs.",
+    "NO_FREE_CONTACTS_LEFT": "You have no free contact credits left.",
+    "FILE_TYPE_NOT_ALLOWED": "That file type isn't allowed.",
+    "FILE_TOO_LARGE": "That file is too large.",
+    "CSRF_INVALID": "Your session expired. Please refresh the page.",
+    "UNAUTHENTICATED": "Please log in to continue.",
+    "FORBIDDEN": "You don't have access to this.",
+    "CATEGORY_REQUIRED_TO_PUBLISH": "Choose at least one category before publishing.",
+    "REVISION_LIMIT_REACHED": "All included revisions have been used.",
+    "QUOTATION_EXPIRED": "This quotation has expired.",
+    "DAILY_LIMIT_REACHED": "Daily contact limit reached.",
+    "INSUFFICIENT_PERMISSION": "Your admin role does not allow this action.",
+    "ADMIN_2FA_REQUIRED": "Complete two-factor authentication to continue."
+  },
+  "portal": {
+    "groups": {
+      "marketplace": "Marketplace",
+      "commerce": "Commerce",
+      "campaigns": "Campaigns",
+      "account": "Account",
+      "profile": "Profile",
+      "services": "Services",
+      "work": "Work",
+      "money": "Money",
+      "users": "Users & trust",
+      "catalogue": "Catalogue & pricing",
+      "operations": "Operations",
+      "finance": "Finance",
+      "system": "System"
+    }
+  }
 }
