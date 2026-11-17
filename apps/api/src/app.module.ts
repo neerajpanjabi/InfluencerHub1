@@ -1,6 +1,7 @@
 import { Global, Module } from '@nestjs/common';
 import { APP_FILTER, APP_GUARD } from '@nestjs/core';
-import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
+import { ThrottlerModule } from '@nestjs/throttler';
+import { AppThrottlerGuard } from './common/guards/throttler.guard';
 import { env } from './config/env';
 import { AuthGuard } from './common/guards/auth.guard';
 import { AllExceptionsFilter } from './common/filters/http-exception.filter';
@@ -47,6 +48,7 @@ import { PrivacyController } from './modules/privacy/privacy.controller';
 import { AdminService } from './modules/admin/admin.service';
 import { AdminController } from './modules/admin/admin.controller';
 import { HealthController } from './modules/health/health.controller';
+import { FinanceController } from './modules/finance/finance.controller';
 
 /** Infrastructure + domain services shared by the API and the worker. */
 @Global()
@@ -70,17 +72,17 @@ export class CoreModule {}
   imports: [
     CoreModule,
     AuthModule,
-    ThrottlerModule.forRoot([{ name: 'default', ttl: 60_000, limit: env().APP_ENV === 'test' ? 10_000 : 300 }]),
+    ThrottlerModule.forRoot([{ name: 'default', ttl: 60_000, limit: 300 }]),
     CategoriesModule,
     BusinessesModule,
     SavedModule,
   ],
   controllers: [
     NotificationsController, SocialController, InfluencersController, ServicesController, PaymentsController, CommerceController,
-    QuotationsController, CampaignsController, MessagingController, UploadsController, AiController, PrivacyController, AdminController, HealthController,
+    QuotationsController, CampaignsController, MessagingController, UploadsController, AiController, PrivacyController, AdminController, HealthController, FinanceController,
   ],
   providers: [
-    { provide: APP_GUARD, useClass: ThrottlerGuard },
+    { provide: APP_GUARD, useClass: AppThrottlerGuard },
     { provide: APP_GUARD, useClass: AuthGuard },
     { provide: APP_FILTER, useClass: AllExceptionsFilter },
   ],
