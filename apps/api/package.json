@@ -4,14 +4,16 @@
   "private": true,
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
-    "dev": "nest start --watch",
-    "start": "node dist/main.js",
+    "dev": "nest start --watch --exec \"node --env-file=.env\"",
+    "start": "node --env-file-if-exists=.env dist/main.js",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "test": "jest --runInBand",
     "test:unit": "jest --runInBand test/unit",
-    "test:integration": "jest --runInBand test/integration"
+    "test:integration": "jest --runInBand test/integration",
+    "worker": "node --env-file-if-exists=.env dist/worker.js"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^1.9.0",
     "@aws-sdk/client-s3": "^3.1170.0",
     "@influencehub/database": "workspace:*",
     "@influencehub/shared": "workspace:*",

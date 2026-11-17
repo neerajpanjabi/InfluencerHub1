@@ -221,7 +221,7 @@ export function computeGrade(input: GradingInput, cfg: GradingConfig = DEFAULT_G
         ? {
             raw: ig.avgStoryViews.value,
             norm: logNormalize(ig.avgStoryViews.value, cfg.normalization.INSTAGRAM.storyViews, scale),
-            conf: confidenceOf(ig.avgStoryViews, cfg, now, false),
+            conf: confidenceOf(ig.avgStoryViews, cfg, now, true),
             source: `INSTAGRAM:${ig.avgStoryViews.verification}`,
           }
         : null,

@@ -219,7 +219,7 @@ export async function seedDemoData(prisma: PrismaClient) {
     const result = computeGrade({
       instagram: metricsFor.INSTAGRAM,
       tiktok: metricsFor.TIKTOK,
-      audienceTargetMarketShare: { value: 0.6, verification: 'API_VERIFIED', collectedAt: now },
+      audienceTargetMarketShare: isNew ? undefined : { value: 0.6, verification: 'API_VERIFIED', collectedAt: now },
       primaryCategorySlug: primaryCat,
       now,
     }, DEFAULT_GRADING_CONFIG);
