@@ -37,3 +37,11 @@ export async function api<T = any>(path: string, init: { method?: string; body?:
 }
 
 export const newIdempotencyKey = () => (typeof crypto !== 'undefined' && 'randomUUID' in crypto ? crypto.randomUUID() : `${Date.now()}-${Math.random()}`);
+
+export async function uploadFile(file: File, purpose: string): Promise<any> {
+  const fd = new FormData();
+  fd.append('purpose', purpose);
+  fd.append('file', file);
+  return api('/uploads', { form: fd });
+}
+
