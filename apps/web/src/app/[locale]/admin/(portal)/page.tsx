@@ -8,13 +8,14 @@ import { useAdmin } from '@/components/portal/admin-kit';
 
 export default function AdminDashboard() {
   const t = useTranslations('admin.dashboard');
+  const ta = useTranslations('admin');
   const locale = useLocale();
   const { data: d } = useAdmin('/dashboard');
   if (!d) return <Skeleton className="h-64" />;
   const m = (v: string) => fmtMoney(v, locale);
   return (
     <div className="space-y-6">
-      <PageHeader title={useTranslations('admin')('title')} />
+      <PageHeader title={ta('title')} />
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <StatCard label={t('users')} value={fmtNumber(d.users, locale, false)} />
         <StatCard label={t('influencers')} value={d.influencers} hint={`${t('verified')}: ${d.verifiedInfluencers}`} />
