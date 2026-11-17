@@ -1,0 +1,1844 @@
+// InfluenceHub — PostgreSQL schema (Prisma)
+// Conventions:
+//  * UUID primary keys, UTC timestamps (timestamptz), snake_case table names.
+//  * Money: Decimal(14,2) + ISO currency (AED default). Never floats.
+//  * Financial rows (payments, ledger, invoices, commissions, refunds, payouts) are never
+//    cascade-deleted. Users are soft-deleted / anonymised instead (see DATABASE.md).
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ───────────────────────────── ENUMS ─────────────────────────────
+
+enum UserType {
+  BUSINESS
+  INFLUENCER
+  ADMIN
+}
+
+enum UserStatus {
+  PENDING
+  ACTIVE
+  SUSPENDED
+  DELETED
+}
+
+enum Locale {
+  en
+  ar
+}
+
+enum Country {
+  AE
+  SA
+  QA
+  BH
+  KW
+  OM
+}
+
+enum Emirate {
+  DUBAI
+  ABU_DHABI
+  SHARJAH
+  AJMAN
+  UMM_AL_QUWAIN
+  RAS_AL_KHAIMAH
+  FUJAIRAH
+}
+
+enum AuthProvider {
+  GOOGLE
+  INSTAGRAM
+  TIKTOK
+}
+
+enum Platform {
+  INSTAGRAM
+  TIKTOK
+  CROSS_PLATFORM
+  OFFLINE
+}
+
+enum MetricType {
+  FOLLOWERS
+  FOLLOWING
+  MEDIA_COUNT
+  AVG_REEL_VIEWS
+  AVG_STORY_VIEWS
+  AVG_VIDEO_VIEWS
+  AVG_LIKES
+  AVG_COMMENTS
+  ENGAGEMENT_RATE
+  REACH
+  IMPRESSIONS
+  TOTAL_LIKES
+  VIDEO_COUNT
+}
+
+enum MetricVerification {
+  API_VERIFIED
+  MANUALLY_SUBMITTED
+  PENDING_VERIFICATION
+  UNAVAILABLE
+  EXPIRED
+  SUSPICIOUS
+}
+
+enum MetricSource {
+  INSTAGRAM_API
+  TIKTOK_API
+  MANUAL
+  SANDBOX
+  DEMO_SEED
+}
+
+enum SocialAccountStatus {
+  CONNECTED
+  TOKEN_EXPIRED
+  REVOKED
+  DISCONNECTED
+  ERROR
+}
+
+enum SyncStatus {
+  QUEUED
+  RUNNING
+  SUCCEEDED
+  PARTIAL
+  FAILED
+}
+
+enum VerificationType {
+  EMAIL
+  PHONE
+  BUSINESS_LICENCE
+  IDENTITY
+  MEDICAL_QUALIFICATION
+  SOCIAL_ACCOUNT
+  ADVERTISER_PERMIT
+}
+
+enum VerificationStatus {
+  UNVERIFIED
+  PENDING
+  VERIFIED
+  REJECTED
+  EXPIRED
+}
+
+enum Grade {
+  S
+  A
+  B
+  C
+  D
+  NOT_RATED
+}
+
+enum Gender {
+  FEMALE
+  MALE
+  UNDISCLOSED
+}
+
+enum ServiceStatus {
+  ACTIVE
+  PAUSED
+  ARCHIVED
+}
+
+enum TaxTreatment {
+  STANDARD
+  ZERO_RATED
+  EXEMPT
+  OUT_OF_SCOPE
+}
+
+enum QuotationStatus {
+  REQUESTED
+  SUBMITTED
+  ACCEPTED
+  REJECTED
+  EXPIRED
+  WITHDRAWN
+}
+
+enum CommissionPayer {
+  BUSINESS
+  INFLUENCER
+  SPLIT
+}
+
+enum ContactEntitlementSource {
+  PURCHASE
+  ADMIN_GRANT
+  FREE_ALLOWANCE
+  BOOKING
+}
+
+enum CartStatus {
+  ACTIVE
+  CHECKED_OUT
+  ABANDONED
+}
+
+enum CartItemType {
+  SERVICE
+  PACKAGE
+  QUOTATION
+}
+
+enum OrderStatus {
+  PENDING_PAYMENT
+  PAID
+  PARTIALLY_REFUNDED
+  REFUNDED
+  CANCELLED
+  FAILED
+}
+
+enum PaymentPurpose {
+  ORDER
+  CONTACT
+}
+
+enum PaymentStatus {
+  CREATED
+  PENDING
+  SUCCEEDED
+  FAILED
+  CANCELLED
+  REFUNDED
+  PARTIALLY_REFUNDED
+}
+
+enum RefundStatus {
+  REQUESTED
+  APPROVED
+  PROCESSING
+  SUCCEEDED
+  REJECTED
+  FAILED
+}
+
+enum PayoutStatus {
+  PENDING
+  ON_HOLD
+  SCHEDULED
+  PROCESSING
+  PAID
+  FAILED
+}
+
+enum LedgerAccount {
+  BUSINESS_RECEIVABLE
+  CASH_CLEARING
+  PLATFORM_COMMISSION_REVENUE
+  PLATFORM_CONTACT_FEE_REVENUE
+  INFLUENCER_PAYABLE
+  VAT_PAYABLE
+  PROCESSING_FEE_EXPENSE
+  REFUNDS
+  PAYOUTS
+}
+
+enum LedgerDirection {
+  DEBIT
+  CREDIT
+}
+
+enum CampaignStatus {
+  DRAFT
+  ENQUIRY
+  QUOTATION_REQUESTED
+  QUOTATION_SUBMITTED
+  AWAITING_ACCEPTANCE
+  PAYMENT_PENDING
+  CONFIRMED
+  IN_PROGRESS
+  CONTENT_SUBMITTED
+  AWAITING_APPROVAL
+  REVISION_REQUESTED
+  APPROVED
+  PUBLISHED
+  COMPLETED
+  CANCELLED
+  DISPUTED
+}
+
+enum DeliverableStatus {
+  PENDING
+  SUBMITTED
+  REVISION_REQUESTED
+  APPROVED
+  PUBLISHED
+}
+
+enum ApprovalDecision {
+  APPROVED
+  REVISION_REQUESTED
+  REJECTED
+}
+
+enum DisputeStatus {
+  OPEN
+  UNDER_REVIEW
+  RESOLVED_BUSINESS
+  RESOLVED_INFLUENCER
+  RESOLVED_SPLIT
+  CLOSED
+}
+
+enum MessageStatus {
+  SENT
+  FLAGGED
+  REMOVED
+}
+
+enum NotificationChannel {
+  IN_APP
+  EMAIL
+  SMS
+}
+
+enum ConsentType {
+  TERMS
+  PRIVACY
+  MARKETING
+  SOCIAL_DATA_PROCESSING
+  PUBLIC_PROFILE
+}
+
+enum DeletionStatus {
+  REQUESTED
+  PROCESSING
+  COMPLETED
+  REJECTED
+}
+
+enum ComplianceStatus {
+  NOT_REQUIRED
+  PENDING_REVIEW
+  APPROVED
+  REJECTED
+}
+
+enum ReportStatus {
+  OPEN
+  ACTIONED
+  DISMISSED
+}
+
+// ───────────────────────────── IDENTITY ─────────────────────────────
+
+model User {
+  id                String     @id @default(uuid()) @db.Uuid
+  email             String     @unique // always stored lower-cased
+  emailVerifiedAt   DateTime?  @db.Timestamptz(6)
+  phone             String?
+  phoneVerifiedAt   DateTime?  @db.Timestamptz(6)
+  passwordHash      String?
+  type              UserType
+  status            UserStatus @default(ACTIVE)
+  locale            Locale     @default(en)
+  twoFactorSecret   String? // AES-256-GCM encrypted TOTP secret
+  twoFactorEnabled  Boolean    @default(false)
+  failedLoginCount  Int        @default(0)
+  lockedUntil       DateTime?  @db.Timestamptz(6)
+  lastLoginAt       DateTime?  @db.Timestamptz(6)
+  createdAt         DateTime   @default(now()) @db.Timestamptz(6)
+  updatedAt         DateTime   @updatedAt @db.Timestamptz(6)
+  deletedAt         DateTime?  @db.Timestamptz(6)
+
+  roles              UserRole[]
+  sessions           Session[]
+  authAccounts       AuthAccount[]
+  oneTimeTokens      OneTimeToken[]
+  businessProfile    BusinessProfile?
+  influencerProfile  InfluencerProfile?
+  preferences        UserPreference?
+  verificationRecords VerificationRecord[] @relation("VerificationSubject")
+  reviewedVerifications VerificationRecord[] @relation("VerificationReviewer")
+  notifications      Notification[]
+  notificationPrefs  NotificationPreference[]
+  conversationParticipants ConversationParticipant[]
+  messages           Message[]
+  attachments        Attachment[]
+  auditLogs          AuditLog[]
+  consentRecords     ConsentRecord[]
+  deletionRequests   DataDeletionRequest[]
+  aiSearchLogs       AiSearchLog[]
+  blocksMade         UserBlock[] @relation("Blocker")
+  blocksReceived     UserBlock[] @relation("Blocked")
+  reportsMade        ContentReport[] @relation("Reporter")
+
+  @@index([type, status])
+  @@map("users")
+}
+
+model Role {
+  id          String   @id @default(uuid()) @db.Uuid
+  key         String   @unique // e.g. SUPER_ADMIN, MARKETPLACE_ADMIN, BUSINESS, INFLUENCER
+  name        String
+  description String?
+  isSystem    Boolean  @default(true)
+  createdAt   DateTime @default(now()) @db.Timestamptz(6)
+
+  permissions RolePermission[]
+  users       UserRole[]
+
+  @@map("roles")
+}
+
+model Permission {
+  id          String   @id @default(uuid()) @db.Uuid
+  key         String   @unique // e.g. users.read, finance.refund
+  description String?
+
+  roles RolePermission[]
+
+  @@map("permissions")
+}
+
+model RolePermission {
+  roleId       String     @db.Uuid
+  permissionId String     @db.Uuid
+  role         Role       @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  permission   Permission @relation(fields: [permissionId], references: [id], onDelete: Cascade)
+
+  @@id([roleId, permissionId])
+  @@map("role_permissions")
+}
+
+model UserRole {
+  userId    String   @db.Uuid
+  roleId    String   @db.Uuid
+  grantedAt DateTime @default(now()) @db.Timestamptz(6)
+  grantedBy String?  @db.Uuid
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  role      Role     @relation(fields: [roleId], references: [id], onDelete: Cascade)
+
+  @@id([userId, roleId])
+  @@map("user_roles")
+}
+
+model Session {
+  id               String    @id @default(uuid()) @db.Uuid
+  userId           String    @db.Uuid
+  refreshTokenHash String    @unique
+  userAgent        String?
+  ipAddress        String?
+  isAdminSession   Boolean   @default(false)
+  twoFactorPassed  Boolean   @default(false)
+  expiresAt        DateTime  @db.Timestamptz(6)
+  lastUsedAt       DateTime  @default(now()) @db.Timestamptz(6)
+  revokedAt        DateTime? @db.Timestamptz(6)
+  createdAt        DateTime  @default(now()) @db.Timestamptz(6)
+  user             User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("sessions")
+}
+
+/// External identity used to LOG IN (Google / Instagram / TikTok). Distinct from SocialAccount,
+/// which is a linked creator account used for analytics.
+model AuthAccount {
+  id                String       @id @default(uuid()) @db.Uuid
+  userId            String       @db.Uuid
+  provider          AuthProvider
+  providerAccountId String
+  createdAt         DateTime     @default(now()) @db.Timestamptz(6)
+  user              User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@index([userId])
+  @@map("auth_accounts")
+}
+
+/// Hashed single-use tokens: email verification, password reset, phone OTP.
+model OneTimeToken {
+  id         String    @id @default(uuid()) @db.Uuid
+  userId     String    @db.Uuid
+  purpose    String // EMAIL_VERIFY | PASSWORD_RESET | PHONE_OTP
+  tokenHash  String    @unique
+  expiresAt  DateTime  @db.Timestamptz(6)
+  consumedAt DateTime? @db.Timestamptz(6)
+  attempts   Int       @default(0)
+  createdAt  DateTime  @default(now()) @db.Timestamptz(6)
+  user       User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, purpose])
+  @@map("one_time_tokens")
+}
+
+/// OAuth state + PKCE verifier store (server side, single use, short TTL).
+model OAuthState {
+  id           String    @id @default(uuid()) @db.Uuid
+  stateHash    String    @unique
+  provider     AuthProvider
+  purpose      String // LOGIN | LINK
+  userId       String?   @db.Uuid
+  codeVerifier String? // encrypted PKCE verifier
+  redirectPath String?
+  userType     UserType?
+  expiresAt    DateTime  @db.Timestamptz(6)
+  consumedAt   DateTime? @db.Timestamptz(6)
+  createdAt    DateTime  @default(now()) @db.Timestamptz(6)
+
+  @@map("oauth_states")
+}
+
+model BusinessProfile {
+  id                  String             @id @default(uuid()) @db.Uuid
+  userId              String             @unique @db.Uuid
+  businessName        String
+  contactPerson       String
+  businessEmail       String
+  phone               String?
+  country             Country            @default(AE)
+  emirate             Emirate?
+  city                String?
+  website             String?
+  description         String?
+  logoUrl             String?
+  tradeLicenceNumber  String?
+  tradeLicenceAuthority String?
+  tradeLicenceExpiry  DateTime?          @db.Date
+  trnNumber           String? // UAE VAT Tax Registration Number
+  verificationStatus  VerificationStatus @default(UNVERIFIED)
+  campaignPreferences Json?
+  onboardingCompleted Boolean            @default(false)
+  freeContactCredits  Int                @default(0)
+  createdAt           DateTime           @default(now()) @db.Timestamptz(6)
+  updatedAt           DateTime           @updatedAt @db.Timestamptz(6)
+  deletedAt           DateTime?          @db.Timestamptz(6)
+
+  user                User                @relation(fields: [userId], references: [id], onDelete: Restrict)
+  categories          BusinessCategory[]
+  savedInfluencers    SavedInfluencer[]
+  contactEntitlements ContactEntitlement[]
+  contactPurchases    ContactPurchase[]
+  carts               Cart[]
+  orders              Order[]
+  quotations          Quotation[]
+  campaigns           Campaign[]
+  reviews             Review[]
+  aiRecommendations   AiRecommendation[]
+
+  @@index([emirate])
+  @@map("business_profiles")
+}
+
+model InfluencerProfile {
+  id                    String             @id @default(uuid()) @db.Uuid
+  userId                String             @unique @db.Uuid
+  slug                  String             @unique
+  fullName              String
+  displayName           String
+  displayNameAr         String?
+  profileImageUrl       String?
+  coverImageUrl         String?
+  bio                   String?
+  bioAr                 String?
+  phone                 String?
+  country               Country            @default(AE)
+  emirate               Emirate?
+  city                  String?
+  gender                Gender             @default(UNDISCLOSED)
+  languages             String[] // ISO 639-1 codes e.g. en, ar, hi, ml, ur, tl
+  specialities          String[]
+  contentNiches         String[]
+  audienceLocations     String[] // ISO country / emirate codes
+  isPublic              Boolean            @default(false)
+  visibility            Json? // per-field public visibility toggles
+  identityStatus        VerificationStatus @default(UNVERIFIED)
+  isMedicalProfessional Boolean            @default(false)
+  medicalStatus         VerificationStatus @default(UNVERIFIED)
+  advertiserPermitNumber String?
+  advertiserPermitExpiry DateTime?         @db.Date
+  advertiserPermitStatus VerificationStatus @default(UNVERIFIED)
+  isFeatured            Boolean            @default(false)
+  acceptingBookings     Boolean            @default(true)
+  minimumBudget         Decimal?           @db.Decimal(14, 2)
+  // Denormalised search fields — maintained by the grading/sync services
+  currentScore          Decimal?           @db.Decimal(5, 2)
+  currentGrade          Grade              @default(NOT_RATED)
+  totalFollowers        Int                @default(0)
+  avgReelViews          Int?
+  avgStoryViews         Int?
+  avgVideoViews         Int?
+  engagementRate        Decimal?           @db.Decimal(6, 3)
+  startingPrice         Decimal?           @db.Decimal(14, 2)
+  ratingAverage         Decimal?           @db.Decimal(3, 2)
+  ratingCount           Int                @default(0)
+  searchText            String? // lower-cased EN+AR text for search
+  onboardingCompleted   Boolean            @default(false)
+  createdAt             DateTime           @default(now()) @db.Timestamptz(6)
+  updatedAt             DateTime           @updatedAt @db.Timestamptz(6)
+  deletedAt             DateTime?          @db.Timestamptz(6)
+
+  user               User                  @relation(fields: [userId], references: [id], onDelete: Restrict)
+  categories         InfluencerCategory[]
+  socialAccounts     SocialAccount[]
+  services           InfluencerService[]
+  packages           ServicePackage[]
+  scores             InfluencerScore[]
+  scoreHistory       InfluencerScoreHistory[]
+  savedBy            SavedInfluencer[]
+  contactEntitlements ContactEntitlement[]
+  contactPurchases   ContactPurchase[]
+  quotations         Quotation[]
+  orderItems         OrderItem[]
+  campaigns          Campaign[]
+  reviews            Review[]
+  payouts            Payout[]
+  availability       AvailabilitySlot[]
+  medicalCredentials MedicalCredential[]
+  aiRecommendations  AiRecommendation[]
+
+  @@index([isPublic, currentGrade])
+  @@index([emirate])
+  @@index([totalFollowers])
+  @@index([startingPrice])
+  @@map("influencer_profiles")
+}
+
+model MedicalCredential {
+  id                  String             @id @default(uuid()) @db.Uuid
+  influencerId        String             @db.Uuid
+  profession          String
+  speciality          String?
+  licensingAuthority  String // DHA | DOH | MOHAP | other
+  licenceNumber       String
+  licenceExpiry       DateTime?          @db.Date
+  documentId          String?            @db.Uuid
+  status              VerificationStatus @default(PENDING)
+  reviewNotes         String?
+  reviewedById        String?            @db.Uuid
+  reviewedAt          DateTime?          @db.Timestamptz(6)
+  createdAt           DateTime           @default(now()) @db.Timestamptz(6)
+  updatedAt           DateTime           @updatedAt @db.Timestamptz(6)
+  influencer          InfluencerProfile  @relation(fields: [influencerId], references: [id], onDelete: Cascade)
+
+  @@index([status])
+  @@map("medical_credentials")
+}
+
+model UserPreference {
+  userId         String   @id @db.Uuid
+  locale         Locale   @default(en)
+  currency       String   @default("AED")
+  timezone       String   @default("Asia/Dubai")
+  marketingOptIn Boolean  @default(false)
+  data           Json?
+  updatedAt      DateTime @updatedAt @db.Timestamptz(6)
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("user_preferences")
+}
+
+model VerificationRecord {
+  id           String             @id @default(uuid()) @db.Uuid
+  userId       String             @db.Uuid
+  type         VerificationType
+  status       VerificationStatus @default(PENDING)
+  referenceId  String? // e.g. social account id, medical credential id
+  documentIds  String[]
+  data         Json?
+  notes        String?
+  reviewedById String?            @db.Uuid
+  reviewedAt   DateTime?          @db.Timestamptz(6)
+  createdAt    DateTime           @default(now()) @db.Timestamptz(6)
+  updatedAt    DateTime           @updatedAt @db.Timestamptz(6)
+  user         User               @relation("VerificationSubject", fields: [userId], references: [id], onDelete: Cascade)
+  reviewedBy   User?              @relation("VerificationReviewer", fields: [reviewedById], references: [id], onDelete: SetNull)
+
+  @@index([type, status])
+  @@index([userId])
+  @@map("verification_records")
+}
+
+model AvailabilitySlot {
+  id           String            @id @default(uuid()) @db.Uuid
+  influencerId String            @db.Uuid
+  startsOn     DateTime          @db.Date
+  endsOn       DateTime          @db.Date
+  isAvailable  Boolean           @default(false) // false = blocked out
+  note         String?
+  influencer   InfluencerProfile @relation(fields: [influencerId], references: [id], onDelete: Cascade)
+
+  @@index([influencerId, startsOn])
+  @@map("availability_slots")
+}
+
+// ───────────────────────────── CATEGORIES ─────────────────────────────
+
+model Category {
+  id            String    @id @default(uuid()) @db.Uuid
+  slug          String    @unique
+  parentId      String?   @db.Uuid
+  nameEn        String
+  nameAr        String
+  descriptionEn String?
+  descriptionAr String?
+  icon          String?
+  sortOrder     Int       @default(0)
+  isActive      Boolean   @default(true)
+  requiresMedicalCompliance Boolean @default(false)
+  commissionRate Decimal? @db.Decimal(5, 2) // optional category-specific commission %
+  createdAt     DateTime  @default(now()) @db.Timestamptz(6)
+  updatedAt     DateTime  @updatedAt @db.Timestamptz(6)
+
+  parent      Category?            @relation("CategoryTree", fields: [parentId], references: [id], onDelete: Restrict)
+  children    Category[]           @relation("CategoryTree")
+  influencers InfluencerCategory[]
+  businesses  BusinessCategory[]
+  benchmarks  PricingBenchmark[]
+
+  @@index([parentId])
+  @@map("categories")
+}
+
+model InfluencerCategory {
+  influencerId String            @db.Uuid
+  categoryId   String            @db.Uuid
+  isPrimary    Boolean           @default(false)
+  influencer   InfluencerProfile @relation(fields: [influencerId], references: [id], onDelete: Cascade)
+  category     Category          @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+
+  @@id([influencerId, categoryId])
+  @@index([categoryId])
+  @@map("influencer_categories")
+}
+
+model BusinessCategory {
+  businessId String          @db.Uuid
+  categoryId String          @db.Uuid
+  business   BusinessProfile @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  category   Category        @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+
+  @@id([businessId, categoryId])
+  @@map("business_categories")
+}
+
+// ───────────────────────────── SOCIAL ─────────────────────────────
+
+model SocialAccount {
+  id                String              @id @default(uuid()) @db.Uuid
+  influencerId      String              @db.Uuid
+  platform          Platform
+  providerAccountId String
+  username          String
+  displayName       String?
+  profileImageUrl   String?
+  biography         String?
+  accountType       String? // BUSINESS | MEDIA_CREATOR | PERSONAL ...
+  profileUrl        String?
+  status            SocialAccountStatus @default(CONNECTED)
+  isSandbox         Boolean             @default(false)
+  isPrimary         Boolean             @default(false)
+  apiVersion        String?
+  connectedAt       DateTime            @default(now()) @db.Timestamptz(6)
+  disconnectedAt    DateTime?           @db.Timestamptz(6)
+  lastSyncedAt      DateTime?           @db.Timestamptz(6)
+  nextSyncAt        DateTime?           @db.Timestamptz(6)
+  lastError         String?
+  createdAt         DateTime            @default(now()) @db.Timestamptz(6)
+  updatedAt         DateTime            @updatedAt @db.Timestamptz(6)
+
+  influencer      InfluencerProfile     @relation(fields: [influencerId], references: [id], onDelete: Cascade)
+  tokens          SocialOAuthToken[]
+  snapshots       SocialMetricSnapshot[]
+  posts           SocialMediaPost[]
+  audienceInsights AudienceInsight[]
+  syncLogs        SocialSyncLog[]
+  permissions     SocialPermission[]
+
+  // One platform account can only be linked to one creator (prevents fraudulent duplicate links)
+  @@unique([platform, providerAccountId])
+  @@index([influencerId])
+  @@map("social_accounts")
+}
+
+/// OAuth tokens are AES-256-GCM encrypted at the application layer. Never returned by any API.
+model SocialOAuthToken {
+  id                    String        @id @default(uuid()) @db.Uuid
+  socialAccountId       String        @db.Uuid
+  accessTokenEnc        String
+  refreshTokenEnc       String?
+  tokenType             String?
+  scopes                String[]
+  accessTokenExpiresAt  DateTime?     @db.Timestamptz(6)
+  refreshTokenExpiresAt DateTime?     @db.Timestamptz(6)
+  keyVersion            Int           @default(1)
+  revokedAt             DateTime?     @db.Timestamptz(6)
+  createdAt             DateTime      @default(now()) @db.Timestamptz(6)
+  updatedAt             DateTime      @updatedAt @db.Timestamptz(6)
+  socialAccount         SocialAccount @relation(fields: [socialAccountId], references: [id], onDelete: Cascade)
+
+  @@index([socialAccountId])
+  @@index([accessTokenExpiresAt])
+  @@map("social_oauth_tokens")
+}
+
+/// Append-only metric history. The latest row per (account, metricType) is "current".
+model SocialMetricSnapshot {
+  id                 String             @id @default(uuid()) @db.Uuid
+  socialAccountId    String             @db.Uuid
+  platform           Platform
+  metricType         MetricType
+  value              Decimal            @db.Decimal(18, 4)
+  sampleSize         Int? // number of posts the average is computed over
+  source             MetricSource
+  verificationStatus MetricVerification
+  apiVersion         String?
+  collectedAt        DateTime           @db.Timestamptz(6)
+  createdAt          DateTime           @default(now()) @db.Timestamptz(6)
+  updatedAt          DateTime           @updatedAt @db.Timestamptz(6)
+  socialAccount      SocialAccount      @relation(fields: [socialAccountId], references: [id], onDelete: Cascade)
+
+  @@index([socialAccountId, metricType, collectedAt(sort: Desc)])
+  @@map("social_metric_snapshots")
+}
+
+model SocialMediaPost {
+  id                String        @id @default(uuid()) @db.Uuid
+  socialAccountId   String        @db.Uuid
+  providerMediaId   String
+  mediaType         String // IMAGE | VIDEO | CAROUSEL_ALBUM | REEL | STORY | TIKTOK_VIDEO
+  caption           String?
+  permalink         String?
+  thumbnailUrl      String?
+  publishedAt       DateTime?     @db.Timestamptz(6)
+  likes             Int?
+  comments          Int?
+  shares            Int?
+  saves             Int?
+  views             Int?
+  reach             Int?
+  source            MetricSource
+  fetchedAt         DateTime      @db.Timestamptz(6)
+  socialAccount     SocialAccount @relation(fields: [socialAccountId], references: [id], onDelete: Cascade)
+
+  @@unique([socialAccountId, providerMediaId])
+  @@index([socialAccountId, publishedAt])
+  @@map("social_media_posts")
+}
+
+model AudienceInsight {
+  id              String             @id @default(uuid()) @db.Uuid
+  socialAccountId String             @db.Uuid
+  dimension       String // COUNTRY | CITY | AGE | GENDER
+  key             String
+  value           Decimal            @db.Decimal(8, 4) // share 0..1
+  source          MetricSource
+  verificationStatus MetricVerification
+  collectedAt     DateTime           @db.Timestamptz(6)
+  socialAccount   SocialAccount      @relation(fields: [socialAccountId], references: [id], onDelete: Cascade)
+
+  @@index([socialAccountId, dimension, collectedAt])
+  @@map("audience_insights")
+}
+
+model SocialSyncLog {
+  id              String        @id @default(uuid()) @db.Uuid
+  socialAccountId String        @db.Uuid
+  status          SyncStatus
+  trigger         String // MANUAL | SCHEDULED | CONNECT
+  startedAt       DateTime      @default(now()) @db.Timestamptz(6)
+  finishedAt      DateTime?     @db.Timestamptz(6)
+  metricsWritten  Int           @default(0)
+  postsWritten    Int           @default(0)
+  errorCode       String?
+  errorMessage    String?
+  socialAccount   SocialAccount @relation(fields: [socialAccountId], references: [id], onDelete: Cascade)
+
+  @@index([socialAccountId, startedAt])
+  @@map("social_sync_logs")
+}
+
+model SocialPermission {
+  id              String        @id @default(uuid()) @db.Uuid
+  socialAccountId String        @db.Uuid
+  scope           String
+  granted         Boolean
+  recordedAt      DateTime      @default(now()) @db.Timestamptz(6)
+  socialAccount   SocialAccount @relation(fields: [socialAccountId], references: [id], onDelete: Cascade)
+
+  @@unique([socialAccountId, scope])
+  @@map("social_permissions")
+}
+
+// ───────────────────────────── GRADING ─────────────────────────────
+
+model GradingRule {
+  id        String               @id @default(uuid()) @db.Uuid
+  key       String               @unique // "default"
+  name      String
+  activeVersionId String?        @db.Uuid
+  createdAt DateTime             @default(now()) @db.Timestamptz(6)
+  versions  GradingRuleVersion[]
+
+  @@map("grading_rules")
+}
+
+model GradingRuleVersion {
+  id          String      @id @default(uuid()) @db.Uuid
+  ruleId      String      @db.Uuid
+  version     Int
+  config      Json // weights, thresholds, min samples, freshness, benchmarks
+  notes       String?
+  createdById String?     @db.Uuid
+  createdAt   DateTime    @default(now()) @db.Timestamptz(6)
+  rule        GradingRule @relation(fields: [ruleId], references: [id], onDelete: Restrict)
+  scores      InfluencerScore[]
+
+  @@unique([ruleId, version])
+  @@map("grading_rule_versions")
+}
+
+model InfluencerScore {
+  id                String             @id @default(uuid()) @db.Uuid
+  influencerId      String             @db.Uuid
+  ruleVersionId     String             @db.Uuid
+  score             Decimal?           @db.Decimal(5, 2)
+  grade             Grade
+  breakdown         Json // explainable component scores
+  dataCoverage      Decimal            @db.Decimal(4, 3)
+  isCurrent         Boolean            @default(true)
+  computedAt        DateTime           @default(now()) @db.Timestamptz(6)
+  influencer        InfluencerProfile  @relation(fields: [influencerId], references: [id], onDelete: Cascade)
+  ruleVersion       GradingRuleVersion @relation(fields: [ruleVersionId], references: [id], onDelete: Restrict)
+
+  @@index([influencerId, isCurrent])
+  @@map("influencer_scores")
+}
+
+model InfluencerScoreHistory {
+  id           String            @id @default(uuid()) @db.Uuid
+  influencerId String            @db.Uuid
+  score        Decimal?          @db.Decimal(5, 2)
+  grade        Grade
+  ruleVersion  Int
+  breakdown    Json
+  recordedAt   DateTime          @default(now()) @db.Timestamptz(6)
+  influencer   InfluencerProfile @relation(fields: [influencerId], references: [id], onDelete: Cascade)
+
+  @@index([influencerId, recordedAt])
+  @@map("influencer_score_history")
+}
+
+// ───────────────────────────── PRICING ─────────────────────────────
+
+/// Platform-defined service types (Single Story, Reel, UGC Video, ...).
+model ServiceCatalog {
+  id              String       @id @default(uuid()) @db.Uuid
+  key             String       @unique
+  platform        Platform
+  nameEn          String
+  nameAr          String
+  descriptionEn   String?
+  descriptionAr   String?
+  defaultDeliverables Json // [{type, quantity, platform}]
+  complexityFactor Decimal     @default(1) @db.Decimal(4, 2)
+  sortOrder       Int          @default(0)
+  isActive        Boolean      @default(true)
+  commissionRate  Decimal?     @db.Decimal(5, 2) // optional service-specific commission %
+  createdAt       DateTime     @default(now()) @db.Timestamptz(6)
+  updatedAt       DateTime     @updatedAt @db.Timestamptz(6)
+
+  influencerServices InfluencerService[]
+  benchmarks         PricingBenchmark[]
+
+  @@map("service_catalog")
+}
+
+model InfluencerService {
+  id              String            @id @default(uuid()) @db.Uuid
+  influencerId    String            @db.Uuid
+  catalogId       String            @db.Uuid
+  title           String
+  titleAr         String?
+  description     String?
+  descriptionAr   String?
+  platform        Platform
+  deliverables    Json
+  price           Decimal           @db.Decimal(14, 2)
+  promoPrice      Decimal?          @db.Decimal(14, 2)
+  promoEndsAt     DateTime?         @db.Timestamptz(6)
+  minimumPrice    Decimal?          @db.Decimal(14, 2)
+  suggestedPrice  Decimal?          @db.Decimal(14, 2) // recommendation at time of save, for reference only
+  currency        String            @default("AED")
+  deliveryDays    Int
+  revisions       Int               @default(1)
+  usageRights     String? // e.g. "Organic only, 30 days"
+  usageRightsDays Int?
+  exclusivityDays Int?
+  addOns          Json? // [{key, name, price}]
+  taxTreatment    TaxTreatment      @default(STANDARD)
+  status          ServiceStatus     @default(ACTIVE)
+  createdAt       DateTime          @default(now()) @db.Timestamptz(6)
+  updatedAt       DateTime          @updatedAt @db.Timestamptz(6)
+  deletedAt       DateTime?         @db.Timestamptz(6)
+
+  influencer     InfluencerProfile @relation(fields: [influencerId], references: [id], onDelete: Cascade)
+  catalog        ServiceCatalog    @relation(fields: [catalogId], references: [id], onDelete: Restrict)
+  pricingHistory PricingHistory[]
+  packageItems   ServicePackageItem[]
+  cartItems      CartItem[]
+  orderItems     OrderItem[]
+
+  @@index([influencerId, status])
+  @@index([catalogId])
+  @@map("influencer_services")
+}
+
+model ServicePackage {
+  id            String               @id @default(uuid()) @db.Uuid
+  influencerId  String               @db.Uuid
+  title         String
+  titleAr       String?
+  description   String?
+  price         Decimal              @db.Decimal(14, 2)
+  currency      String               @default("AED")
+  deliveryDays  Int
+  status        ServiceStatus        @default(ACTIVE)
+  createdAt     DateTime             @default(now()) @db.Timestamptz(6)
+  updatedAt     DateTime             @updatedAt @db.Timestamptz(6)
+  influencer    InfluencerProfile    @relation(fields: [influencerId], references: [id], onDelete: Cascade)
+  items         ServicePackageItem[]
+  cartItems     CartItem[]
+
+  @@map("service_packages")
+}
+
+model ServicePackageItem {
+  packageId String            @db.Uuid
+  serviceId String            @db.Uuid
+  quantity  Int               @default(1)
+  package   ServicePackage    @relation(fields: [packageId], references: [id], onDelete: Cascade)
+  service   InfluencerService @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+
+  @@id([packageId, serviceId])
+  @@map("service_package_items")
+}
+
+/// Editable UAE market benchmark. Rows seeded as SAMPLE until real research is recorded.
+model PricingBenchmark {
+  id            String    @id @default(uuid()) @db.Uuid
+  categoryId    String?   @db.Uuid
+  subcategory   String?
+  emirate       Emirate?
+  platform      Platform
+  catalogId     String?   @db.Uuid
+  grade         Grade?
+  followersMin  Int?
+  followersMax  Int?
+  avgViewsMin   Int?
+  avgViewsMax   Int?
+  minRate       Decimal   @db.Decimal(14, 2)
+  medianRate    Decimal   @db.Decimal(14, 2)
+  maxRate       Decimal   @db.Decimal(14, 2)
+  currency      String    @default("AED")
+  isSample      Boolean   @default(true)
+  researchSource String
+  researchedAt  DateTime? @db.Date
+  createdAt     DateTime  @default(now()) @db.Timestamptz(6)
+  updatedAt     DateTime  @updatedAt @db.Timestamptz(6)
+  category      Category?       @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  catalog       ServiceCatalog? @relation(fields: [catalogId], references: [id], onDelete: SetNull)
+
+  @@index([platform, catalogId, grade])
+  @@map("pricing_benchmarks")
+}
+
+model PricingHistory {
+  id         String            @id @default(uuid()) @db.Uuid
+  serviceId  String            @db.Uuid
+  oldPrice   Decimal?          @db.Decimal(14, 2)
+  newPrice   Decimal           @db.Decimal(14, 2)
+  suggested  Decimal?          @db.Decimal(14, 2)
+  changedById String?          @db.Uuid
+  changedAt  DateTime          @default(now()) @db.Timestamptz(6)
+  service    InfluencerService @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+
+  @@index([serviceId, changedAt])
+  @@map("pricing_history")
+}
+
+model Quotation {
+  id            String          @id @default(uuid()) @db.Uuid
+  number        String          @unique
+  businessId    String          @db.Uuid
+  influencerId  String          @db.Uuid
+  campaignId    String?         @db.Uuid
+  status        QuotationStatus @default(REQUESTED)
+  brief         String
+  requestedBudget Decimal?      @db.Decimal(14, 2)
+  subtotal      Decimal?        @db.Decimal(14, 2)
+  currency      String          @default("AED")
+  validUntil    DateTime?       @db.Timestamptz(6)
+  influencerNote String?
+  submittedAt   DateTime?       @db.Timestamptz(6)
+  respondedAt   DateTime?       @db.Timestamptz(6)
+  createdAt     DateTime        @default(now()) @db.Timestamptz(6)
+  updatedAt     DateTime        @updatedAt @db.Timestamptz(6)
+  business      BusinessProfile   @relation(fields: [businessId], references: [id], onDelete: Restrict)
+  influencer    InfluencerProfile @relation(fields: [influencerId], references: [id], onDelete: Restrict)
+  campaign      Campaign?         @relation(fields: [campaignId], references: [id], onDelete: SetNull)
+  items         QuotationItem[]
+  cartItems     CartItem[]
+  orderItems    OrderItem[]
+
+  @@index([businessId, status])
+  @@index([influencerId, status])
+  @@map("quotations")
+}
+
+model QuotationItem {
+  id           String    @id @default(uuid()) @db.Uuid
+  quotationId  String    @db.Uuid
+  description  String
+  platform     Platform
+  quantity     Int       @default(1)
+  unitPrice    Decimal   @db.Decimal(14, 2)
+  deliveryDays Int
+  quotation    Quotation @relation(fields: [quotationId], references: [id], onDelete: Cascade)
+
+  @@map("quotation_items")
+}
+
+// ───────────────────────────── MARKETPLACE ─────────────────────────────
+
+model SavedInfluencer {
+  businessId   String            @db.Uuid
+  influencerId String            @db.Uuid
+  note         String?
+  createdAt    DateTime          @default(now()) @db.Timestamptz(6)
+  business     BusinessProfile   @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  influencer   InfluencerProfile @relation(fields: [influencerId], references: [id], onDelete: Cascade)
+
+  @@id([businessId, influencerId])
+  @@map("saved_influencers")
+}
+
+/// Right of a business to contact an influencer. One active entitlement per pair.
+model ContactEntitlement {
+  id           String                   @id @default(uuid()) @db.Uuid
+  businessId   String                   @db.Uuid
+  influencerId String                   @db.Uuid
+  source       ContactEntitlementSource
+  purchaseId   String?                  @unique @db.Uuid
+  grantedById  String?                  @db.Uuid
+  expiresAt    DateTime?                @db.Timestamptz(6)
+  revokedAt    DateTime?                @db.Timestamptz(6)
+  createdAt    DateTime                 @default(now()) @db.Timestamptz(6)
+  business     BusinessProfile          @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  influencer   InfluencerProfile        @relation(fields: [influencerId], references: [id], onDelete: Cascade)
+  purchase     ContactPurchase?         @relation(fields: [purchaseId], references: [id], onDelete: Restrict)
+
+  @@index([businessId, influencerId])
+  @@map("contact_entitlements")
+}
+
+model ContactPurchase {
+  id             String            @id @default(uuid()) @db.Uuid
+  businessId     String            @db.Uuid
+  influencerId   String            @db.Uuid
+  amount         Decimal           @db.Decimal(14, 2)
+  vatAmount      Decimal           @db.Decimal(14, 2)
+  totalAmount    Decimal           @db.Decimal(14, 2)
+  currency       String            @default("AED")
+  status         PaymentStatus     @default(CREATED)
+  idempotencyKey String            @unique
+  createdAt      DateTime          @default(now()) @db.Timestamptz(6)
+  updatedAt      DateTime          @updatedAt @db.Timestamptz(6)
+  business       BusinessProfile   @relation(fields: [businessId], references: [id], onDelete: Restrict)
+  influencer     InfluencerProfile @relation(fields: [influencerId], references: [id], onDelete: Restrict)
+  entitlement    ContactEntitlement?
+  payments       Payment[]
+
+  @@index([businessId, influencerId, status])
+  @@map("contact_purchases")
+}
+
+model Cart {
+  id         String          @id @default(uuid()) @db.Uuid
+  businessId String          @db.Uuid
+  status     CartStatus      @default(ACTIVE)
+  createdAt  DateTime        @default(now()) @db.Timestamptz(6)
+  updatedAt  DateTime        @updatedAt @db.Timestamptz(6)
+  business   BusinessProfile @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  items      CartItem[]
+
+  @@index([businessId, status])
+  @@map("carts")
+}
+
+model CartItem {
+  id          String             @id @default(uuid()) @db.Uuid
+  cartId      String             @db.Uuid
+  type        CartItemType
+  serviceId   String?            @db.Uuid
+  packageId   String?            @db.Uuid
+  quotationId String?            @db.Uuid
+  quantity    Int                @default(1)
+  addOnKeys   String[]
+  brief       String?
+  createdAt   DateTime           @default(now()) @db.Timestamptz(6)
+  cart        Cart               @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  service     InfluencerService? @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+  package     ServicePackage?    @relation(fields: [packageId], references: [id], onDelete: Cascade)
+  quotation   Quotation?         @relation(fields: [quotationId], references: [id], onDelete: Cascade)
+
+  @@index([cartId])
+  @@map("cart_items")
+}
+
+model DiscountCode {
+  id           String    @id @default(uuid()) @db.Uuid
+  code         String    @unique
+  percentOff   Decimal?  @db.Decimal(5, 2)
+  amountOff    Decimal?  @db.Decimal(14, 2)
+  maxRedemptions Int?
+  redemptions  Int       @default(0)
+  validFrom    DateTime? @db.Timestamptz(6)
+  validUntil   DateTime? @db.Timestamptz(6)
+  isActive     Boolean   @default(true)
+  createdAt    DateTime  @default(now()) @db.Timestamptz(6)
+
+  @@map("discount_codes")
+}
+
+model Order {
+  id              String          @id @default(uuid()) @db.Uuid
+  number          String          @unique
+  businessId      String          @db.Uuid
+  status          OrderStatus     @default(PENDING_PAYMENT)
+  currency        String          @default("AED")
+  subtotal        Decimal         @db.Decimal(14, 2)
+  discountTotal   Decimal         @default(0) @db.Decimal(14, 2)
+  businessCommissionTotal Decimal @default(0) @db.Decimal(14, 2)
+  vatTotal        Decimal         @db.Decimal(14, 2)
+  grandTotal      Decimal         @db.Decimal(14, 2)
+  discountCode    String?
+  idempotencyKey  String          @unique
+  vatRate         Decimal         @db.Decimal(5, 2)
+  paidAt          DateTime?       @db.Timestamptz(6)
+  createdAt       DateTime        @default(now()) @db.Timestamptz(6)
+  updatedAt       DateTime        @updatedAt @db.Timestamptz(6)
+  business        BusinessProfile @relation(fields: [businessId], references: [id], onDelete: Restrict)
+  items           OrderItem[]
+  payments        Payment[]
+  invoices        Invoice[]
+  refunds         Refund[]
+
+  @@index([businessId, status])
+  @@index([createdAt])
+  @@map("orders")
+}
+
+model OrderItem {
+  id               String             @id @default(uuid()) @db.Uuid
+  orderId          String             @db.Uuid
+  influencerId     String             @db.Uuid
+  serviceId        String?            @db.Uuid
+  quotationId      String?            @db.Uuid
+  packageId        String?            @db.Uuid
+  description      String
+  platform         Platform
+  quantity         Int
+  unitPrice        Decimal            @db.Decimal(14, 2)
+  addOnsTotal      Decimal            @default(0) @db.Decimal(14, 2)
+  discount         Decimal            @default(0) @db.Decimal(14, 2)
+  grossAmount      Decimal            @db.Decimal(14, 2) // creator price * qty + add-ons - discount
+  commissionRate   Decimal            @db.Decimal(5, 2)
+  commissionPayer  CommissionPayer
+  businessCommission   Decimal        @db.Decimal(14, 2)
+  influencerCommission Decimal        @db.Decimal(14, 2)
+  vatAmount        Decimal            @db.Decimal(14, 2)
+  influencerNet    Decimal            @db.Decimal(14, 2)
+  taxTreatment     TaxTreatment
+  deliveryDays     Int
+  snapshot         Json // immutable copy of service details at purchase time
+  refundedAmount   Decimal            @default(0) @db.Decimal(14, 2)
+  order            Order              @relation(fields: [orderId], references: [id], onDelete: Restrict)
+  influencer       InfluencerProfile  @relation(fields: [influencerId], references: [id], onDelete: Restrict)
+  service          InfluencerService? @relation(fields: [serviceId], references: [id], onDelete: SetNull)
+  quotation        Quotation?         @relation(fields: [quotationId], references: [id], onDelete: SetNull)
+  campaign         Campaign?
+  commission       Commission?
+
+  @@index([orderId])
+  @@index([influencerId])
+  @@map("order_items")
+}
+
+// ───────────────────────────── FINANCE ─────────────────────────────
+
+model Payment {
+  id                 String          @id @default(uuid()) @db.Uuid
+  purpose            PaymentPurpose
+  orderId            String?         @db.Uuid
+  contactPurchaseId  String?         @db.Uuid
+  provider           String // sandbox | stripe | checkout_com | telr | network_international
+  providerPaymentId  String?
+  providerSessionId  String?
+  checkoutUrl        String?
+  amount             Decimal         @db.Decimal(14, 2)
+  currency           String          @default("AED")
+  status             PaymentStatus   @default(CREATED)
+  processingFee      Decimal?        @db.Decimal(14, 2)
+  idempotencyKey     String          @unique
+  failureReason      String?
+  succeededAt        DateTime?       @db.Timestamptz(6)
+  createdAt          DateTime        @default(now()) @db.Timestamptz(6)
+  updatedAt          DateTime        @updatedAt @db.Timestamptz(6)
+  order              Order?           @relation(fields: [orderId], references: [id], onDelete: Restrict)
+  contactPurchase    ContactPurchase? @relation(fields: [contactPurchaseId], references: [id], onDelete: Restrict)
+  events             PaymentEvent[]
+  refunds            Refund[]
+
+  @@unique([provider, providerSessionId])
+  @@index([orderId])
+  @@index([contactPurchaseId])
+  @@map("payments")
+}
+
+/// Raw webhook events — unique per provider event id for idempotent processing.
+model PaymentEvent {
+  id              String    @id @default(uuid()) @db.Uuid
+  provider        String
+  providerEventId String
+  type            String
+  paymentId       String?   @db.Uuid
+  payload         Json
+  signatureValid  Boolean
+  processedAt     DateTime? @db.Timestamptz(6)
+  error           String?
+  receivedAt      DateTime  @default(now()) @db.Timestamptz(6)
+  payment         Payment?  @relation(fields: [paymentId], references: [id], onDelete: Restrict)
+
+  @@unique([provider, providerEventId])
+  @@map("payment_events")
+}
+
+model Refund {
+  id               String       @id @default(uuid()) @db.Uuid
+  paymentId        String       @db.Uuid
+  orderId          String?      @db.Uuid
+  orderItemId      String?      @db.Uuid
+  amount           Decimal      @db.Decimal(14, 2)
+  currency         String       @default("AED")
+  reason           String
+  status           RefundStatus @default(REQUESTED)
+  providerRefundId String?
+  idempotencyKey   String       @unique
+  requestedById    String?      @db.Uuid
+  approvedById     String?      @db.Uuid
+  createdAt        DateTime     @default(now()) @db.Timestamptz(6)
+  updatedAt        DateTime     @updatedAt @db.Timestamptz(6)
+  payment          Payment      @relation(fields: [paymentId], references: [id], onDelete: Restrict)
+  order            Order?       @relation(fields: [orderId], references: [id], onDelete: Restrict)
+
+  @@index([status])
+  @@map("refunds")
+}
+
+model Payout {
+  id              String            @id @default(uuid()) @db.Uuid
+  influencerId    String            @db.Uuid
+  amount          Decimal           @db.Decimal(14, 2)
+  currency        String            @default("AED")
+  status          PayoutStatus      @default(PENDING)
+  method          String? // bank_transfer
+  reference       String?
+  commissionIds   String[]
+  scheduledFor    DateTime?         @db.Timestamptz(6)
+  paidAt          DateTime?         @db.Timestamptz(6)
+  createdAt       DateTime          @default(now()) @db.Timestamptz(6)
+  updatedAt       DateTime          @updatedAt @db.Timestamptz(6)
+  influencer      InfluencerProfile @relation(fields: [influencerId], references: [id], onDelete: Restrict)
+
+  @@index([influencerId, status])
+  @@map("payouts")
+}
+
+model Commission {
+  id                   String    @id @default(uuid()) @db.Uuid
+  orderItemId          String    @unique @db.Uuid
+  influencerId         String    @db.Uuid
+  grossAmount          Decimal   @db.Decimal(14, 2)
+  rate                 Decimal   @db.Decimal(5, 2)
+  payer                CommissionPayer
+  businessPortion      Decimal   @db.Decimal(14, 2)
+  influencerPortion    Decimal   @db.Decimal(14, 2)
+  totalCommission      Decimal   @db.Decimal(14, 2)
+  influencerNet        Decimal   @db.Decimal(14, 2)
+  releasedAt           DateTime? @db.Timestamptz(6) // when campaign completed and payout eligible
+  payoutId             String?   @db.Uuid
+  reversedAmount       Decimal   @default(0) @db.Decimal(14, 2)
+  createdAt            DateTime  @default(now()) @db.Timestamptz(6)
+  orderItem            OrderItem @relation(fields: [orderItemId], references: [id], onDelete: Restrict)
+
+  @@index([influencerId])
+  @@map("commissions")
+}
+
+model Invoice {
+  id          String   @id @default(uuid()) @db.Uuid
+  number      String   @unique
+  orderId     String?  @db.Uuid
+  contactPurchaseId String? @db.Uuid
+  issuedTo    Json // snapshot of business billing details
+  issuedBy    Json // snapshot of platform legal entity
+  lines       Json
+  subtotal    Decimal  @db.Decimal(14, 2)
+  vatTotal    Decimal  @db.Decimal(14, 2)
+  total       Decimal  @db.Decimal(14, 2)
+  currency    String   @default("AED")
+  issuedAt    DateTime @default(now()) @db.Timestamptz(6)
+  order       Order?   @relation(fields: [orderId], references: [id], onDelete: Restrict)
+
+  @@map("invoices")
+}
+
+/// Immutable double-entry ledger. UPDATE/DELETE are blocked by a database trigger.
+model FinancialLedger {
+  id            String          @id @default(uuid()) @db.Uuid
+  transactionId String          @db.Uuid // groups balanced entries
+  account       LedgerAccount
+  direction     LedgerDirection
+  amount        Decimal         @db.Decimal(14, 2)
+  currency      String          @default("AED")
+  referenceType String // ORDER | CONTACT_PURCHASE | REFUND | PAYOUT
+  referenceId   String          @db.Uuid
+  influencerId  String?         @db.Uuid
+  businessId    String?         @db.Uuid
+  categoryId    String?         @db.Uuid
+  description   String
+  createdAt     DateTime        @default(now()) @db.Timestamptz(6)
+
+  @@index([transactionId])
+  @@index([account, createdAt])
+  @@index([referenceType, referenceId])
+  @@map("financial_ledger")
+}
+
+model ReconciliationRecord {
+  id             String   @id @default(uuid()) @db.Uuid
+  provider       String
+  periodStart    DateTime @db.Timestamptz(6)
+  periodEnd      DateTime @db.Timestamptz(6)
+  ledgerTotal    Decimal  @db.Decimal(14, 2)
+  providerTotal  Decimal? @db.Decimal(14, 2)
+  difference     Decimal? @db.Decimal(14, 2)
+  status         String // MATCHED | MISMATCH | PENDING_PROVIDER_DATA
+  details        Json?
+  createdAt      DateTime @default(now()) @db.Timestamptz(6)
+
+  @@map("reconciliation_records")
+}
+
+// ───────────────────────────── COMMUNICATION ─────────────────────────────
+
+model Conversation {
+  id               String    @id @default(uuid()) @db.Uuid
+  businessUserId   String    @db.Uuid
+  influencerUserId String    @db.Uuid
+  campaignId       String?   @db.Uuid
+  lastMessageAt    DateTime? @db.Timestamptz(6)
+  isLocked         Boolean   @default(false)
+  createdAt        DateTime  @default(now()) @db.Timestamptz(6)
+  participants     ConversationParticipant[]
+  messages         Message[]
+
+  @@unique([businessUserId, influencerUserId])
+  @@map("conversations")
+}
+
+model ConversationParticipant {
+  conversationId String       @db.Uuid
+  userId         String       @db.Uuid
+  lastReadAt     DateTime?    @db.Timestamptz(6)
+  isMuted        Boolean      @default(false)
+  conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  user           User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([conversationId, userId])
+  @@index([userId])
+  @@map("conversation_participants")
+}
+
+model Message {
+  id             String        @id @default(uuid()) @db.Uuid
+  conversationId String        @db.Uuid
+  senderId       String        @db.Uuid
+  body           String
+  status         MessageStatus @default(SENT)
+  flaggedReason  String?
+  createdAt      DateTime      @default(now()) @db.Timestamptz(6)
+  conversation   Conversation  @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  sender         User          @relation(fields: [senderId], references: [id], onDelete: Restrict)
+  attachments    Attachment[]
+
+  @@index([conversationId, createdAt])
+  @@map("messages")
+}
+
+model Attachment {
+  id          String    @id @default(uuid()) @db.Uuid
+  ownerId     String    @db.Uuid
+  messageId   String?   @db.Uuid
+  deliverableId String? @db.Uuid
+  purpose     String // MESSAGE | DELIVERABLE | VERIFICATION | AVATAR | LOGO
+  storageKey  String    @unique
+  fileName    String
+  mimeType    String
+  sizeBytes   Int
+  sha256      String
+  scanStatus  String    @default("PENDING") // PENDING | CLEAN | INFECTED | SKIPPED
+  isPrivate   Boolean   @default(true)
+  createdAt   DateTime  @default(now()) @db.Timestamptz(6)
+  owner       User      @relation(fields: [ownerId], references: [id], onDelete: Restrict)
+  message     Message?  @relation(fields: [messageId], references: [id], onDelete: SetNull)
+  deliverable CampaignDeliverable? @relation(fields: [deliverableId], references: [id], onDelete: SetNull)
+
+  @@map("attachments")
+}
+
+model UserBlock {
+  blockerId String   @db.Uuid
+  blockedId String   @db.Uuid
+  createdAt DateTime @default(now()) @db.Timestamptz(6)
+  blocker   User     @relation("Blocker", fields: [blockerId], references: [id], onDelete: Cascade)
+  blocked   User     @relation("Blocked", fields: [blockedId], references: [id], onDelete: Cascade)
+
+  @@id([blockerId, blockedId])
+  @@map("user_blocks")
+}
+
+model ContentReport {
+  id          String       @id @default(uuid()) @db.Uuid
+  reporterId  String       @db.Uuid
+  targetType  String // MESSAGE | USER | PROFILE | REVIEW
+  targetId    String       @db.Uuid
+  reason      String
+  details     String?
+  status      ReportStatus @default(OPEN)
+  resolvedById String?     @db.Uuid
+  resolvedAt  DateTime?    @db.Timestamptz(6)
+  createdAt   DateTime     @default(now()) @db.Timestamptz(6)
+  reporter    User         @relation("Reporter", fields: [reporterId], references: [id], onDelete: Cascade)
+
+  @@index([status])
+  @@map("content_reports")
+}
+
+model Notification {
+  id        String    @id @default(uuid()) @db.Uuid
+  userId    String    @db.Uuid
+  type      String // e.g. CONTACT_PURCHASED, NEW_MESSAGE
+  titleKey  String
+  bodyKey   String
+  params    Json?
+  link      String?
+  readAt    DateTime? @db.Timestamptz(6)
+  emailedAt DateTime? @db.Timestamptz(6)
+  createdAt DateTime  @default(now()) @db.Timestamptz(6)
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, readAt])
+  @@map("notifications")
+}
+
+model NotificationPreference {
+  userId  String              @db.Uuid
+  type    String
+  channel NotificationChannel
+  enabled Boolean             @default(true)
+  user    User                @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([userId, type, channel])
+  @@map("notification_preferences")
+}
+
+// ───────────────────────────── CAMPAIGNS ─────────────────────────────
+
+model Campaign {
+  id               String            @id @default(uuid()) @db.Uuid
+  number           String            @unique
+  businessId       String            @db.Uuid
+  influencerId     String            @db.Uuid
+  orderItemId      String?           @unique @db.Uuid
+  title            String
+  brief            String?
+  status           CampaignStatus    @default(DRAFT)
+  platforms        Platform[]
+  requiredMentions String[]
+  requiredHashtags String[]
+  postingDeadline  DateTime?         @db.Timestamptz(6)
+  requiresApproval Boolean           @default(true)
+  usageRights      String?
+  contractTerms    String?
+  complianceStatus ComplianceStatus  @default(NOT_REQUIRED)
+  complianceNotes  String?
+  agreedAmount     Decimal?          @db.Decimal(14, 2)
+  currency         String            @default("AED")
+  startedAt        DateTime?         @db.Timestamptz(6)
+  completedAt      DateTime?         @db.Timestamptz(6)
+  cancelledAt      DateTime?         @db.Timestamptz(6)
+  createdAt        DateTime          @default(now()) @db.Timestamptz(6)
+  updatedAt        DateTime          @updatedAt @db.Timestamptz(6)
+  business         BusinessProfile   @relation(fields: [businessId], references: [id], onDelete: Restrict)
+  influencer       InfluencerProfile @relation(fields: [influencerId], references: [id], onDelete: Restrict)
+  orderItem        OrderItem?        @relation(fields: [orderItemId], references: [id], onDelete: Restrict)
+  deliverables     CampaignDeliverable[]
+  approvals        CampaignApproval[]
+  events           CampaignEvent[]
+  reviews          Review[]
+  disputes         Dispute[]
+  quotations       Quotation[]
+
+  @@index([businessId, status])
+  @@index([influencerId, status])
+  @@map("campaigns")
+}
+
+model CampaignDeliverable {
+  id            String            @id @default(uuid()) @db.Uuid
+  campaignId    String            @db.Uuid
+  type          String // REEL | STORY | TIKTOK_VIDEO | POST | UGC_VIDEO ...
+  platform      Platform
+  quantity      Int               @default(1)
+  dueAt         DateTime?         @db.Timestamptz(6)
+  status        DeliverableStatus @default(PENDING)
+  draftUrl      String?
+  draftNotes    String?
+  publishedUrl  String?
+  publishedAt   DateTime?         @db.Timestamptz(6)
+  revisionCount Int               @default(0)
+  maxRevisions  Int               @default(1)
+  createdAt     DateTime          @default(now()) @db.Timestamptz(6)
+  updatedAt     DateTime          @updatedAt @db.Timestamptz(6)
+  campaign      Campaign          @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  approvals     CampaignApproval[]
+  attachments   Attachment[]
+
+  @@index([campaignId])
+  @@map("campaign_deliverables")
+}
+
+model CampaignApproval {
+  id            String               @id @default(uuid()) @db.Uuid
+  campaignId    String               @db.Uuid
+  deliverableId String?              @db.Uuid
+  decidedById   String               @db.Uuid
+  decision      ApprovalDecision
+  comment       String?
+  createdAt     DateTime             @default(now()) @db.Timestamptz(6)
+  campaign      Campaign             @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  deliverable   CampaignDeliverable? @relation(fields: [deliverableId], references: [id], onDelete: SetNull)
+
+  @@map("campaign_approvals")
+}
+
+model CampaignEvent {
+  id         String          @id @default(uuid()) @db.Uuid
+  campaignId String          @db.Uuid
+  actorId    String?         @db.Uuid
+  fromStatus CampaignStatus?
+  toStatus   CampaignStatus
+  note       String?
+  createdAt  DateTime        @default(now()) @db.Timestamptz(6)
+  campaign   Campaign        @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+
+  @@index([campaignId, createdAt])
+  @@map("campaign_events")
+}
+
+model Review {
+  id           String            @id @default(uuid()) @db.Uuid
+  campaignId   String            @db.Uuid
+  businessId   String            @db.Uuid
+  influencerId String            @db.Uuid
+  rating       Int // 1..5, enforced by CHECK constraint
+  comment      String?
+  response     String?
+  isHidden     Boolean           @default(false)
+  createdAt    DateTime          @default(now()) @db.Timestamptz(6)
+  campaign     Campaign          @relation(fields: [campaignId], references: [id], onDelete: Restrict)
+  business     BusinessProfile   @relation(fields: [businessId], references: [id], onDelete: Restrict)
+  influencer   InfluencerProfile @relation(fields: [influencerId], references: [id], onDelete: Restrict)
+
+  @@unique([campaignId, businessId])
+  @@index([influencerId])
+  @@map("reviews")
+}
+
+model Dispute {
+  id           String        @id @default(uuid()) @db.Uuid
+  campaignId   String        @db.Uuid
+  raisedById   String        @db.Uuid
+  reason       String
+  details      String
+  status       DisputeStatus @default(OPEN)
+  resolution   String?
+  refundAmount Decimal?      @db.Decimal(14, 2)
+  assignedToId String?       @db.Uuid
+  resolvedAt   DateTime?     @db.Timestamptz(6)
+  createdAt    DateTime      @default(now()) @db.Timestamptz(6)
+  updatedAt    DateTime      @updatedAt @db.Timestamptz(6)
+  campaign     Campaign      @relation(fields: [campaignId], references: [id], onDelete: Restrict)
+
+  @@index([status])
+  @@map("disputes")
+}
+
+// ───────────────────────────── AI ─────────────────────────────
+
+model AiSearchLog {
+  id            String   @id @default(uuid()) @db.Uuid
+  userId        String?  @db.Uuid
+  sessionKey    String?
+  query         String
+  locale        Locale
+  parser        String // RULES | LLM:<provider>
+  parsedFilters Json
+  resultCount   Int
+  latencyMs     Int
+  error         String?
+  createdAt     DateTime @default(now()) @db.Timestamptz(6)
+  user          User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  recommendations AiRecommendation[]
+
+  @@index([createdAt])
+  @@map("ai_search_logs")
+}
+
+model AiRecommendation {
+  id           String            @id @default(uuid()) @db.Uuid
+  searchLogId  String            @db.Uuid
+  businessId   String?           @db.Uuid
+  influencerId String            @db.Uuid
+  rank         Int
+  score        Decimal           @db.Decimal(6, 3)
+  reasons      Json
+  createdAt    DateTime          @default(now()) @db.Timestamptz(6)
+  searchLog    AiSearchLog       @relation(fields: [searchLogId], references: [id], onDelete: Cascade)
+  business     BusinessProfile?  @relation(fields: [businessId], references: [id], onDelete: SetNull)
+  influencer   InfluencerProfile @relation(fields: [influencerId], references: [id], onDelete: Cascade)
+  feedback     AiRecommendationFeedback[]
+
+  @@index([searchLogId])
+  @@map("ai_recommendations")
+}
+
+model AiRecommendationFeedback {
+  id               String           @id @default(uuid()) @db.Uuid
+  recommendationId String           @db.Uuid
+  userId           String           @db.Uuid
+  helpful          Boolean
+  comment          String?
+  createdAt        DateTime         @default(now()) @db.Timestamptz(6)
+  recommendation   AiRecommendation @relation(fields: [recommendationId], references: [id], onDelete: Cascade)
+
+  @@unique([recommendationId, userId])
+  @@map("ai_recommendation_feedback")
+}
+
+// ───────────────────────────── ADMIN ─────────────────────────────
+
+model AuditLog {
+  id         String   @id @default(uuid()) @db.Uuid
+  actorId    String?  @db.Uuid
+  action     String // e.g. admin.user.suspend
+  entityType String
+  entityId   String?
+  before     Json?
+  after      Json?
+  ipAddress  String?
+  userAgent  String?
+  createdAt  DateTime @default(now()) @db.Timestamptz(6)
+  actor      User?    @relation(fields: [actorId], references: [id], onDelete: SetNull)
+
+  @@index([entityType, entityId])
+  @@index([actorId, createdAt])
+  @@index([createdAt])
+  @@map("audit_logs")
+}
+
+model PlatformSetting {
+  key         String   @id
+  value       Json
+  description String?
+  updatedById String?  @db.Uuid
+  updatedAt   DateTime @updatedAt @db.Timestamptz(6)
+
+  @@map("platform_settings")
+}
+
+model IntegrationConfig {
+  id            String    @id @default(uuid()) @db.Uuid
+  provider      String    @unique // instagram | tiktok | google | stripe | sandbox_payments | llm | email | sms
+  isEnabled     Boolean   @default(false)
+  mode          String    @default("sandbox") // sandbox | live
+  publicConfig  Json? // non-secret settings only — secrets live in env/secret manager
+  status        String    @default("NOT_CONFIGURED") // NOT_CONFIGURED | HEALTHY | DEGRADED | DOWN | AWAITING_APPROVAL
+  lastCheckedAt DateTime? @db.Timestamptz(6)
+  lastError     String?
+  updatedAt     DateTime  @updatedAt @db.Timestamptz(6)
+
+  @@map("integration_configs")
+}
+
+model ConsentRecord {
+  id        String      @id @default(uuid()) @db.Uuid
+  userId    String      @db.Uuid
+  type      ConsentType
+  version   String
+  granted   Boolean
+  ipAddress String?
+  createdAt DateTime    @default(now()) @db.Timestamptz(6)
+  user      User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, type])
+  @@map("consent_records")
+}
+
+model DataDeletionRequest {
+  id          String         @id @default(uuid()) @db.Uuid
+  userId      String         @db.Uuid
+  status      DeletionStatus @default(REQUESTED)
+  reason      String?
+  processedAt DateTime?      @db.Timestamptz(6)
+  notes       String?
+  createdAt   DateTime       @default(now()) @db.Timestamptz(6)
+  user        User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([status])
+  @@map("data_deletion_requests")
+}
+
+model EmailOutbox {
+  id          String    @id @default(uuid()) @db.Uuid
+  toAddress   String
+  locale      Locale
+  template    String
+  params      Json
+  status      String    @default("QUEUED") // QUEUED | SENT | FAILED
+  attempts    Int       @default(0)
+  lastError   String?
+  sentAt      DateTime? @db.Timestamptz(6)
+  createdAt   DateTime  @default(now()) @db.Timestamptz(6)
+
+  @@index([status, createdAt])
+  @@map("email_outbox")
+}
