@@ -61,7 +61,7 @@ Legend: ✅ implemented **and covered by passing automated tests** · 🟢 imple
 - ✅ Audit logging of sensitive admin actions (immutable)
 
 ## Phase 10 — Production readiness
-- ✅ Automated tests: 55 unit (shared) + 34 API integration/security + Playwright E2E (public, business journey, creator journey)
+- ✅ Automated tests: 55 unit (shared) + 34 API integration/security/unit (Jest) + 5 Playwright E2E (public pages, AI discovery, full business journey, full creator journey) — all passing
 - ✅ Security review controls (see SECURITY.md)
 - 🟢 Dockerfiles, docker-compose, CI workflow, backup script, deployment guide
 - ⬜ Sentry/OpenTelemetry wiring, Redis-backed throttler storage, load testing, penetration test by a third party
