@@ -1,4 +1,4 @@
-import { forwardRef } from 'react';
+import { cloneElement, forwardRef, isValidElement, useId } from 'react';
 import { cn } from '@/lib/utils';
 
 const base = 'w-full rounded border border-stone-300 bg-white px-3 text-sm text-navy-900 placeholder:text-stone-400 focus:border-navy-700 focus:outline-none focus:ring-2 focus:ring-gold-200 disabled:bg-stone-100 aria-[invalid=true]:border-danger';
@@ -23,13 +23,23 @@ export function Label({ className, ...p }: React.LabelHTMLAttributes<HTMLLabelEl
 }
 
 export function Field({ label, error, hint, children, htmlFor }: { label: React.ReactNode; error?: string; hint?: React.ReactNode; children: React.ReactNode; htmlFor?: string }) {
+  const auto = useId();
+  // Associate the label with a single form control child (accessibility + testability).
+  let id = htmlFor;
+  let control = children;
+  if (!id && isValidElement(children) && typeof children.type !== 'symbol') {
+    const props = children.props as { id?: string };
+    id = props.id ?? auto;
+    if (!props.id) control = cloneElement(children as React.ReactElement<{ id?: string }>, { id });
+  }
+  const describedBy = error || hint ? `${id ?? auto}-desc` : undefined;
   return (
     <div>
-      <Label htmlFor={htmlFor}>{label}</Label>
-      {children}
-      {hint && !error && <p className="mt-1 text-xs text-stone-500">{hint}</p>}
+      <Label htmlFor={id}>{label}</Label>
+      {describedBy && isValidElement(control) ? cloneElement(control as React.ReactElement<Record<string, unknown>>, { 'aria-describedby': describedBy, ...(error ? { 'aria-invalid': true } : {}) }) : control}
+      {hint && !error && <p id={describedBy} className="mt-1 text-xs text-stone-500">{hint}</p>}
       {error && (
-        <p className="mt-1 text-xs text-danger" role="alert">
+        <p id={describedBy} className="mt-1 text-xs text-danger" role="alert">
           {error}
         </p>
       )}

@@ -23,7 +23,9 @@ export function Browse({ categories }: { categories: Cat[] }) {
   const qs = sp.toString();
   const [showFilters, setShowFilters] = useState(false);
   const [draftQ, setDraftQ] = useState(sp.get('q') ?? '');
-  useEffect(() => setDraftQ(sp.get('q') ?? ''), [sp]);
+  useEffect(() => {
+    setDraftQ(sp.get('q') ?? '');
+  }, [sp]);
 
   const { data, isLoading, isError } = useQuery({
     queryKey: ['influencers', qs],

@@ -17,6 +17,7 @@ export default defineConfig({
   use: {
     baseURL: process.env.E2E_BASE_URL ?? 'http://localhost:3000',
     trace: 'off',
+    actionTimeout: 15_000,
     launchOptions: chromium ? { executablePath: chromium } : {},
   },
   projects: [

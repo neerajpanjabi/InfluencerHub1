@@ -41,7 +41,7 @@ export function RegisterForm({ kind }: { kind: 'business' | 'influencer' }) {
     setError(null);
     try {
       const { categoryId, ...rest } = values;
-      const body = kind === 'business' ? { ...rest, categoryIds: [categoryId] } : rest;
+      const body = kind === 'business' ? { ...rest, categoryIds: rest.categoryIds?.length ? rest.categoryIds : [categoryId] } : rest;
       const me = await api(`/auth/register/${kind}`, { body: { ...body, locale } });
       qc.setQueryData(['me'], me);
       router.replace(kind === 'business' ? '/business/onboarding' : '/influencer/onboarding');
@@ -97,8 +97,8 @@ export function RegisterForm({ kind }: { kind: 'business' | 'influencer' }) {
               ))}
             </Select>
           </Field>
-          <Field label={t('auth.city')} error={msg('city')}>
-            <Input list="cities" {...register('city')} />
+          <Field label={t('auth.city')} error={msg('city')} htmlFor="city">
+            <Input id="city" list="cities" {...register('city')} />
             <datalist id="cities">
               {EMIRATE_LABELS[emirate]?.cities.map((c) => (
                 <option key={c} value={c} />

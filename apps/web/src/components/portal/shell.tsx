@@ -35,7 +35,9 @@ export function PortalShell({ type, nav, children }: { type: 'BUSINESS' | 'INFLU
     else if (me.type !== type) router.replace(me.type === 'BUSINESS' ? '/business' : me.type === 'INFLUENCER' ? '/influencer' : '/admin');
     else if (type === 'ADMIN' && !me.twoFactorPassed) router.replace('/admin/login?setup=1');
   }, [me, isLoading, type, router, pathname]);
-  useEffect(() => setOpen(false), [pathname]);
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
 
   if (isLoading || !me || me.type !== type) {
     return (

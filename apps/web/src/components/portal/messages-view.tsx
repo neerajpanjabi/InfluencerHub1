@@ -30,7 +30,9 @@ export function MessagesView() {
   const [files, setFiles] = useState<Array<{ id: string; fileName: string }>>([]);
   const [busy, setBusy] = useState(false);
   const endRef = useRef<HTMLDivElement>(null);
-  useEffect(() => endRef.current?.scrollIntoView({ behavior: 'smooth' }), [thread.data?.messages?.length]);
+  useEffect(() => {
+    endRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [thread.data?.messages?.length]);
   useEffect(() => {
     if (!selected && convs.data?.length && window.innerWidth >= 1024) router.replace(`${pathname}?c=${convs.data[0].id}`);
   }, [selected, convs.data, router, pathname]);
