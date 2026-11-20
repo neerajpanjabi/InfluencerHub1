@@ -11,6 +11,10 @@ import { Field, Input, Select } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { PageHeader } from '@/components/ui/misc';
 import { useToast } from '@/components/ui/toast';
+import { useQuery } from '@tanstack/react-query';
+import { LEGAL_DOCUMENTS, REQUIRED_LEGAL_DOCUMENTS, legalConsentVersion } from '@influencehub/shared';
+import { Link } from '@/i18n/routing';
+import { fmtDate } from '@/lib/format';
 
 export function SettingsView() {
   const t = useTranslations();
@@ -24,7 +28,10 @@ export function SettingsView() {
   const [pw, setPw] = useState({ currentPassword: '', newPassword: '' });
   const [code, setCode] = useState('');
   const [testCode, setTestCode] = useState<string | null>(null);
+  const consents = useQuery({ queryKey: ['consents'], queryFn: () => api<Array<{ type: string; version: string; granted: boolean; createdAt: string }>>('/privacy/consents'), enabled: !!me });
   if (!me) return null;
+  const docLabel: Record<string, string> = { 'platform-terms': t('nav.terms'), 'business-terms': t('nav.businessTerms'), 'creator-terms': t('nav.creatorTerms'), privacy: t('nav.privacy') };
+  const requiredDocs = me.type === 'BUSINESS' || me.type === 'INFLUENCER' ? REQUIRED_LEGAL_DOCUMENTS[me.type] : [];
   const run = async (fn: () => Promise<unknown>, ok: string) => {
     try {
       await fn();
@@ -98,6 +105,29 @@ export function SettingsView() {
           </form>
         </CardBody>
       </Card>
+      {requiredDocs.length > 0 && (
+        <Card>
+          <CardHeader title={t('pages.legal.acceptedTitle')} description={t('pages.legal.acceptedBody')} />
+          <CardBody>
+            <ul className="divide-y divide-stone-100 text-sm">
+              {requiredDocs.map((key) => {
+                const accepted = consents.data?.find((c) => c.granted && c.version === legalConsentVersion(key));
+                return (
+                  <li key={key} className="flex flex-wrap items-center justify-between gap-2 py-2.5">
+                    <Link href={LEGAL_DOCUMENTS[key].path} target="_blank" className="font-medium text-navy-900 underline underline-offset-2">
+                      {docLabel[key]}
+                    </Link>
+                    <span className="text-xs text-stone-500">
+                      {t('pages.legal.version', { version: `\u2066${LEGAL_DOCUMENTS[key].version}\u2069` })} ·{' '}
+                      {accepted ? <span className="text-success">{t('pages.legal.acceptedOn', { date: fmtDate(accepted.createdAt, locale) })}</span> : <span className="text-warning">{t('pages.legal.notAccepted')}</span>}
+                    </span>
+                  </li>
+                );
+              })}
+            </ul>
+          </CardBody>
+        </Card>
+      )}
       <Card>
         <CardHeader title={t('settings.privacy')} description={t('settings.deleteHint')} />
         <CardBody className="flex flex-wrap gap-3">

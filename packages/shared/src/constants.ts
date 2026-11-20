@@ -137,3 +137,22 @@ export const SERVICE_CATALOG_SEEDS: ServiceCatalogSeed[] = [
   { key: 'brand_ambassador', platform: 'CROSS_PLATFORM', en: 'Brand Ambassador', ar: 'سفير علامة تجارية', deliverables: [d('AMBASSADOR', 'CROSS_PLATFORM')], complexity: 1, keywords: ['ambassador', 'سفير'] },
   { key: 'content_production', platform: 'OFFLINE', en: 'Content Production', ar: 'إنتاج محتوى', deliverables: [d('CONTENT', 'OFFLINE')], complexity: 1.3, keywords: ['content production', 'إنتاج'] },
 ];
+
+/**
+ * Legal documents and their current versions. Bump a version when the text changes materially;
+ * acceptance is stored per user as a consent record `<key>@<version>` (see auth registration).
+ */
+export const LEGAL_DOCUMENTS = {
+  'platform-terms': { version: '2026-11', path: '/terms' },
+  'business-terms': { version: '2026-11', path: '/terms/business' },
+  'creator-terms': { version: '2026-11', path: '/terms/creators' },
+  privacy: { version: '2026-11', path: '/privacy' },
+} as const;
+export type LegalDocumentKey = keyof typeof LEGAL_DOCUMENTS;
+export const legalConsentVersion = (key: LegalDocumentKey) => `${key}@${LEGAL_DOCUMENTS[key].version}`;
+
+/** Documents a user of each type must accept. */
+export const REQUIRED_LEGAL_DOCUMENTS: Record<'BUSINESS' | 'INFLUENCER', LegalDocumentKey[]> = {
+  BUSINESS: ['platform-terms', 'business-terms', 'privacy'],
+  INFLUENCER: ['platform-terms', 'creator-terms', 'privacy'],
+};

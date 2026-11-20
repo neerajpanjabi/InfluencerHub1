@@ -1,5 +1,5 @@
 import { getTranslations, setRequestLocale } from 'next-intl/server';
-import { ContentPage } from '@/components/marketplace/content-page';
+import { LegalPage } from '@/components/marketplace/legal-page';
 
 export async function generateMetadata() {
   const t = await getTranslations();
@@ -8,6 +8,5 @@ export async function generateMetadata() {
 
 export default async function Page({ params }: { params: Promise<{ locale: string }> }) {
   setRequestLocale((await params).locale);
-  const t = await getTranslations();
-  return <ContentPage title={t('pages.terms.title')} notice={t('pages.terms.notice')} sections={t.raw('pages.terms.sections')} />;
+  return <LegalPage doc="platform-terms" titleKey="pages.terms.title"  sectionsKey="pages.terms.sections" appliesKey="pages.legal.appliesAll" />;
 }

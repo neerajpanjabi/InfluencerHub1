@@ -4,7 +4,7 @@ import * as jwt from 'jsonwebtoken';
 import { authenticator } from 'otplib';
 import type { Response, Request } from 'express';
 import { Prisma, User, UserType } from '@influencehub/database';
-import type { BusinessRegistration, InfluencerRegistration } from '@influencehub/shared';
+import { legalConsentVersion, REQUIRED_LEGAL_DOCUMENTS, type BusinessRegistration, type InfluencerRegistration } from '@influencehub/shared';
 import { env, isProd } from '../../config/env';
 import { PrismaService } from '../../common/services/prisma.service';
 import { CryptoService } from '../../common/services/crypto.service';
@@ -16,6 +16,16 @@ import { EmailService } from '../notifications/email.service';
 const MAX_FAILED_LOGINS = 5;
 const LOCK_MINUTES = 15;
 const DUMMY_HASH = '$argon2id$v=19$m=65536,t=3,p=4$c29tZXNhbHRzb21lc2FsdA$Jr8jtUJ7Gk3Mf2E1E6p0B0uX3XxwX4ZbX0w8f7Nq2wM';
+
+/** Consent records for the legal documents a user type accepts at sign-up (type, versioned key). */
+export function legalConsents(userType: 'BUSINESS' | 'INFLUENCER', ip?: string) {
+  return REQUIRED_LEGAL_DOCUMENTS[userType].map((key) => ({
+    type: key === 'privacy' ? ('PRIVACY' as const) : ('TERMS' as const),
+    version: legalConsentVersion(key),
+    granted: true,
+    ipAddress: ip ?? null,
+  }));
+}
 
 export function slugify(s: string): string {
   return s
@@ -54,7 +64,7 @@ export class AuthService {
         locale: dto.locale,
         roles: { create: { roleId: role.id } },
         preferences: { create: { locale: dto.locale } },
-        consentRecords: { create: [{ type: 'TERMS', version: '2026-11', granted: true, ipAddress: meta.ip }, { type: 'PRIVACY', version: '2026-11', granted: true, ipAddress: meta.ip }] },
+        consentRecords: { create: legalConsents('BUSINESS', meta.ip) },
         businessProfile: {
           create: {
             businessName: dto.businessName,
@@ -89,7 +99,7 @@ export class AuthService {
         locale: dto.locale,
         roles: { create: { roleId: role.id } },
         preferences: { create: { locale: dto.locale } },
-        consentRecords: { create: [{ type: 'TERMS', version: '2026-11', granted: true, ipAddress: meta.ip }, { type: 'PRIVACY', version: '2026-11', granted: true, ipAddress: meta.ip }] },
+        consentRecords: { create: legalConsents('INFLUENCER', meta.ip) },
         influencerProfile: {
           create: {
             slug: await this.uniqueSlug(dto.displayName),
@@ -425,6 +435,7 @@ export class AuthService {
         roles: { create: { roleId: role.id } },
         preferences: { create: {} },
         authAccounts: { create: { provider: 'GOOGLE', providerAccountId: profile.sub } },
+        consentRecords: { create: legalConsents('BUSINESS') },
         businessProfile: { create: { businessName: profile.name ?? email.split('@')[0], contactPerson: profile.name ?? '', businessEmail: email } },
       },
     });
@@ -445,6 +456,7 @@ export class AuthService {
         roles: { create: { roleId: role.id } },
         preferences: { create: {} },
         authAccounts: { create: { provider, providerAccountId } },
+        consentRecords: { create: legalConsents('INFLUENCER') },
         influencerProfile: { create: { slug: await this.uniqueSlug(displayName), fullName: displayName, displayName } },
       },
     });

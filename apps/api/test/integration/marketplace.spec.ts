@@ -213,6 +213,9 @@ describe('Marketplace end-to-end (sandbox providers)', () => {
     const app = await getApp();
     const inf = await newInfluencer(app, { category: 'dermatology' });
     const biz = await newBusiness(app);
+    // Isolate from creators left by earlier runs so ranking among them can't push ours out.
+    const db = await prisma();
+    await db.influencerProfile.updateMany({ where: { id: { not: inf.profileId }, user: { email: { endsWith: '@test.local' } } }, data: { isPublic: false } });
     const r = await biz.c.post('/ai/recommendations', { query: 'Find 50 Dubai-based dermatologists for a clinic promotion' });
     expect(r.status).toBe(201);
     expect(r.body.parser).toBe('RULES');

@@ -11,6 +11,7 @@ import { Button } from '@/components/ui/button';
 import { Field, Input } from '@/components/ui/input';
 import { Alert } from '@/components/ui/misc';
 import { portalHome } from '@/components/layout/site-header';
+import { legalLinks } from './legal-links';
 
 export function LoginForm({ admin }: { admin?: boolean }) {
   const t = useTranslations('auth');
@@ -96,6 +97,10 @@ export function LoginForm({ admin }: { admin?: boolean }) {
             )}
             {(providers.data?.instagram || providers.data?.socialSandbox) && social('instagram', !!providers.data?.instagram, <Instagram className="h-4 w-4" />, t('continueInstagram'))}
             {(providers.data?.tiktok || providers.data?.socialSandbox) && social('tiktok', !!providers.data?.tiktok, <Music2 className="h-4 w-4" />, t('continueTiktok'))}
+          </div>
+          <div className="mt-3 space-y-1 text-xs leading-relaxed text-stone-500">
+            {providers.data?.google && <p>{t.rich('googleTermsNotice', legalLinks)}</p>}
+            {(providers.data?.instagram || providers.data?.tiktok || providers.data?.socialSandbox) && <p>{t.rich('socialTermsNotice', legalLinks)}</p>}
           </div>
           <p className="mt-8 text-center text-sm text-stone-500">
             {t('noAccount')}{' '}

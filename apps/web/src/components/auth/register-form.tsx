@@ -11,6 +11,7 @@ import { useErrorMessage } from '@/hooks/use-error';
 import { Button } from '@/components/ui/button';
 import { Checkbox, Field, Input, Select, Textarea } from '@/components/ui/input';
 import { Alert } from '@/components/ui/misc';
+import { legalLinks } from './legal-links';
 
 export function RegisterForm({ kind }: { kind: 'business' | 'influencer' }) {
   const t = useTranslations();
@@ -129,7 +130,7 @@ export function RegisterForm({ kind }: { kind: 'business' | 'influencer' }) {
             </Field>
           </>
         )}
-        <Checkbox label={t('auth.acceptTerms')} {...register('acceptTerms')} />
+        <Checkbox label={t.rich(kind === 'business' ? 'auth.acceptTermsBusiness' : 'auth.acceptTermsCreator', legalLinks)} {...register('acceptTerms')} />
         {msg('acceptTerms') && <p className="text-xs text-danger">{msg('acceptTerms')}</p>}
         <Button type="submit" size="lg" className="w-full" loading={formState.isSubmitting}>
           {t('auth.registerButton')}

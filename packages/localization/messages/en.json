@@ -85,12 +85,14 @@
     "logout": "Log out",
     "dashboard": "Dashboard",
     "aiDiscovery": "AI discovery",
-    "terms": "Terms and Conditions",
+    "terms": "Platform Terms",
     "privacy": "Privacy Policy",
     "account": "Account",
     "cart": "Cart",
     "notifications": "Notifications",
-    "skip": "Skip to content"
+    "skip": "Skip to content",
+    "businessTerms": "Business Terms",
+    "creatorTerms": "Creator Terms"
   },
   "home": {
     "heroTitle": "Where brands meet influence.",
@@ -266,7 +268,11 @@
       "oauth_denied": "Sign-in was cancelled.",
       "oauth_failed": "Sign-in failed. Please try again.",
       "google_login_business_only": "Google sign-in is available for business accounts."
-    }
+    },
+    "acceptTermsBusiness": "I agree to the <business>Business Terms</business>, <platform>Platform Terms</platform> and <privacy>Privacy Policy</privacy>.",
+    "acceptTermsCreator": "I agree to the <creator>Creator Terms</creator>, <platform>Platform Terms</platform> and <privacy>Privacy Policy</privacy>.",
+    "socialTermsNotice": "Creators signing in with Instagram or TikTok agree to the <creator>Creator Terms</creator>, <platform>Platform Terms</platform> and <privacy>Privacy Policy</privacy>.",
+    "googleTermsNotice": "Businesses signing in with Google agree to the <business>Business Terms</business>, <platform>Platform Terms</platform> and <privacy>Privacy Policy</privacy>."
   },
   "validation": {
     "required": "This field is required.",
@@ -1213,7 +1219,7 @@
       "address": "Dubai, United Arab Emirates"
     },
     "terms": {
-      "title": "Terms and Conditions",
+      "title": "Platform Terms",
       "notice": "Draft for legal review — not yet final.",
       "sections": [
         {
@@ -1265,6 +1271,286 @@
         {
           "h": "Security",
           "p": "We use encryption, access controls, audit logging and monitoring to protect your data."
+        }
+      ]
+    },
+    "legal": {
+      "draftNotice": "Draft for legal review — these terms are not final and must be reviewed by a UAE-qualified lawyer before launch.",
+      "version": "Version {version}",
+      "contents": "Contents",
+      "related": "Related documents",
+      "print": "Print",
+      "appliesTo": "Applies to",
+      "appliesBusiness": "Businesses that browse, contact and book creators on InfluenceHub.",
+      "appliesCreator": "Influencers and content creators who list services on InfluenceHub.",
+      "appliesAll": "Everyone who uses InfluenceHub.",
+      "acceptedTitle": "Legal agreements",
+      "acceptedBody": "Documents you have accepted on InfluenceHub.",
+      "acceptedOn": "Accepted {date}",
+      "notAccepted": "Not yet accepted"
+    },
+    "businessTerms": {
+      "title": "Business Terms",
+      "intro": "These Business Terms apply when you use InfluenceHub as a business to discover, contact and book influencers and content creators (\"creators\"). They apply together with the Platform Terms and Privacy Policy. If they conflict, these Business Terms apply to your business use.",
+      "sections": [
+        {
+          "h": "Your account",
+          "p": [
+            "You must be a business operating lawfully, with a valid trade licence where one is required. The person accepting these terms confirms they are authorised to bind the business.",
+            "Keep your details accurate and your login secure. You are responsible for everything done through your account. We may ask for documents (such as a trade licence) to verify your business and may limit features until verification is complete."
+          ]
+        },
+        {
+          "h": "Browsing and saving creators",
+          "p": [
+            "Viewing public creator profiles, statistics, services and prices is free. Statistics show their source and last update; figures marked as self-reported or sandbox are not verified by the platform.",
+            "Performance grades are an indication based on available data. They are not a guarantee of results and do not confirm a creator's identity or qualifications."
+          ]
+        },
+        {
+          "h": "Contact fees",
+          "p": [
+            "Starting direct contact with a creator requires a one-time contact fee, shown with VAT before you pay. Payment unlocks messaging with that creator for the access period shown at the time of purchase.",
+            "You will not be charged again for a creator while your access is valid. Booking a creator's service also unlocks messaging with that creator.",
+            "A contact fee pays for access, not for any service. The creator is not obliged to reply, accept an enquiry or offer a quotation. Contact fees are refundable only as set out in the refund policy shown at purchase."
+          ]
+        },
+        {
+          "h": "Quotations and bookings",
+          "p": [
+            "You can buy a creator's listed services or request a custom quotation. A quotation is valid for the period stated by the creator. Accepting a quotation adds it to your cart.",
+            "A booking is confirmed only when payment is successfully completed. The deliverables, delivery time, number of revisions and usage rights are those shown on the service or quotation at the time of purchase; a copy is kept with your order."
+          ]
+        },
+        {
+          "h": "Prices, fees and VAT",
+          "p": [
+            "Prices are in UAE dirhams (AED). VAT is added where applicable and shown before payment. Any service fee or commission payable by you is shown at checkout; there are no hidden charges.",
+            "A tax invoice is issued for each successful payment and is available under Payments."
+          ]
+        },
+        {
+          "h": "Payment",
+          "p": [
+            "Payments are processed by a licensed payment provider. InfluenceHub does not store your full card details. The full amount is collected at checkout before the creator starts work.",
+            "Payment is held and released to the creator according to the payout rules for creators, after the campaign is completed and any dispute is resolved."
+          ]
+        },
+        {
+          "h": "Briefs and approvals",
+          "p": [
+            "Give the creator a clear and lawful brief, including required mentions, hashtags, deadlines and any approval requirements, before work starts.",
+            "Review drafts promptly — within the period stated in the campaign, or 5 business days if none is stated. Revision requests must stay within the scope booked and the number of revisions included. Additional changes may be quoted separately.",
+            "If you do not respond after content has been published, the campaign may be completed automatically after the period shown in the campaign."
+          ]
+        },
+        {
+          "h": "Advertising law and disclosure",
+          "p": [
+            "You are responsible for your products, services and any claims you ask a creator to make, and for holding any approvals your advertising needs.",
+            "Paid content must be clearly disclosed as advertising. You must not ask a creator to hide that content is sponsored or to make false, misleading or unverifiable claims. All campaigns must comply with UAE laws on advertising, media content and consumer protection."
+          ]
+        },
+        {
+          "h": "Healthcare and other regulated sectors",
+          "p": [
+            "Advertising for healthcare, medical, pharmaceutical, cosmetic-procedure, financial and other regulated services may need prior approval from the relevant UAE authority (for example DHA, DOH or MOHAP for healthcare).",
+            "You must hold any required approval and provide it on request. Campaigns in regulated categories go through a compliance review and cannot be published until it is approved."
+          ]
+        },
+        {
+          "h": "Content ownership and usage rights",
+          "p": [
+            "The creator keeps ownership of the content they produce. You receive the usage rights described in the service or quotation (for example organic posting only, or paid usage for a stated number of days). Using content beyond those rights — such as in paid ads or on your own channels — requires the creator's written agreement and may cost extra.",
+            "You give the creator permission to use your name, logo and materials you supply for the purposes of the campaign."
+          ]
+        },
+        {
+          "h": "Cancellations and refunds",
+          "p": [
+            "Before the creator starts work, you may cancel a booking and receive a refund in line with the cancellation policy shown at checkout. After work has started, refunds depend on the work already delivered.",
+            "If a creator fails to deliver what was booked, you may be refunded in full or in part. Refunds go back to the original payment method and timing depends on the payment provider."
+          ]
+        },
+        {
+          "h": "Disputes",
+          "p": [
+            "If something goes wrong, raise a dispute from the campaign page with details and evidence. InfluenceHub will review both sides and may decide on a refund, a partial refund or release of payment to the creator.",
+            "Our decision on a dispute governs how funds held on the platform are handled. It does not take away any rights you have under the law."
+          ]
+        },
+        {
+          "h": "Dealing with creators off the platform",
+          "p": [
+            "For bookings with creators you found on InfluenceHub, use the platform to agree and pay for services, for at least 12 months after first contact. Arranging payment outside the platform to avoid fees may lead to suspension.",
+            "Contact details shared before a booking are restricted to protect both parties."
+          ]
+        },
+        {
+          "h": "Conduct and reviews",
+          "p": [
+            "Treat creators with respect. Harassment, discrimination, spam and abusive messages are not allowed. Reviews must be honest and based on a real campaign.",
+            "Use creators' personal information only for the campaign and in line with data protection law."
+          ]
+        },
+        {
+          "h": "Data protection",
+          "p": [
+            "We handle personal data as described in the Privacy Policy and in line with the UAE Personal Data Protection Law. You are responsible for your own use of any personal data you receive through the platform."
+          ]
+        },
+        {
+          "h": "Our role and liability",
+          "p": [
+            "InfluenceHub provides the marketplace. We are not the creator of campaign content and we do not guarantee reach, views, engagement, sales or other results.",
+            "To the extent the law allows, our total liability to you is limited to the fees you paid to InfluenceHub (contact fees and service fees, not amounts passed to creators) in the 12 months before the claim. Nothing in these terms limits liability that cannot be limited by law."
+          ]
+        },
+        {
+          "h": "Suspension and termination",
+          "p": [
+            "We may suspend or close an account that breaks these terms, the law or the safety of others. You may close your account at any time from Settings; ongoing bookings, payments and legal record-keeping obligations continue after closure."
+          ]
+        },
+        {
+          "h": "Changes, governing law and contact",
+          "p": [
+            "We may update these terms and will notify you before material changes take effect. The version you accepted is recorded in your account.",
+            "These terms are governed by the laws of the United Arab Emirates as applied in the Emirate of Dubai, and the courts of Dubai have jurisdiction, unless a different forum is agreed in writing.",
+            "Questions: support@influencehub.example."
+          ]
+        }
+      ]
+    },
+    "creatorTerms": {
+      "title": "Creator Terms",
+      "intro": "These Creator Terms apply when you use InfluenceHub as an influencer or content creator to list services, receive enquiries and complete paid campaigns for businesses. They apply together with the Platform Terms and Privacy Policy. If they conflict, these Creator Terms apply to your creator use.",
+      "sections": [
+        {
+          "h": "Your account",
+          "p": [
+            "You must be at least 18 years old and use your real identity. You may hold one creator account, and you must be entitled to represent every social media account you connect.",
+            "Keep your details accurate and your login secure. We may ask you to verify your identity, and some features or badges are available only after verification."
+          ]
+        },
+        {
+          "h": "Connecting social media accounts",
+          "p": [
+            "You connect Instagram and TikTok through their official login. You never share your social media passwords with InfluenceHub.",
+            "By connecting an account you allow us to retrieve the data you authorise (such as followers, media and insights) to build your profile, statistics and grade. You can disconnect at any time; we then stop retrieving data and delete our access tokens, while keeping historical records."
+          ]
+        },
+        {
+          "h": "Statistics and performance grade",
+          "p": [
+            "Your grade is calculated from available data and may change. If there is not enough verified data, your profile shows \"Not Yet Rated\".",
+            "You must not inflate or manipulate your statistics, for example by buying followers, views or engagement. Self-reported figures are labelled and reviewed. Misleading data may be removed and may lead to suspension.",
+            "A performance grade is not proof of identity, qualifications or a legal permit."
+          ]
+        },
+        {
+          "h": "Your profile and services",
+          "p": [
+            "Your profile, services and prices must be accurate. You set your own prices. Suggested prices are guidance only.",
+            "A listed service is an offer to provide the deliverables, delivery time, revisions and usage rights described at the price shown. Keep your availability up to date."
+          ]
+        },
+        {
+          "h": "Advertiser permit and legal compliance",
+          "p": [
+            "You are responsible for holding any licence or advertiser permit you need under UAE law to publish paid content, and for following UAE media content standards and advertising rules.",
+            "Clearly disclose every paid or sponsored post (for example \"#ad\" or \"إعلان\"). Verification badges on InfluenceHub are not a legal permit."
+          ]
+        },
+        {
+          "h": "Healthcare professionals",
+          "p": [
+            "If you present yourself as a doctor, dentist, pharmacist or other healthcare professional, you must hold a valid licence from the relevant authority (such as DHA, DOH or MOHAP) and stay within the scope of that licence.",
+            "Healthcare campaigns go through a compliance review. You must not publish them until approved, and you must follow your licensing authority's rules on advertising."
+          ]
+        },
+        {
+          "h": "Enquiries and quotations",
+          "p": [
+            "Respond to enquiries and quotation requests within a reasonable time. A quotation you submit is valid for the period you state and becomes binding once the business accepts and pays for it."
+          ]
+        },
+        {
+          "h": "Bookings and delivery",
+          "p": [
+            "Once a booking is confirmed, deliver what was booked on time and follow the brief, including required mentions and hashtags.",
+            "Where approval is required, submit your draft and do not publish until the business approves it. Make revisions within the number included.",
+            "Keep published campaign content live for at least 30 days unless agreed otherwise, and add the link to the published post as evidence of delivery."
+          ]
+        },
+        {
+          "h": "Commission, earnings and payouts",
+          "p": [
+            "InfluenceHub keeps a commission on each booking. The rate and your net earnings are shown before you accept work.",
+            "Earnings become available after the campaign is completed, plus a short holding period shown in Earnings, and once any dispute is resolved. Payouts are made in AED to the bank account you have verified.",
+            "You are responsible for your own taxes, including VAT registration if your income requires it."
+          ]
+        },
+        {
+          "h": "Cancellations and non-delivery",
+          "p": [
+            "If you cancel a confirmed booking or do not deliver, the business may be refunded and the related earnings reversed. Repeated cancellations or missed deadlines may lead to lower visibility or suspension."
+          ]
+        },
+        {
+          "h": "Content ownership and licences",
+          "p": [
+            "You keep ownership of your content. You give the business the usage rights described in the booked service or quotation. Any other use needs your written agreement.",
+            "You confirm you have the rights to everything in your content, including music, images, locations and people who appear in it.",
+            "You allow InfluenceHub to show your profile, public statistics and sample content to promote your services on the platform."
+          ]
+        },
+        {
+          "h": "Dealing with businesses off the platform",
+          "p": [
+            "For businesses you met on InfluenceHub, agree and take payment through the platform for at least 12 months after first contact. Taking payment outside the platform to avoid commission may lead to suspension.",
+            "Contact details shared before a booking are restricted to protect both parties."
+          ]
+        },
+        {
+          "h": "Conduct and confidentiality",
+          "p": [
+            "Content you create for campaigns must not be false, misleading, offensive or unlawful, and must respect UAE laws and public values.",
+            "Keep confidential any unreleased products, prices or plans a business shares with you. Harassment, discrimination and abusive messages are not allowed."
+          ]
+        },
+        {
+          "h": "Reviews",
+          "p": [
+            "Businesses may review completed campaigns. You may reply once to each review. Reviews may not be bought, swapped or written by people who did not take part in the campaign."
+          ]
+        },
+        {
+          "h": "Data protection",
+          "p": [
+            "We handle personal data as described in the Privacy Policy and in line with the UAE Personal Data Protection Law. You control what optional profile details are public, and you can export or request deletion of your data from Settings."
+          ]
+        },
+        {
+          "h": "Our role and liability",
+          "p": [
+            "InfluenceHub provides the marketplace and payment flow. We do not guarantee a number of enquiries, bookings or earnings.",
+            "To the extent the law allows, our total liability to you is limited to the commission we earned from your bookings in the 12 months before the claim. Nothing in these terms limits liability that cannot be limited by law."
+          ]
+        },
+        {
+          "h": "Suspension and termination",
+          "p": [
+            "We may suspend or close an account that breaks these terms, the law or the safety of others. You may close your account at any time from Settings; ongoing bookings, payouts and legal record-keeping obligations continue after closure."
+          ]
+        },
+        {
+          "h": "Changes, governing law and contact",
+          "p": [
+            "We may update these terms and will notify you before material changes take effect. The version you accepted is recorded in your account.",
+            "These terms are governed by the laws of the United Arab Emirates as applied in the Emirate of Dubai, and the courts of Dubai have jurisdiction, unless a different forum is agreed in writing.",
+            "Questions: support@influencehub.example."
+          ]
         }
       ]
     }

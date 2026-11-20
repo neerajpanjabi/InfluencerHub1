@@ -103,4 +103,20 @@ describe('Authentication', () => {
     expect(r.status).toBe(403);
     expect(r.body.code).toBe('ADMIN_2FA_REQUIRED');
   });
+
+  it('records acceptance of the type-specific terms with versions at registration', async () => {
+    const app = await getApp();
+    const db = await prisma();
+    const { user: biz } = await newBusiness(app);
+    const bizConsents = (await db.consentRecord.findMany({ where: { userId: biz.id } })).map((c) => `${c.type}:${c.version}`).sort();
+    expect(bizConsents).toEqual(['PRIVACY:privacy@2026-11', 'TERMS:business-terms@2026-11', 'TERMS:platform-terms@2026-11']);
+    const { newInfluencer } = await import('../helpers');
+    const inf = await newInfluencer(app);
+    const infConsents = (await db.consentRecord.findMany({ where: { userId: inf.user.id, type: 'TERMS' } })).map((c) => c.version).sort();
+    expect(infConsents).toEqual(['creator-terms@2026-11', 'platform-terms@2026-11']);
+    // Visible to the user through the privacy API
+    const list = await inf.c.get('/privacy/consents');
+    expect(list.body.map((c: any) => c.version)).toEqual(expect.arrayContaining(['creator-terms@2026-11', 'privacy@2026-11']));
+  });
 });
+

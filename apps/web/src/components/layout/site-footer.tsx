@@ -7,7 +7,7 @@ export function SiteFooter() {
   const cols = [
     { title: t('footer.marketplace'), links: [['/creators', t('nav.browse')], ['/categories', t('nav.categories')], ['/discover', t('nav.aiDiscovery')], ['/pricing', t('nav.pricing')]] },
     { title: t('footer.company'), links: [['/about', t('nav.about')], ['/how-it-works', t('nav.howItWorks')], ['/for-businesses', t('nav.forBusinesses')], ['/for-influencers', t('nav.forInfluencers')], ['/contact', t('nav.contact')], ['/faq', t('nav.faq')]] },
-    { title: t('footer.legal'), links: [['/terms', t('nav.terms')], ['/privacy', t('nav.privacy')]] },
+    { title: t('footer.legal'), links: [['/terms', t('nav.terms')], ['/terms/business', t('nav.businessTerms')], ['/terms/creators', t('nav.creatorTerms')], ['/privacy', t('nav.privacy')]] },
   ];
   return (
     <footer className="mt-24 bg-navy-900 text-ivory/80">
