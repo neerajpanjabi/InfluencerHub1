@@ -1,0 +1,45 @@
+# Local full stack. For development you can run only `postgres` and `redis` and use `pnpm dev:*`.
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: influencehub
+      POSTGRES_PASSWORD: influencehub
+      POSTGRES_DB: influencehub
+    ports: ["5432:5432"]
+    volumes: [pgdata:/var/lib/postgresql/data]
+    healthcheck: { test: ["CMD-SHELL", "pg_isready -U influencehub"], interval: 5s, retries: 10 }
+  redis:
+    image: redis:7-alpine
+    ports: ["6379:6379"]
+    healthcheck: { test: ["CMD", "redis-cli", "ping"], interval: 5s, retries: 10 }
+  migrate:
+    build: { context: ., dockerfile: infrastructure/docker/Dockerfile.api, target: build }
+    command: sh -c "pnpm --filter @influencehub/database migrate:deploy && pnpm --filter @influencehub/database seed"
+    env_file: .env
+    environment:
+      DATABASE_URL: postgresql://influencehub:influencehub@postgres:5432/influencehub?schema=public
+    depends_on: { postgres: { condition: service_healthy } }
+  api:
+    build: { context: ., dockerfile: infrastructure/docker/Dockerfile.api, target: api }
+    env_file: .env
+    environment:
+      DATABASE_URL: postgresql://influencehub:influencehub@postgres:5432/influencehub?schema=public
+      REDIS_URL: redis://redis:6379
+    ports: ["4000:4000"]
+    depends_on: { migrate: { condition: service_completed_successfully }, redis: { condition: service_healthy } }
+  worker:
+    build: { context: ., dockerfile: infrastructure/docker/Dockerfile.api, target: worker }
+    env_file: .env
+    environment:
+      DATABASE_URL: postgresql://influencehub:influencehub@postgres:5432/influencehub?schema=public
+      REDIS_URL: redis://redis:6379
+    depends_on: { api: { condition: service_started } }
+  web:
+    build: { context: ., dockerfile: infrastructure/docker/Dockerfile.web }
+    environment:
+      API_INTERNAL_URL: http://api:4000
+    ports: ["3000:3000"]
+    depends_on: { api: { condition: service_started } }
+volumes:
+  pgdata:

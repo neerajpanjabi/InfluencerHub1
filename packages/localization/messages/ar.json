@@ -1,0 +1,1606 @@
+{
+  "meta": {
+    "title": "InfluenceHub — حيث تلتقي العلامات التجارية بالتأثير",
+    "description": "اكتشف المؤثرين الموثقين في الإمارات وتواصل معهم واحجز خدماتهم. الطريقة الأذكى للتعاون مع صناع المحتوى."
+  },
+  "common": {
+    "brand": "InfluenceHub",
+    "tagline": "حيث تلتقي العلامات التجارية بالتأثير",
+    "positioning": "الطريقة الأذكى لاكتشاف المؤثرين والتواصل والتعاون معهم.",
+    "aed": "درهم",
+    "loading": "جارٍ التحميل…",
+    "save": "حفظ",
+    "saved": "تم الحفظ",
+    "cancel": "إلغاء",
+    "submit": "إرسال",
+    "continue": "متابعة",
+    "back": "رجوع",
+    "next": "التالي",
+    "edit": "تعديل",
+    "delete": "حذف",
+    "remove": "إزالة",
+    "add": "إضافة",
+    "create": "إنشاء",
+    "update": "تحديث",
+    "search": "بحث",
+    "filters": "عوامل التصفية",
+    "clear": "مسح",
+    "apply": "تطبيق",
+    "viewAll": "عرض الكل",
+    "viewProfile": "عرض الملف",
+    "close": "إغلاق",
+    "confirm": "تأكيد",
+    "yes": "نعم",
+    "no": "لا",
+    "optional": "اختياري",
+    "required": "مطلوب",
+    "all": "الكل",
+    "none": "لا شيء",
+    "from": "من",
+    "to": "إلى",
+    "perService": "لكل خدمة",
+    "days": "{count, plural, one {يوم واحد} two {يومان} other {# أيام}}",
+    "revisions": "{count, plural, =0 {بدون تعديلات} one {تعديل واحد} other {# تعديلات}}",
+    "results": "{count, plural, =0 {لا توجد نتائج} one {نتيجة واحدة} other {# نتيجة}}",
+    "followers": "المتابعون",
+    "status": "الحالة",
+    "actions": "الإجراءات",
+    "date": "التاريخ",
+    "amount": "المبلغ",
+    "total": "الإجمالي",
+    "details": "التفاصيل",
+    "language": "اللغة",
+    "english": "English",
+    "arabic": "العربية",
+    "error": "حدث خطأ ما. يرجى المحاولة مرة أخرى.",
+    "notFound": "لم نتمكن من العثور على هذه الصفحة.",
+    "empty": "لا يوجد شيء هنا بعد.",
+    "sandboxData": "بيانات تجريبية",
+    "sandboxDataHint": "بيانات اصطناعية من مزوّد تجريبي — ليست إحصاءات حقيقية.",
+    "sampleData": "بيانات نموذجية",
+    "lastUpdated": "آخر تحديث {date}",
+    "page": "صفحة {page} من {pages}",
+    "previous": "السابق",
+    "copy": "نسخ",
+    "copied": "تم النسخ",
+    "download": "تنزيل",
+    "upload": "رفع",
+    "yesDelete": "نعم، احذف",
+    "na": "—",
+    "unlimited": "غير محدود"
+  },
+  "nav": {
+    "home": "الرئيسية",
+    "browse": "تصفح المؤثرين",
+    "categories": "الفئات",
+    "howItWorks": "كيف يعمل",
+    "forBusinesses": "للشركات",
+    "forInfluencers": "لصناع المحتوى",
+    "pricing": "الأسعار",
+    "about": "من نحن",
+    "contact": "اتصل بنا",
+    "faq": "الأسئلة الشائعة",
+    "login": "تسجيل الدخول",
+    "register": "ابدأ الآن",
+    "logout": "تسجيل الخروج",
+    "dashboard": "لوحة التحكم",
+    "aiDiscovery": "الاكتشاف بالذكاء الاصطناعي",
+    "terms": "شروط المنصة",
+    "privacy": "سياسة الخصوصية",
+    "account": "الحساب",
+    "cart": "السلة",
+    "notifications": "الإشعارات",
+    "skip": "انتقل إلى المحتوى",
+    "businessTerms": "شروط الشركات",
+    "creatorTerms": "شروط صناع المحتوى"
+  },
+  "home": {
+    "heroTitle": "حيث تلتقي العلامات التجارية بالتأثير.",
+    "heroSubtitle": "اكتشف صناع المحتوى الموثقين في الإمارات، وقارن الأسعار الشفافة، واحجز حملاتك بثقة تجربة الشراء الإلكتروني.",
+    "searchPlaceholder": "ابحث عن مؤثرين أو مجالات أو خدمات…",
+    "industry": "القطاع",
+    "service": "الخدمة",
+    "platform": "المنصة",
+    "location": "الإمارة",
+    "budget": "الميزانية القصوى (درهم)",
+    "anyIndustry": "جميع القطاعات",
+    "anyService": "جميع الخدمات",
+    "anyPlatform": "جميع المنصات",
+    "anyLocation": "جميع الإمارات",
+    "searchButton": "بحث",
+    "aiCtaTitle": "صف حملتك، ونحن نجد لك المؤثرين.",
+    "aiCtaBody": "يحوّل مساعد الاكتشاف الذكي جملة مثل «10 أطباء جلدية في دبي لافتتاح عيادة» إلى قائمة مرتبة من ملفات حقيقية في المنصة — مع أسباب كل ترشيح.",
+    "aiCtaButton": "جرّب الاكتشاف الذكي",
+    "categoriesTitle": "تصفح حسب القطاع",
+    "featuredTitle": "مؤثرون مميزون",
+    "topRatedTitle": "الأعلى تقييماً",
+    "trendingTitle": "الأعلى تفاعلاً",
+    "popularServicesTitle": "الخدمات الأكثر طلباً",
+    "offers": "{count, plural, one {عرض واحد} other {# عروض}}",
+    "howTitle": "كيف يعمل InfluenceHub",
+    "how1Title": "اكتشف",
+    "how1Body": "ابحث عن صناع المحتوى في الإمارات حسب القطاع والمنصة والإمارة والجمهور والأداء الموثق.",
+    "how2Title": "تواصل",
+    "how2Body": "افتح المراسلة المباشرة برسوم تواصل لمرة واحدة، أو اطلب عرض سعر، أو احجز الخدمات المعروضة.",
+    "how3Title": "احجز وادفع",
+    "how3Body": "أضف خدمات من عدة مؤثرين إلى سلة واحدة وادفع بأمان. تُسجل الأموال في سجل مالي قابل للتدقيق.",
+    "how4Title": "تعاون",
+    "how4Body": "أرسل الموجز، وراجع المسودات، واطلب التعديلات، ووافق وتابع النشر في مساحة حملة واحدة.",
+    "businessBenefitsTitle": "مصمم للعلامات التجارية",
+    "businessBenefits": [
+      "قوائم أسعار شفافة بالدرهم",
+      "إحصاءات موثقة عبر واجهات المنصات متى توفرت",
+      "تقييمات أداء قابلة للتفسير",
+      "دفع واحد لحملات متعددة المؤثرين",
+      "مسارات اعتماد وأدلة تسليم"
+    ],
+    "influencerBenefitsTitle": "مصمم لصناع المحتوى",
+    "influencerBenefits": [
+      "ملف شخصي وقائمة أسعار احترافية",
+      "إرشادات تسعير من بياناتك",
+      "عروض الأسعار والحجوزات والمدفوعات في مكان واحد",
+      "أنت تتحكم فيما يظهر للعامة",
+      "لا مشاركة لكلمات المرور — تسجيل دخول رسمي فقط"
+    ],
+    "trustTitle": "الثقة والتحقق",
+    "trustBody": "تأتي الإحصاءات من واجهات إنستغرام وتيك توك الرسمية عندما يمنح صانع المحتوى الإذن، وتظهر مع مصدرها ووقت آخر مزامنة. التحقق من الهوية والمؤهلات الطبية وتصريح المعلن منفصل عن تقييم الأداء.",
+    "trust1": "اتصالات رسمية عبر واجهات المنصات — دون استخراج بيانات",
+    "trust2": "كل مقياس يوضح مصدره وحداثته",
+    "trust3": "التحقق المنفصل من صناع المحتوى الطبيين",
+    "trust4": "سجل مالي غير قابل للتعديل وسجل تدقيق",
+    "testimonialsTitle": "ماذا يقول شركاؤنا الأوائل",
+    "testimonialsNote": "شهادات توضيحية لموقع ما قبل الإطلاق.",
+    "testimonials": [
+      {
+        "quote": "اخترنا خمسة مؤثرين مناسبين للعيادة في فترة ما بعد الظهر بدلاً من أسبوعين.",
+        "author": "مسؤولة تسويق، مجموعة رعاية صحية (توضيحي)"
+      },
+      {
+        "quote": "أخيراً قائمة أسعار يمكنني مشاركتها دون رسائل لا تنتهي.",
+        "author": "صانع محتوى طعام، الشارقة (توضيحي)"
+      },
+      {
+        "quote": "فاتورة واحدة لإطلاق مع عشرة مؤثرين. فريق المالية كان سعيداً جداً.",
+        "author": "مدير علامة تجارية للتجزئة (توضيحي)"
+      }
+    ],
+    "faqTitle": "الأسئلة الشائعة",
+    "ctaTitle": "هل أنت مستعد لإطلاق حملتك القادمة؟",
+    "ctaBusiness": "أنا شركة",
+    "ctaCreator": "أنا صانع محتوى",
+    "statsCreators": "{count} صانع محتوى",
+    "statsCategories": "{count} قطاعاً"
+  },
+  "faq": {
+    "items": [
+      {
+        "q": "هل تصفح المؤثرين مجاني؟",
+        "a": "نعم. يمكن عرض جميع الملفات العامة والإحصاءات والخدمات والأسعار دون دفع. يتطلب حفظ المؤثرين حساباً مجانياً."
+      },
+      {
+        "q": "لماذا توجد رسوم تواصل؟",
+        "a": "يتطلب بدء التواصل المباشر رسوم تواصل لمرة واحدة (تظهر قبل الدفع). تضمن جدية الاستفسارات وتحمي صناع المحتوى من الرسائل المزعجة. حجز خدمة معروضة يفتح المراسلة أيضاً."
+      },
+      {
+        "q": "من أين تأتي الإحصاءات؟",
+        "a": "من واجهات إنستغرام وتيك توك الرسمية عندما يربط صانع المحتوى حسابه ويمنح الإذن. يظهر لكل رقم مصدره وحالة التحقق وآخر تحديث. المقاييس غير المتاحة تظهر كذلك — ولا يتم تقديرها."
+      },
+      {
+        "q": "ماذا يعني تقييم الأداء؟",
+        "a": "درجة من 0 إلى 100 (S وA وB وC وD) مبنية على الوصول والمشاهدات والتفاعل وجودة الجمهور والانتظام الموثقة. ليست تحققاً من الهوية. يظهر صانع المحتوى الذي لا تتوفر له بيانات كافية بعبارة «لم يُقيّم بعد»."
+      },
+      {
+        "q": "كيف تتم معالجة المدفوعات؟",
+        "a": "تتم معالجة المدفوعات عبر مزوّد دفع مرخّص. يسجل InfluenceHub كل حجز وعمولة وضريبة قيمة مضافة ومستحقات صانع المحتوى بشكل منفصل في سجل غير قابل للتعديل."
+      },
+      {
+        "q": "هل يحتاج صناع المحتوى إلى تصريح معلن في الإمارات؟",
+        "a": "قد تتطلب القوانين في الإمارات حصول صناع المحتوى على تصريح معلن للمحتوى المدفوع. يمكن لصانع المحتوى إضافة بيانات التصريح للمراجعة، لكن شارات التحقق في InfluenceHub ليست تصريحاً قانونياً."
+      },
+      {
+        "q": "هل يمكنني استرداد المبلغ؟",
+        "a": "تتم معالجة المبالغ المستردة وفق سياسة رسوم التواصل وشروط الحجز. يراجع فريقنا النزاعات المتعلقة بالحملات."
+      }
+    ]
+  },
+  "auth": {
+    "loginTitle": "مرحباً بعودتك",
+    "loginSubtitle": "سجّل الدخول لإدارة الحملات والرسائل والحجوزات.",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "totp": "رمز المصادقة",
+    "totpHint": "أدخل الرمز المكون من 6 أرقام من تطبيق المصادقة.",
+    "forgot": "نسيت كلمة المرور؟",
+    "loginButton": "تسجيل الدخول",
+    "noAccount": "جديد في InfluenceHub؟",
+    "createAccount": "أنشئ حساباً",
+    "or": "أو",
+    "continueGoogle": "المتابعة باستخدام Google",
+    "continueInstagram": "المتابعة باستخدام إنستغرام",
+    "continueTiktok": "المتابعة باستخدام تيك توك",
+    "sandboxLogin": "تسجيل دخول تجريبي (للتطوير)",
+    "registerTitle": "انضم إلى InfluenceHub",
+    "registerSubtitle": "اختر طريقة استخدامك للمنصة.",
+    "asBusiness": "أنا شركة",
+    "asBusinessBody": "اكتشف المؤثرين واحجزهم لعلامتك التجارية.",
+    "asInfluencer": "أنا صانع محتوى",
+    "asInfluencerBody": "اعرض أعمالك وحدد أسعارك واحصل على الحجوزات.",
+    "businessTitle": "إنشاء حساب شركة",
+    "influencerTitle": "إنشاء حساب صانع محتوى",
+    "businessName": "اسم الشركة",
+    "contactPerson": "الشخص المسؤول",
+    "phone": "رقم الجوال",
+    "phoneHint": "رقم إماراتي، مثل 050 123 4567",
+    "emirate": "الإمارة",
+    "city": "المدينة",
+    "category": "فئة النشاط",
+    "website": "الموقع الإلكتروني",
+    "description": "نبذة عن الشركة",
+    "tradeLicence": "رقم الرخصة التجارية",
+    "fullName": "الاسم القانوني الكامل",
+    "displayName": "الاسم المعروض",
+    "acceptTerms": "أوافق على الشروط والأحكام وسياسة الخصوصية.",
+    "registerButton": "إنشاء الحساب",
+    "haveAccount": "لديك حساب بالفعل؟",
+    "passwordHint": "10 أحرف على الأقل تتضمن حروفاً كبيرة وصغيرة ورقماً.",
+    "neverPasswords": "لن نطلب أبداً كلمة مرور إنستغرام أو تيك توك.",
+    "verifyEmailTitle": "تأكيد البريد الإلكتروني",
+    "verifyEmailSuccess": "تم تأكيد بريدك الإلكتروني.",
+    "verifyEmailFailed": "رابط التأكيد غير صالح أو منتهي الصلاحية.",
+    "forgotTitle": "إعادة تعيين كلمة المرور",
+    "forgotBody": "أدخل بريدك الإلكتروني وسنرسل رابط إعادة التعيين إذا كان هناك حساب.",
+    "forgotSent": "إذا كان هناك حساب بهذا البريد، فرابط إعادة التعيين في الطريق.",
+    "resetTitle": "اختر كلمة مرور جديدة",
+    "resetDone": "تم تحديث كلمة المرور. يمكنك الآن تسجيل الدخول.",
+    "sendLink": "إرسال الرابط",
+    "newPassword": "كلمة المرور الجديدة",
+    "twoFactorSetupTitle": "أمّن حساب المشرف",
+    "twoFactorSetupBody": "تتطلب حسابات المشرفين المصادقة الثنائية. أضف هذا المفتاح إلى تطبيق المصادقة ثم أدخل الرمز المكون من 6 أرقام.",
+    "secretKey": "المفتاح السري",
+    "enable2fa": "تفعيل المصادقة الثنائية",
+    "errors": {
+      "INVALID_CREDENTIALS": "البريد الإلكتروني أو كلمة المرور غير صحيحة.",
+      "ACCOUNT_LOCKED": "محاولات كثيرة. حاول مرة أخرى بعد 15 دقيقة.",
+      "ACCOUNT_SUSPENDED": "هذا الحساب موقوف. تواصل مع الدعم.",
+      "TOTP_REQUIRED": "أدخل رمز المصادقة.",
+      "TOTP_INVALID": "الرمز غير صالح.",
+      "EMAIL_IN_USE": "يوجد حساب بهذا البريد الإلكتروني.",
+      "oauth_denied": "تم إلغاء تسجيل الدخول.",
+      "oauth_failed": "فشل تسجيل الدخول. حاول مرة أخرى.",
+      "google_login_business_only": "تسجيل الدخول عبر Google متاح لحسابات الشركات.",
+      "TOTP_ALREADY_ENABLED": "المصادقة الثنائية مفعّلة بالفعل لهذا الحساب. سجّل الدخول باستخدام رمز تطبيق المصادقة."
+    },
+    "acceptTermsBusiness": "أوافق على <business>شروط الشركات</business> و<platform>شروط المنصة</platform> و<privacy>سياسة الخصوصية</privacy>.",
+    "acceptTermsCreator": "أوافق على <creator>شروط صناع المحتوى</creator> و<platform>شروط المنصة</platform> و<privacy>سياسة الخصوصية</privacy>.",
+    "socialTermsNotice": "يوافق صناع المحتوى الذين يسجلون الدخول عبر إنستغرام أو تيك توك على <creator>شروط صناع المحتوى</creator> و<platform>شروط المنصة</platform> و<privacy>سياسة الخصوصية</privacy>.",
+    "googleTermsNotice": "توافق الشركات التي تسجل الدخول عبر Google على <business>شروط الشركات</business> و<platform>شروط المنصة</platform> و<privacy>سياسة الخصوصية</privacy>."
+  },
+  "validation": {
+    "required": "هذا الحقل مطلوب.",
+    "email": "أدخل بريداً إلكترونياً صحيحاً.",
+    "phone": "أدخل رقماً إماراتياً صحيحاً (مثل 050 123 4567).",
+    "passwordMin": "يجب ألا تقل كلمة المرور عن 10 أحرف.",
+    "passwordComplexity": "استخدم حروفاً كبيرة وصغيرة ورقماً.",
+    "acceptTerms": "يجب الموافقة على الشروط للمتابعة.",
+    "promoBelowPrice": "يجب أن يكون السعر الترويجي أقل من السعر.",
+    "minimumAbovePrice": "لا يمكن أن يتجاوز الحد الأدنى السعر.",
+    "invalid": "يرجى التحقق من هذا الحقل."
+  },
+  "enums": {
+    "emirate": {
+      "DUBAI": "دبي",
+      "ABU_DHABI": "أبوظبي",
+      "SHARJAH": "الشارقة",
+      "AJMAN": "عجمان",
+      "UMM_AL_QUWAIN": "أم القيوين",
+      "RAS_AL_KHAIMAH": "رأس الخيمة",
+      "FUJAIRAH": "الفجيرة"
+    },
+    "platform": {
+      "INSTAGRAM": "إنستغرام",
+      "TIKTOK": "تيك توك",
+      "CROSS_PLATFORM": "متعدد المنصات",
+      "OFFLINE": "خارج المنصات / محتوى"
+    },
+    "grade": {
+      "S": "S",
+      "A": "A",
+      "B": "B",
+      "C": "C",
+      "D": "D",
+      "NOT_RATED": "لم يُقيّم بعد"
+    },
+    "gender": {
+      "FEMALE": "أنثى",
+      "MALE": "ذكر",
+      "UNDISCLOSED": "أفضل عدم الإفصاح"
+    },
+    "verification": {
+      "API_VERIFIED": "موثق عبر الواجهة",
+      "MANUALLY_SUBMITTED": "مُبلّغ ذاتياً",
+      "PENDING_VERIFICATION": "بانتظار التحقق",
+      "UNAVAILABLE": "غير متاح",
+      "EXPIRED": "منتهي الصلاحية",
+      "SUSPICIOUS": "قيد المراجعة"
+    },
+    "verificationStatus": {
+      "UNVERIFIED": "غير موثق",
+      "PENDING": "قيد المراجعة",
+      "VERIFIED": "موثق",
+      "REJECTED": "مرفوض",
+      "EXPIRED": "منتهي"
+    },
+    "metric": {
+      "FOLLOWERS": "المتابعون",
+      "AVG_REEL_VIEWS": "متوسط مشاهدات الريلز",
+      "AVG_STORY_VIEWS": "متوسط مشاهدات الستوري",
+      "AVG_VIDEO_VIEWS": "متوسط مشاهدات الفيديو",
+      "ENGAGEMENT_RATE": "التفاعل",
+      "FOLLOWING": "يتابع",
+      "MEDIA_COUNT": "المنشورات",
+      "AVG_LIKES": "متوسط الإعجابات",
+      "AVG_COMMENTS": "متوسط التعليقات",
+      "REACH": "متوسط الوصول",
+      "IMPRESSIONS": "مرات الظهور",
+      "TOTAL_LIKES": "إجمالي الإعجابات",
+      "VIDEO_COUNT": "مقاطع الفيديو"
+    },
+    "source": {
+      "INSTAGRAM_API": "واجهة إنستغرام",
+      "TIKTOK_API": "واجهة تيك توك",
+      "MANUAL": "مقدّم من صانع المحتوى",
+      "SANDBOX": "تجريبي",
+      "DEMO_SEED": "عرض توضيحي"
+    },
+    "campaignStatus": {
+      "DRAFT": "مسودة",
+      "ENQUIRY": "استفسار",
+      "QUOTATION_REQUESTED": "طلب عرض سعر",
+      "QUOTATION_SUBMITTED": "تم تقديم عرض السعر",
+      "AWAITING_ACCEPTANCE": "بانتظار القبول",
+      "PAYMENT_PENDING": "بانتظار الدفع",
+      "CONFIRMED": "مؤكد",
+      "IN_PROGRESS": "قيد التنفيذ",
+      "CONTENT_SUBMITTED": "تم تقديم المحتوى",
+      "AWAITING_APPROVAL": "بانتظار الموافقة",
+      "REVISION_REQUESTED": "مطلوب تعديل",
+      "APPROVED": "معتمد",
+      "PUBLISHED": "منشور",
+      "COMPLETED": "مكتمل",
+      "CANCELLED": "ملغى",
+      "DISPUTED": "متنازع عليه"
+    },
+    "orderStatus": {
+      "PENDING_PAYMENT": "بانتظار الدفع",
+      "PAID": "مدفوع",
+      "PARTIALLY_REFUNDED": "مسترد جزئياً",
+      "REFUNDED": "مسترد",
+      "CANCELLED": "ملغى",
+      "FAILED": "فشل"
+    },
+    "paymentStatus": {
+      "CREATED": "منشأ",
+      "PENDING": "معلق",
+      "SUCCEEDED": "ناجح",
+      "FAILED": "فشل",
+      "CANCELLED": "ملغى",
+      "REFUNDED": "مسترد",
+      "PARTIALLY_REFUNDED": "مسترد جزئياً"
+    },
+    "quotationStatus": {
+      "REQUESTED": "مطلوب",
+      "SUBMITTED": "مُقدَّم",
+      "ACCEPTED": "مقبول",
+      "REJECTED": "مرفوض",
+      "EXPIRED": "منتهي",
+      "WITHDRAWN": "مسحوب"
+    },
+    "deliverableStatus": {
+      "PENDING": "قيد الانتظار",
+      "SUBMITTED": "مُقدَّم",
+      "REVISION_REQUESTED": "مطلوب تعديل",
+      "APPROVED": "معتمد",
+      "PUBLISHED": "منشور"
+    },
+    "accountStatus": {
+      "CONNECTED": "متصل",
+      "TOKEN_EXPIRED": "يلزم إعادة الربط",
+      "REVOKED": "ملغى",
+      "DISCONNECTED": "غير متصل",
+      "ERROR": "خطأ"
+    },
+    "payoutStatus": {
+      "PENDING": "معلق",
+      "ON_HOLD": "موقوف مؤقتاً",
+      "SCHEDULED": "مجدول",
+      "PROCESSING": "قيد المعالجة",
+      "PAID": "مدفوع",
+      "FAILED": "فشل"
+    },
+    "complianceStatus": {
+      "NOT_REQUIRED": "غير مطلوب",
+      "PENDING_REVIEW": "بانتظار مراجعة الامتثال",
+      "APPROVED": "تمت الموافقة على الامتثال",
+      "REJECTED": "تم رفض الامتثال"
+    },
+    "taxTreatment": {
+      "STANDARD": "خاضع للنسبة الأساسية (5%)",
+      "ZERO_RATED": "خاضع لنسبة الصفر",
+      "EXEMPT": "معفى",
+      "OUT_OF_SCOPE": "خارج النطاق"
+    },
+    "language": {
+      "ar": "العربية",
+      "en": "الإنجليزية",
+      "hi": "الهندية",
+      "ur": "الأردية",
+      "ml": "المالايالامية",
+      "ta": "التاميلية",
+      "tl": "الفلبينية",
+      "ru": "الروسية",
+      "fr": "الفرنسية",
+      "fa": "الفارسية",
+      "bn": "البنغالية",
+      "zh": "الصينية"
+    },
+    "userStatus": {
+      "PENDING": "معلق",
+      "ACTIVE": "نشط",
+      "SUSPENDED": "موقوف",
+      "DELETED": "محذوف"
+    },
+    "userType": {
+      "BUSINESS": "شركة",
+      "INFLUENCER": "صانع محتوى",
+      "ADMIN": "مشرف"
+    }
+  },
+  "search": {
+    "title": "تصفح المؤثرين",
+    "subtitle": "جميع الملفات العامة مجانية العرض.",
+    "keyword": "كلمة مفتاحية",
+    "category": "الفئة",
+    "platform": "المنصة",
+    "emirate": "الإمارة",
+    "language": "اللغة",
+    "gender": "الجنس",
+    "grade": "تقييم الأداء",
+    "minFollowers": "أدنى عدد متابعين",
+    "maxFollowers": "أقصى عدد متابعين",
+    "minReelViews": "أدنى مشاهدات ريلز",
+    "minStoryViews": "أدنى مشاهدات ستوري",
+    "minVideoViews": "أدنى مشاهدات فيديو",
+    "minEngagement": "أدنى نسبة تفاعل %",
+    "minPrice": "أدنى سعر",
+    "maxPrice": "أقصى سعر",
+    "serviceType": "الخدمة",
+    "verifiedOnly": "الهوية موثقة فقط",
+    "medicalVerifiedOnly": "المؤهلات الطبية موثقة",
+    "availableOnly": "متاح الآن",
+    "sort": "ترتيب حسب",
+    "sorts": {
+      "relevance": "الأكثر صلة",
+      "grade": "أعلى تقييم",
+      "followers": "الأكثر متابعين",
+      "views": "أعلى متوسط مشاهدات",
+      "engagement": "أعلى تفاعل",
+      "price_asc": "الأقل سعراً",
+      "price_desc": "الأعلى سعراً",
+      "newest": "انضم حديثاً"
+    },
+    "noResults": "لا يوجد مؤثرون يطابقون عوامل التصفية.",
+    "noResultsHint": "جرّب إزالة أحد عوامل التصفية أو توسيع الموقع.",
+    "startingFrom": "يبدأ من",
+    "engagementShort": "تفاعل"
+  },
+  "profile": {
+    "about": "نبذة",
+    "services": "الخدمات والأسعار",
+    "packages": "الباقات",
+    "performance": "الأداء",
+    "metrics": "إحصاءات موثقة",
+    "audience": "الجمهور",
+    "reviews": "التقييمات",
+    "noReviews": "لا توجد تقييمات بعد.",
+    "verifiedIdentity": "الهوية موثقة",
+    "medicalVerified": "المؤهلات الطبية موثقة",
+    "permitOnFile": "تصريح المعلن مسجل",
+    "gradeTitle": "تقييم الأداء",
+    "gradeDisclaimer": "يقيس تقييم الأداء الوصول والتفاعل الموثقين. ولا يتحقق من الهوية أو المؤهلات أو ملكية الحساب.",
+    "notRatedReason": "لا توجد بيانات موثقة كافية بعد.",
+    "coverage": "تغطية البيانات {value}%",
+    "components": {
+      "reelViews": "مشاهدات الفيديو القصير",
+      "storyViews": "مشاهدات الستوري",
+      "followers": "المتابعون",
+      "engagement": "التفاعل",
+      "audienceQuality": "جودة الجمهور",
+      "consistency": "الانتظام"
+    },
+    "contact": "مراسلة صانع المحتوى",
+    "contactLocked": "فتح التواصل",
+    "contactFee": "رسوم تواصل لمرة واحدة {amount} (شاملة الضريبة)",
+    "contactUnlocked": "تم فتح التواصل",
+    "useFreeContact": "استخدام رصيد تواصل مجاني",
+    "requestQuote": "طلب عرض سعر",
+    "addToCart": "أضف إلى السلة",
+    "addedToCart": "تمت الإضافة إلى السلة",
+    "save": "حفظ صانع المحتوى",
+    "saved": "محفوظ",
+    "loginToSave": "سجّل الدخول كشركة للحفظ أو التواصل أو الحجز.",
+    "delivery": "مدة التسليم",
+    "usageRights": "حقوق الاستخدام",
+    "exclusivity": "الحصرية",
+    "promo": "عرض",
+    "audienceInUae": "{value}% من الجمهور في الإمارات",
+    "lastSync": "تمت المزامنة {date}",
+    "source": "المصدر",
+    "sample": "متوسط {count} منشورات",
+    "connectedPlatforms": "المنصات المرتبطة",
+    "briefPlaceholder": "موجز اختياري لهذه الخدمة…",
+    "quoteBrief": "صف حملتك",
+    "quoteBudget": "الميزانية (درهم، اختياري)",
+    "sendRequest": "إرسال الطلب",
+    "quoteSent": "تم إرسال طلب عرض السعر.",
+    "paymentSuccess": "تم استلام الدفعة — تم فتح التواصل.",
+    "paymentFailed": "لم تكتمل عملية الدفع.",
+    "languages": "اللغات",
+    "location": "الموقع",
+    "specialities": "التخصصات"
+  },
+  "ai": {
+    "title": "الاكتشاف بالذكاء الاصطناعي",
+    "subtitle": "صف ما تحتاجه بالعربية أو الإنجليزية. النتائج من ملفات حقيقية في المنصة فقط.",
+    "placeholder": "مثال: ابحث عن 10 أطباء جلدية في دبي للترويج لعيادة",
+    "refinePlaceholder": "حسّن البحث: «تيك توك فقط»، «أقل من 2000 درهم»، «في أبوظبي»…",
+    "ask": "ابحث عن مؤثرين",
+    "refine": "تحسين",
+    "newSearch": "بحث جديد",
+    "understood": "هذا ما فهمته",
+    "why": "سبب الترشيح",
+    "helpful": "مفيد",
+    "notHelpful": "غير مفيد",
+    "thanks": "شكراً على ملاحظاتك",
+    "relaxed": "لا توجد نتائج مطابقة تماماً، لذا تم تخفيف: {fields}.",
+    "noMatches": "لا يوجد مؤثرون مطابقون بعد.",
+    "openInBrowse": "افتح في التصفح",
+    "parser": "تم التحليل بواسطة {parser}",
+    "examples": [
+      "ابحث عن 10 أطباء جلدية في دبي للترويج لعيادة",
+      "مؤثرو طعام في الشارقة لديهم أكثر من 20 ألف متابع",
+      "Find Malayalam-speaking creators in Dubai with affordable Reel prices",
+      "مؤثرون على تيك توك لافتتاح سوبرماركت",
+      "مؤثرات للترويج لمتجر مجوهرات"
+    ],
+    "reasons": {
+      "SPECIALITY_MATCH": "متخصص في {value}",
+      "CATEGORY_MATCH": "يعمل في {value}",
+      "LOCATION_MATCH": "مقيم في {value}",
+      "LANGUAGE_MATCH": "يقدم محتوى بلغة {value}",
+      "PLATFORM_MATCH": "نشط على {value}",
+      "FOLLOWERS_MEET": "{value} متابع (≥ {min})",
+      "OFFERS_SERVICE": "يقدم {value} ابتداءً من {price} درهم",
+      "WITHIN_BUDGET": "ابتداءً من {price} درهم — ضمن ميزانيتك {budget} درهم",
+      "AFFORDABLE": "أسعار مناسبة ابتداءً من {price} درهم",
+      "PERFORMANCE_GRADE": "تقييم الأداء {grade}",
+      "HIGH_ENGAGEMENT": "تفاعل {value}%",
+      "IDENTITY_VERIFIED": "الهوية موثقة",
+      "MEDICAL_CREDENTIAL_VERIFIED": "المؤهلات الطبية موثقة",
+      "KEYWORD_MATCH": "يذكر {value}"
+    },
+    "suggestions": {
+      "TRY_PARENT_CATEGORY": "جرّب القطاع الأشمل بدلاً من التخصص",
+      "TRY_ALL_EMIRATES": "ابحث في جميع الإمارات",
+      "LOWER_FOLLOWER_MINIMUM": "خفّض الحد الأدنى للمتابعين",
+      "INCREASE_BUDGET": "زد الميزانية",
+      "BROWSE_CATEGORY": "تصفح الفئة مباشرة"
+    }
+  },
+  "business": {
+    "nav": {
+      "overview": "نظرة عامة",
+      "discover": "اكتشاف المؤثرين",
+      "ai": "ترشيحات الذكاء الاصطناعي",
+      "categories": "الفئات",
+      "saved": "المؤثرون المحفوظون",
+      "cart": "سلة التسوق",
+      "orders": "طلباتي",
+      "campaigns": "حملاتي",
+      "messages": "الرسائل",
+      "quotations": "عروض الأسعار",
+      "payments": "المدفوعات",
+      "reviews": "التقييمات",
+      "notifications": "الإشعارات",
+      "profile": "ملف الشركة",
+      "settings": "الإعدادات"
+    },
+    "overview": {
+      "title": "مرحباً بعودتك",
+      "active": "الحملات النشطة",
+      "pending": "الحجوزات المعلقة",
+      "completed": "الحملات المكتملة",
+      "spending": "إجمالي الإنفاق",
+      "saved": "المؤثرون المحفوظون",
+      "quotes": "عروض أسعار للمراجعة",
+      "recent": "النشاط الأخير",
+      "noActivity": "لا يوجد نشاط بعد. ابدأ باكتشاف المؤثرين.",
+      "completeOnboarding": "أكمل ملف شركتك للحصول على ترشيحات أفضل."
+    },
+    "onboarding": {
+      "title": "أخبرنا عن شركتك",
+      "subtitle": "نستخدم هذه المعلومات لتخصيص الترشيحات. يمكنك تغييرها في أي وقت.",
+      "goals": "أهداف الحملة",
+      "goalOptions": {
+        "awareness": "الوعي بالعلامة التجارية",
+        "launch": "إطلاق منتج",
+        "footfall": "زيارات المتجر",
+        "bookings": "المواعيد / الحجوزات",
+        "sales": "المبيعات الإلكترونية",
+        "event": "الترويج لفعالية"
+      },
+      "platforms": "المنصات المفضلة",
+      "monthlyBudget": "الميزانية الشهرية المعتادة (درهم)",
+      "targetEmirates": "الإمارات المستهدفة",
+      "finish": "إنهاء الإعداد"
+    },
+    "cart": {
+      "title": "سلة التسوق",
+      "empty": "سلتك فارغة.",
+      "subtotal": "المجموع الفرعي",
+      "discount": "الخصم",
+      "serviceFee": "رسوم الخدمة",
+      "vat": "ضريبة القيمة المضافة ({rate}%)",
+      "total": "الإجمالي",
+      "discountCode": "رمز الخصم",
+      "campaignTitle": "اسم الحملة (اختياري)",
+      "checkout": "المتابعة إلى الدفع الآمن",
+      "unavailable": "بعض العناصر لم تعد متاحة. أزلها للمتابعة.",
+      "perLine": "يحصل كل صانع محتوى على مساحة حملة مستقلة بعد الدفع."
+    },
+    "orders": {
+      "title": "طلباتي",
+      "order": "الطلب",
+      "items": "العناصر",
+      "invoice": "الفاتورة",
+      "pay": "إتمام الدفع",
+      "paymentSuccess": "تم استلام الدفعة. تم تأكيد حملاتك.",
+      "paymentFailed": "لم تكتمل عملية الدفع. يمكنك المحاولة مرة أخرى.",
+      "refunds": "المبالغ المستردة",
+      "empty": "لا توجد طلبات بعد."
+    },
+    "payments": {
+      "title": "المدفوعات والفواتير",
+      "purpose": {
+        "ORDER": "حجز",
+        "CONTACT": "رسوم تواصل"
+      },
+      "invoices": "الفواتير",
+      "payments": "المدفوعات"
+    },
+    "profile": {
+      "title": "ملف الشركة",
+      "verification": "التحقق من الشركة",
+      "verificationBody": "ارفع رخصتك التجارية للحصول على شارة شركة موثقة.",
+      "requestVerification": "إرسال للتحقق",
+      "trn": "رقم التسجيل الضريبي (15 رقماً)",
+      "licenceAuthority": "جهة الترخيص",
+      "licenceExpiry": "انتهاء الرخصة",
+      "logo": "الشعار"
+    }
+  },
+  "influencer": {
+    "nav": {
+      "overview": "نظرة عامة",
+      "profile": "ملفي",
+      "accounts": "الحسابات المرتبطة",
+      "analytics": "تحليلات التواصل الاجتماعي",
+      "grade": "تقييم الأداء",
+      "rateCards": "قوائم الأسعار",
+      "services": "خدماتي",
+      "packages": "الباقات المخصصة",
+      "requests": "طلبات الحجز",
+      "campaigns": "الحملات النشطة",
+      "deliverables": "المخرجات",
+      "messages": "الرسائل",
+      "earnings": "الأرباح",
+      "payouts": "المدفوعات",
+      "reviews": "التقييمات",
+      "availability": "التوفر",
+      "verification": "التحقق",
+      "settings": "الإعدادات"
+    },
+    "overview": {
+      "title": "استوديو صانع المحتوى",
+      "followers": "المتابعون",
+      "reelViews": "متوسط مشاهدات الريلز",
+      "storyViews": "متوسط مشاهدات الستوري",
+      "videoViews": "متوسط مشاهدات الفيديو",
+      "engagement": "التفاعل",
+      "grade": "التقييم",
+      "pendingRequests": "طلبات معلقة",
+      "activeCampaigns": "حملات نشطة",
+      "earnings": "صافي الأرباح الإجمالي",
+      "enquiries": "استفسارات (30 يوماً)",
+      "publishHint": "ملفك ليس عاماً بعد. أكمله وانشره ليظهر في البحث.",
+      "connectHint": "اربط إنستغرام أو تيك توك لتوثيق إحصاءاتك والحصول على تقييم."
+    },
+    "accounts": {
+      "title": "الحسابات المرتبطة",
+      "subtitle": "اربط حسابك عبر تسجيل الدخول الرسمي لإنستغرام وتيك توك. لا نرى كلمة مرورك أبداً.",
+      "connectInstagram": "ربط إنستغرام",
+      "connectTiktok": "ربط تيك توك",
+      "sandbox": "ربط تجريبي",
+      "syncNow": "مزامنة الآن",
+      "disconnect": "فصل",
+      "disconnectConfirm": "هل تريد فصل هذا الحساب؟ سيتم إلغاء رمز الوصول. تبقى الإحصاءات السابقة محفوظة.",
+      "lastSynced": "آخر مزامنة",
+      "neverSynced": "لم تتم المزامنة بعد",
+      "permissions": "الأذونات",
+      "granted": "ممنوح",
+      "notGranted": "غير ممنوح",
+      "syncHistory": "المزامنات الأخيرة",
+      "eligibility": "تتطلب رؤى إنستغرام حساباً احترافياً (أعمال أو صانع محتوى). لا يوفر تيك توك مشاهدات الستوري أو التحليلات الخاصة.",
+      "notConfigured": "ربط {platform} غير مُعدّ في هذه البيئة بعد.",
+      "connected": "تم ربط الحساب.",
+      "syncQueued": "تمت جدولة المزامنة.",
+      "manualTitle": "إرسال مقياس يدوياً",
+      "manualBody": "تُوسم الأرقام المُبلّغ عنها ذاتياً وتُراجع. وتُحتسب بوزن أقل من البيانات الموثقة عبر الواجهة.",
+      "metric": "المقياس",
+      "value": "القيمة",
+      "sampleSize": "عدد المنشورات",
+      "submit": "إرسال للمراجعة",
+      "errors": {
+        "oauth_state_invalid": "انتهت صلاحية رابط الربط. حاول مرة أخرى.",
+        "oauth_session_mismatch": "يرجى إكمال الربط في نفس الجلسة.",
+        "social_account_linked_elsewhere": "هذا الحساب مرتبط بصانع محتوى آخر على InfluenceHub.",
+        "oauth_denied": "تم إلغاء الربط.",
+        "oauth_failed": "فشل الربط. حاول مرة أخرى.",
+        "provider_not_configured": "هذا المزوّد غير مُعدّ بعد."
+      }
+    },
+    "analytics": {
+      "title": "تحليلات التواصل الاجتماعي",
+      "history": "سجل النمو",
+      "noData": "لا توجد إحصاءات بعد — اربط حساباً لبدء التتبع."
+    },
+    "grade": {
+      "title": "تقييم الأداء",
+      "score": "الدرجة",
+      "breakdown": "تفصيل الدرجة",
+      "weight": "الوزن",
+      "confidence": "الثقة",
+      "history": "سجل التقييم",
+      "explain": "يُعاير كل عنصر حسب منصتك وفئتك، ويُرجّح حسب درجة توثيق البيانات وحداثتها. البيانات المُبلّغ عنها ذاتياً والقديمة تُحتسب بوزن أقل.",
+      "flags": "ملاحظات جودة البيانات",
+      "recompute": "إعادة الحساب"
+    },
+    "services": {
+      "title": "قوائم الأسعار",
+      "subtitle": "حدد أسعارك. الاقتراحات استرشادية — سعرك هو ما تدفعه الشركات.",
+      "add": "إضافة خدمة",
+      "serviceType": "نوع الخدمة",
+      "title_": "العنوان",
+      "titleAr": "العنوان (بالعربية)",
+      "description": "الوصف",
+      "price": "سعرك (درهم)",
+      "promoPrice": "السعر الترويجي",
+      "promoEnds": "ينتهي العرض",
+      "minimumPrice": "أدنى سعر تقبله",
+      "deliveryDays": "مدة التسليم (أيام)",
+      "revisions": "التعديلات المشمولة",
+      "usageRights": "حقوق الاستخدام",
+      "usageRightsDays": "الاستخدام المدفوع (أيام)",
+      "exclusivityDays": "حصرية الفئة (أيام)",
+      "taxTreatment": "المعاملة الضريبية",
+      "active": "نشط",
+      "paused": "متوقف",
+      "suggested": "مقترح",
+      "suggestedRange": "النطاق المقترح {low}–{high} درهم",
+      "suggestionBasis": {
+        "BENCHMARK": "بناءً على مرجع أسعار إماراتي",
+        "FORMULA": "بناءً على مقاييسك الموثقة"
+      },
+      "sampleWarning": "المراجع السعرية بيانات نموذجية إلى حين تسجيل أبحاث السوق.",
+      "useSuggestion": "استخدم الاقتراح",
+      "empty": "لم تضف أي خدمات بعد.",
+      "archive": "أرشفة"
+    },
+    "packages": {
+      "title": "الباقات المخصصة",
+      "add": "إنشاء باقة",
+      "items": "الخدمات المشمولة",
+      "quantity": "الكمية",
+      "empty": "لا توجد باقات بعد."
+    },
+    "requests": {
+      "title": "طلبات الحجز وعروض الأسعار",
+      "respond": "إرسال عرض السعر",
+      "decline": "رفض",
+      "items": "البنود",
+      "addItem": "إضافة بند",
+      "validDays": "صالح لمدة (أيام)",
+      "note": "ملاحظة للشركة",
+      "brief": "الموجز",
+      "budget": "الميزانية"
+    },
+    "earnings": {
+      "title": "الأرباح والمدفوعات",
+      "pending": "معلقة (الحملة غير مكتملة / فترة الانتظار)",
+      "available": "متاحة للصرف",
+      "paid": "تم صرفها",
+      "hold": "تُصرف الأرباح بعد اكتمال الحملة وفترة انتظار مدتها {days} أيام.",
+      "commissions": "أرباح الحجوزات",
+      "payouts": "المدفوعات",
+      "gross": "الإجمالي",
+      "commission": "العمولة",
+      "net": "الصافي"
+    },
+    "availability": {
+      "title": "التوفر",
+      "subtitle": "احجب التواريخ التي لا يمكنك فيها قبول الحجوزات.",
+      "accepting": "أقبل حجوزات جديدة",
+      "from": "من",
+      "to": "إلى",
+      "note": "ملاحظة",
+      "block": "حجب التواريخ",
+      "empty": "لا توجد تواريخ محجوبة."
+    },
+    "verification": {
+      "title": "التحقق",
+      "identity": "التحقق من الهوية",
+      "identityBody": "ارفع الهوية الإماراتية أو جواز السفر (الوجهين). المستندات خاصة ولا يراها إلا فريق التحقق.",
+      "medical": "المؤهل الطبي",
+      "medicalBody": "يجب على صناع المحتوى في المجال الصحي تقديم ترخيص ساري (هيئة الصحة بدبي أو دائرة الصحة أو وزارة الصحة ووقاية المجتمع). تتطلب الحملات الطبية مراجعة امتثال.",
+      "profession": "المهنة",
+      "speciality": "التخصص",
+      "authority": "جهة الترخيص",
+      "licenceNumber": "رقم الترخيص",
+      "licenceExpiry": "انتهاء الترخيص",
+      "document": "المستند الداعم",
+      "permit": "تصريح المعلن في الإمارات",
+      "permitBody": "أضف بيانات تصريح المعلن. شارة التحقق ليست تصريحاً قانونياً.",
+      "permitNumber": "رقم التصريح",
+      "permitExpiry": "انتهاء التصريح",
+      "submit": "إرسال للمراجعة",
+      "submitted": "تم الإرسال للمراجعة."
+    },
+    "profile": {
+      "title": "ملفي",
+      "public": "الملف العام",
+      "publicHint": "عند التفعيل، يظهر ملفك في نتائج البحث.",
+      "visibility": "التحكم في الظهور",
+      "showCity": "إظهار المدينة",
+      "showGender": "إظهار الجنس",
+      "showAudience": "إظهار رؤى الجمهور",
+      "showStoryViews": "إظهار مشاهدات الستوري",
+      "showLanguages": "إظهار اللغات",
+      "bio": "النبذة",
+      "bioAr": "النبذة (بالعربية)",
+      "displayNameAr": "الاسم المعروض (بالعربية)",
+      "categories": "الفئات (الأولى هي الرئيسية)",
+      "niches": "مجالات المحتوى (مفصولة بفواصل)",
+      "specialities": "التخصصات (مفصولة بفواصل)",
+      "audienceLocations": "مواقع الجمهور (رموز الدول مفصولة بفواصل)",
+      "photo": "الصورة الشخصية",
+      "viewPublic": "عرض الملف العام",
+      "onboardingTitle": "أعدّ ملفك كصانع محتوى"
+    }
+  },
+  "campaign": {
+    "title": "الحملة",
+    "brief": "الموجز",
+    "deliverables": "المخرجات",
+    "timeline": "الجدول الزمني",
+    "mentions": "الإشارات المطلوبة",
+    "hashtags": "الوسوم المطلوبة",
+    "deadline": "موعد النشر",
+    "approvalRequired": "الموافقة مطلوبة",
+    "usageRights": "حقوق الاستخدام",
+    "contract": "شروط العقد",
+    "agreedAmount": "المبلغ المتفق عليه",
+    "compliance": "الامتثال",
+    "start": "بدء العمل",
+    "submitDraft": "تقديم المسودة",
+    "draftUrl": "رابط المسودة",
+    "draftNotes": "ملاحظات",
+    "approve": "موافقة",
+    "requestRevision": "طلب تعديل",
+    "revisionComment": "ما الذي يجب تغييره؟",
+    "publish": "تحديد كمنشور",
+    "publishedUrl": "رابط المنشور",
+    "complete": "إكمال الحملة",
+    "cancel": "إلغاء الحملة",
+    "dispute": "رفع نزاع",
+    "disputeReason": "السبب",
+    "disputeDetails": "التفاصيل",
+    "review": "اترك تقييماً",
+    "rating": "التقييم",
+    "comment": "تعليق",
+    "reviewThanks": "شكراً على تقييمك.",
+    "revisionsUsed": "التعديلات {used}/{max}",
+    "evidence": "دليل التسليم",
+    "editBrief": "تعديل الموجز",
+    "empty": "لا توجد حملات بعد."
+  },
+  "messages": {
+    "title": "الرسائل",
+    "empty": "لا توجد محادثات بعد.",
+    "placeholder": "اكتب رسالة…",
+    "send": "إرسال",
+    "seen": "تمت المشاهدة",
+    "block": "حظر",
+    "unblock": "إلغاء الحظر",
+    "report": "إبلاغ",
+    "reportReason": "لماذا تبلغ عن هذا؟",
+    "locked": "هذه المحادثة مقفلة.",
+    "attach": "إرفاق ملف",
+    "selectConversation": "اختر محادثة",
+    "contactDetailsBlocked": "مشاركة أرقام الهواتف أو البريد الإلكتروني أو الحسابات الخارجية معطلة حتى يتم الحجز."
+  },
+  "notifications": {
+    "title": "الإشعارات",
+    "markAllRead": "تحديد الكل كمقروء",
+    "empty": "لا توجد إشعارات جديدة.",
+    "WELCOME": {
+      "title": "مرحباً بك في InfluenceHub",
+      "body": "حسابك جاهز."
+    },
+    "EMAIL_VERIFY": {
+      "title": "تأكيد البريد الإلكتروني",
+      "body": "تحقق من بريدك للحصول على رابط التأكيد."
+    },
+    "PASSWORD_RESET": {
+      "title": "طلب إعادة تعيين كلمة المرور",
+      "body": "استخدم الرابط المرسل إلى بريدك."
+    },
+    "SOCIAL_CONNECTED": {
+      "title": "تم ربط {platform}",
+      "body": "تم ربط ‎@{username} بملفك."
+    },
+    "SOCIAL_DISCONNECTED": {
+      "title": "تم فصل {platform}",
+      "body": "تم فصل ‎@{username}."
+    },
+    "SOCIAL_TOKEN_EXPIRED": {
+      "title": "أعد ربط {platform}",
+      "body": "انتهت صلاحية الوصول إلى ‎@{username}."
+    },
+    "VERIFICATION_APPROVED": {
+      "title": "تمت الموافقة على التحقق",
+      "body": "تمت الموافقة على التحقق من {type}."
+    },
+    "VERIFICATION_REJECTED": {
+      "title": "التحقق يحتاج إلى مراجعة",
+      "body": "لم تتم الموافقة على التحقق من {type}."
+    },
+    "CONTACT_PURCHASED": {
+      "title": "تم فتح التواصل",
+      "body": "يمكنك الآن مراسلة {name}."
+    },
+    "NEW_ENQUIRY": {
+      "title": "استفسار جديد",
+      "body": "تريد {business} التواصل معك."
+    },
+    "NEW_MESSAGE": {
+      "title": "رسالة جديدة من {name}",
+      "body": "{preview}"
+    },
+    "QUOTATION_REQUESTED": {
+      "title": "طلب عرض سعر",
+      "body": "طلبت {business} عرض سعر."
+    },
+    "QUOTATION_SUBMITTED": {
+      "title": "تم استلام عرض السعر",
+      "body": "أرسل {name} عرض السعر {number}."
+    },
+    "QUOTATION_ACCEPTED": {
+      "title": "تم قبول عرض السعر",
+      "body": "تم قبول عرض السعر {number}."
+    },
+    "BOOKING_CONFIRMED": {
+      "title": "حجز جديد",
+      "body": "{service} — الطلب {number}."
+    },
+    "PAYMENT_SUCCEEDED": {
+      "title": "تم استلام الدفعة",
+      "body": "{amount} درهم لـ {reference}."
+    },
+    "PAYMENT_FAILED": {
+      "title": "فشل الدفع",
+      "body": "لم تكتمل دفعة {reference}."
+    },
+    "CAMPAIGN_UPDATED": {
+      "title": "تم تحديث الحملة {campaign}",
+      "body": "الحالة: {status}"
+    },
+    "DELIVERABLE_SUBMITTED": {
+      "title": "تم تقديم المحتوى",
+      "body": "محتوى جديد للحملة {campaign}."
+    },
+    "DELIVERABLE_APPROVED": {
+      "title": "تمت الموافقة على المحتوى",
+      "body": "تمت الموافقة على محتوى {campaign}."
+    },
+    "REVISION_REQUESTED": {
+      "title": "مطلوب تعديل",
+      "body": "{campaign}: {comment}"
+    },
+    "CAMPAIGN_COMPLETED": {
+      "title": "اكتملت الحملة",
+      "body": "اكتملت الحملة {campaign}."
+    },
+    "REVIEW_RECEIVED": {
+      "title": "تقييم جديد",
+      "body": "حصلت على تقييم {rating} نجوم."
+    },
+    "REFUND_UPDATED": {
+      "title": "الاسترداد {status}",
+      "body": "{amount} درهم"
+    },
+    "PAYOUT_UPDATED": {
+      "title": "الدفعة {status}",
+      "body": "{amount} درهم"
+    },
+    "DISPUTE_UPDATED": {
+      "title": "تحديث النزاع",
+      "body": "{campaign}: {status}"
+    },
+    "PHONE_OTP": {
+      "title": "رمز التحقق",
+      "body": "تم إرسال الرمز."
+    }
+  },
+  "settings": {
+    "title": "الإعدادات",
+    "language": "اللغة",
+    "languageHint": "تُطبق على الواجهة ورسائل البريد والإشعارات.",
+    "password": "تغيير كلمة المرور",
+    "currentPassword": "كلمة المرور الحالية",
+    "newPassword": "كلمة المرور الجديدة",
+    "verifyPhone": "تأكيد رقم الجوال",
+    "sendCode": "إرسال الرمز",
+    "code": "الرمز",
+    "verify": "تأكيد",
+    "verified": "مؤكد",
+    "notVerified": "غير مؤكد",
+    "emailNotifications": "إشعارات البريد الإلكتروني",
+    "privacy": "الخصوصية والبيانات",
+    "export": "تنزيل بياناتي",
+    "deleteAccount": "طلب حذف الحساب",
+    "deleteHint": "يتم إخفاء هوية البيانات الشخصية. تُحفظ السجلات المالية وفق ما يقتضيه القانون.",
+    "deleteRequested": "تم استلام طلب الحذف.",
+    "marketing": "رسائل تسويقية"
+  },
+  "admin": {
+    "title": "الإدارة",
+    "nav": {
+      "dashboard": "لوحة التحكم",
+      "users": "المستخدمون",
+      "verifications": "قائمة التحقق",
+      "categories": "الفئات",
+      "catalog": "كتالوج الخدمات",
+      "benchmarks": "مراجع الأسعار في الإمارات",
+      "grading": "إعدادات التقييم",
+      "orders": "الحجوزات",
+      "campaigns": "الحملات",
+      "fees": "رسوم التواصل والعمولة",
+      "payments": "المدفوعات",
+      "refunds": "المبالغ المستردة",
+      "payouts": "مدفوعات صناع المحتوى",
+      "disputes": "النزاعات",
+      "ai": "إعدادات الذكاء الاصطناعي",
+      "moderation": "الإشراف على المحتوى",
+      "reports": "التقارير",
+      "audit": "سجلات التدقيق",
+      "integrations": "تكاملات الواجهات",
+      "localization": "الترجمة",
+      "settings": "إعدادات المنصة",
+      "privacy": "طلبات البيانات"
+    },
+    "dashboard": {
+      "users": "إجمالي المستخدمين",
+      "influencers": "صناع المحتوى",
+      "businesses": "الشركات",
+      "verified": "صناع محتوى موثقون",
+      "activeCampaigns": "الحملات النشطة",
+      "completedOrders": "الطلبات المكتملة",
+      "gbv": "إجمالي قيمة الحجوزات",
+      "commission": "إيرادات العمولة",
+      "contactFees": "إيرادات رسوم التواصل",
+      "refunds": "المبالغ المستردة",
+      "pendingVerifications": "طلبات تحقق معلقة",
+      "disputes": "نزاعات مفتوحة",
+      "integrationHealth": "حالة التكاملات",
+      "failedSyncs": "مزامنات فاشلة (24 ساعة)"
+    },
+    "decide": "قرار",
+    "approve": "موافقة",
+    "reject": "رفض",
+    "suspend": "إيقاف",
+    "activate": "تفعيل",
+    "feature": "تمييز",
+    "unfeature": "إلغاء التمييز",
+    "notes": "ملاحظات",
+    "publishVersion": "نشر إصدار جديد",
+    "versionNotes": "ملاحظات التغيير",
+    "weights": "الأوزان",
+    "thresholds": "حدود التقييم",
+    "distribution": "توزيع التقييمات",
+    "batchPayouts": "إنشاء مدفوعات للأرباح المؤهلة",
+    "markPaid": "تحديد كمدفوع",
+    "reference": "المرجع البنكي",
+    "refundAmount": "مبلغ الاسترداد",
+    "reason": "السبب",
+    "issueRefund": "إصدار استرداد",
+    "resolve": "حل",
+    "resolution": "القرار",
+    "outcome": "نتيجة الحملة",
+    "revenueReport": "تقرير الإيرادات",
+    "groupBy": "تجميع حسب",
+    "day": "يوم",
+    "week": "أسبوع",
+    "month": "شهر",
+    "byCategory": "حسب الفئة",
+    "byInfluencer": "حسب صانع المحتوى",
+    "byBusiness": "حسب الشركة",
+    "reconcile": "تشغيل المطابقة",
+    "process": "معالجة",
+    "sample": "نموذجي",
+    "researched": "موثق ببحث",
+    "localizationBody": "تُدار نصوص الواجهة في ‎/packages/localization/messages ‏(en.json وar.json). يتم فرض تطابق المفاتيح بين الإنجليزية والعربية في التكامل المستمر.",
+    "keys": "مفاتيح الترجمة",
+    "saveSettings": "حفظ الإعدادات",
+    "contactFee": "رسوم التواصل (درهم، دون الضريبة)",
+    "freeAllowance": "عدد مرات التواصل المجانية لكل شركة",
+    "accessDays": "مدة الوصول للتواصل (أيام)",
+    "maxPerDay": "الحد الأقصى اليومي لفتح التواصل",
+    "refundPolicy": "سياسة الاسترداد",
+    "commissionRate": "نسبة العمولة الافتراضية %",
+    "commissionPayer": "يدفع العمولة",
+    "splitShare": "حصة الشركة عند التقسيم (%)",
+    "minCommission": "الحد الأدنى للعمولة (درهم)",
+    "maxCommission": "الحد الأقصى للعمولة (درهم)",
+    "vatRate": "نسبة ضريبة القيمة المضافة %",
+    "vatRegistered": "المنصة مسجلة ضريبياً",
+    "grantCredits": "منح رصيد تواصل مجاني",
+    "quality": "جودة الترشيحات",
+    "zeroRate": "نسبة البحث بدون نتائج",
+    "helpfulRate": "نسبة الإفادة",
+    "searches": "عمليات البحث",
+    "flagged": "رسائل مُعلَّمة"
+  },
+  "pages": {
+    "how": {
+      "title": "كيف يعمل InfluenceHub",
+      "intro": "منصة مبنية على الشفافية: بيانات موثقة وأسعار واضحة وحملات قابلة للمساءلة."
+    },
+    "business": {
+      "title": "للشركات",
+      "intro": "اعثر على صناع المحتوى المناسبين في الإمارات خلال دقائق، وقارن الأسعار بدقة، وأدر كل حملة من الموجز حتى إثبات النشر.",
+      "points": [
+        "ابحث حسب القطاع والتخصص والإمارة واللغة والجمهور",
+        "اطلع على الإحصاءات الموثقة مع مصادرها وحداثتها",
+        "ادفع مرة واحدة لحملات متعددة المؤثرين مع فواتير ضريبية",
+        "وافق على المسودات واطلب التعديلات وتابع التسليم",
+        "يشرح الاكتشاف الذكي سبب كل ترشيح"
+      ]
+    },
+    "influencer": {
+      "title": "لصناع المحتوى",
+      "intro": "واجهة احترافية لخدماتك في صناعة المحتوى — مع إرشادات تسعير من بياناتك الموثقة.",
+      "points": [
+        "اربط إنستغرام وتيك توك عبر تسجيل الدخول الرسمي",
+        "احصل على تقييم أداء قابل للتفسير",
+        "انشر قوائم الأسعار والباقات والأسعار الترويجية",
+        "استقبل الاستفسارات وعروض الأسعار والحجوزات",
+        "تابع أرباحك ومدفوعاتك بشفافية"
+      ]
+    },
+    "pricing": {
+      "title": "الأسعار",
+      "intro": "أسعار بسيطة وشفافة. التصفح مجاني دائماً.",
+      "browse": "التصفح والحفظ",
+      "browseValue": "مجاني",
+      "contact": "التواصل المباشر",
+      "contactValue": "رسوم لمرة واحدة لكل صانع محتوى",
+      "contactNote": "تظهر الرسوم الحالية قبل الدفع شاملة الضريبة. حجز خدمة يفتح المراسلة أيضاً.",
+      "commission": "عمولة الحجز",
+      "commissionValue": "نسبة من قيمة الحجز",
+      "commissionNote": "يحددها InfluenceHub وتظهر عند الدفع. يرى صناع المحتوى صافي أرباحهم قبل القبول.",
+      "vat": "الأسعار بالدرهم الإماراتي ولا تشمل ضريبة القيمة المضافة 5% ما لم يُذكر خلاف ذلك."
+    },
+    "about": {
+      "title": "عن InfluenceHub",
+      "body": "InfluenceHub منصة مؤثرين انطلقت من الإمارات تجلب وضوح التجارة الإلكترونية إلى التعاون مع صناع المحتوى. نربط العلامات التجارية بصناع المحتوى في الإمارات السبع، بالعربية والإنجليزية، اعتماداً على تكاملات رسمية مع المنصات ونواة مالية قابلة للتدقيق."
+    },
+    "contact": {
+      "title": "اتصل بنا",
+      "body": "لديك أسئلة حول المنصة أو الشراكات أو التحقق؟ تواصل مع فريقنا.",
+      "email": "البريد الإلكتروني",
+      "address": "دبي، الإمارات العربية المتحدة"
+    },
+    "terms": {
+      "title": "شروط المنصة",
+      "notice": "مسودة للمراجعة القانونية — ليست نهائية بعد.",
+      "sections": [
+        {
+          "h": "1. الخدمة",
+          "p": "يوفر InfluenceHub منصة تتيح للشركات اكتشاف صناع المحتوى والتواصل معهم وحجزهم لخدمات التسويق في دولة الإمارات العربية المتحدة."
+        },
+        {
+          "h": "2. الحسابات",
+          "p": "يجب تقديم معلومات دقيقة والحفاظ على أمان بيانات الدخول. يحق لنا إيقاف الحسابات المخالفة لهذه الشروط."
+        },
+        {
+          "h": "3. رسوم التواصل والحجوزات",
+          "p": "تظهر رسوم التواصل وعمولات الحجز قبل الدفع. الأسعار بالدرهم الإماراتي، وتُطبق ضريبة القيمة المضافة حيثما يلزم."
+        },
+        {
+          "h": "4. التزامات صناع المحتوى",
+          "p": "يتحمل صناع المحتوى مسؤولية الالتزام بقوانين الإعلان في الإمارات، بما في ذلك متطلبات تصريح المعلن والإفصاح عن المحتوى المدفوع."
+        },
+        {
+          "h": "5. المحتوى الطبي",
+          "p": "تخضع الحملات الطبية والصحية لمراجعة امتثال إضافية ولقواعد الإعلان الصادرة عن الجهات الصحية المختصة."
+        },
+        {
+          "h": "6. النزاعات والاسترداد",
+          "p": "يراجع InfluenceHub النزاعات. تتم معالجة المبالغ المستردة وفق السياسة المعمول بها وشروط الحجز."
+        }
+      ]
+    },
+    "privacy": {
+      "title": "سياسة الخصوصية",
+      "notice": "مسودة للمراجعة القانونية — متوافقة مع مبادئ قانون حماية البيانات الشخصية في الإمارات؛ ليست نهائية بعد.",
+      "sections": [
+        {
+          "h": "البيانات التي نجمعها",
+          "p": "بيانات الحساب والملف الشخصي والمراسلات وسجلات المعاملات، وبإذنك، بيانات من حسابات إنستغرام وتيك توك المرتبطة."
+        },
+        {
+          "h": "كيف نستخدمها",
+          "p": "لتشغيل المنصة والتحقق من الحسابات وحساب تقييمات الأداء ومعالجة المدفوعات ومنع الاحتيال والوفاء بالالتزامات القانونية."
+        },
+        {
+          "h": "بيانات التواصل الاجتماعي",
+          "p": "نصل فقط إلى البيانات التي تأذن بها عبر الواجهات الرسمية. رموز الوصول مشفرة ويمكنك الفصل في أي وقت مما يلغي وصولنا."
+        },
+        {
+          "h": "حقوقك",
+          "p": "يمكنك الوصول إلى بياناتك الشخصية وتصديرها وطلب حذفها من الإعدادات. تُحفظ السجلات المالية وفق ما يقتضيه القانون."
+        },
+        {
+          "h": "الأمان",
+          "p": "نستخدم التشفير وضوابط الوصول وسجلات التدقيق والمراقبة لحماية بياناتك."
+        }
+      ]
+    },
+    "legal": {
+      "draftNotice": "مسودة للمراجعة القانونية — هذه الشروط ليست نهائية ويجب أن يراجعها محامٍ مؤهل في دولة الإمارات قبل الإطلاق.",
+      "version": "الإصدار {version}",
+      "contents": "المحتويات",
+      "related": "وثائق ذات صلة",
+      "print": "طباعة",
+      "appliesTo": "تنطبق على",
+      "appliesBusiness": "الشركات التي تتصفح صناع المحتوى وتتواصل معهم وتحجز خدماتهم على InfluenceHub.",
+      "appliesCreator": "المؤثرون وصناع المحتوى الذين يعرضون خدماتهم على InfluenceHub.",
+      "appliesAll": "جميع مستخدمي InfluenceHub.",
+      "acceptedTitle": "الاتفاقيات القانونية",
+      "acceptedBody": "الوثائق التي وافقت عليها على InfluenceHub.",
+      "acceptedOn": "تمت الموافقة في {date}",
+      "notAccepted": "لم تتم الموافقة بعد"
+    },
+    "businessTerms": {
+      "title": "شروط الشركات",
+      "intro": "تنطبق شروط الشركات هذه عند استخدامك InfluenceHub بصفتك شركة لاكتشاف المؤثرين وصناع المحتوى («صناع المحتوى») والتواصل معهم وحجز خدماتهم. وتُطبَّق إلى جانب شروط المنصة وسياسة الخصوصية. وفي حال التعارض، تسري شروط الشركات هذه على استخدامك التجاري.",
+      "sections": [
+        {
+          "h": "حسابك",
+          "p": [
+            "يجب أن تكون شركة تعمل بصورة قانونية ولديها رخصة تجارية سارية حيثما يلزم ذلك. ويؤكد الشخص الذي يوافق على هذه الشروط أنه مخوّل بإلزام الشركة بها.",
+            "حافظ على دقة بياناتك وأمان بيانات الدخول. أنت مسؤول عن كل ما يتم عبر حسابك. وقد نطلب مستندات (مثل الرخصة التجارية) للتحقق من شركتك، وقد نقيّد بعض الميزات إلى حين اكتمال التحقق."
+          ]
+        },
+        {
+          "h": "تصفح صناع المحتوى وحفظهم",
+          "p": [
+            "عرض الملفات العامة لصناع المحتوى وإحصاءاتهم وخدماتهم وأسعارهم مجاني. تُظهر الإحصاءات مصدرها وآخر تحديث لها، والأرقام الموسومة بأنها مُبلّغ عنها ذاتياً أو تجريبية لم تتحقق منها المنصة.",
+            "تقييمات الأداء مؤشر مبني على البيانات المتاحة، وليست ضماناً للنتائج، ولا تؤكد هوية صانع المحتوى أو مؤهلاته."
+          ]
+        },
+        {
+          "h": "رسوم التواصل",
+          "p": [
+            "يتطلب بدء التواصل المباشر مع صانع محتوى دفع رسوم تواصل لمرة واحدة، تظهر شاملة ضريبة القيمة المضافة قبل الدفع. ويفتح الدفع المراسلة مع صانع المحتوى طوال مدة الوصول الموضحة عند الشراء.",
+            "لن تُحاسب مرة أخرى على صانع المحتوى نفسه ما دام وصولك سارياً. كما يؤدي حجز إحدى خدمات صانع المحتوى إلى فتح المراسلة معه.",
+            "رسوم التواصل مقابل الوصول وليست مقابل أي خدمة. ولا يلتزم صانع المحتوى بالرد أو قبول الاستفسار أو تقديم عرض سعر. ولا تُسترد رسوم التواصل إلا وفق سياسة الاسترداد المعروضة عند الشراء."
+          ]
+        },
+        {
+          "h": "عروض الأسعار والحجوزات",
+          "p": [
+            "يمكنك شراء الخدمات المعروضة لدى صانع المحتوى أو طلب عرض سعر مخصص. يكون عرض السعر صالحاً للمدة التي يحددها صانع المحتوى، ويؤدي قبوله إلى إضافته إلى سلتك.",
+            "لا يتأكد الحجز إلا عند إتمام الدفع بنجاح. وتكون المخرجات ومدة التسليم وعدد التعديلات وحقوق الاستخدام هي ما يظهر في الخدمة أو عرض السعر وقت الشراء، وتُحفظ نسخة منها مع طلبك."
+          ]
+        },
+        {
+          "h": "الأسعار والرسوم وضريبة القيمة المضافة",
+          "p": [
+            "الأسعار بالدرهم الإماراتي. تُضاف ضريبة القيمة المضافة حيثما تنطبق وتظهر قبل الدفع. وتظهر أي رسوم خدمة أو عمولة مستحقة عليك عند إتمام الطلب، دون رسوم خفية.",
+            "تصدر فاتورة ضريبية لكل عملية دفع ناجحة وتكون متاحة في قسم المدفوعات."
+          ]
+        },
+        {
+          "h": "الدفع",
+          "p": [
+            "تتم معالجة المدفوعات عبر مزوّد دفع مرخّص، ولا يحتفظ InfluenceHub ببيانات بطاقتك كاملة. ويُحصّل المبلغ كاملاً عند إتمام الطلب قبل أن يبدأ صانع المحتوى العمل.",
+            "يُحتفظ بالمبلغ ويُصرف لصانع المحتوى وفق قواعد صرف المستحقات لصناع المحتوى، بعد اكتمال الحملة وحل أي نزاع."
+          ]
+        },
+        {
+          "h": "الموجزات والموافقات",
+          "p": [
+            "قدّم لصانع المحتوى موجزاً واضحاً ومشروعاً قبل بدء العمل، يتضمن الإشارات والوسوم المطلوبة والمواعيد النهائية وأي متطلبات موافقة.",
+            "راجع المسودات دون تأخير — خلال المدة المحددة في الحملة، أو خلال 5 أيام عمل إن لم تُحدد مدة. ويجب أن تبقى طلبات التعديل ضمن نطاق ما تم حجزه وعدد التعديلات المشمولة، وقد تُسعّر التغييرات الإضافية بشكل منفصل.",
+            "إذا لم تتخذ أي إجراء بعد نشر المحتوى، فقد تُستكمل الحملة تلقائياً بعد المدة الموضحة في الحملة."
+          ]
+        },
+        {
+          "h": "قوانين الإعلان والإفصاح",
+          "p": [
+            "أنت مسؤول عن منتجاتك وخدماتك وأي ادعاءات تطلب من صانع المحتوى ذكرها، وعن الحصول على أي موافقات يحتاجها إعلانك.",
+            "يجب الإفصاح بوضوح عن أن المحتوى المدفوع إعلان. ولا يجوز أن تطلب من صانع المحتوى إخفاء أن المحتوى مموّل أو تقديم ادعاءات كاذبة أو مضللة أو غير قابلة للإثبات. ويجب أن تلتزم جميع الحملات بقوانين دولة الإمارات المتعلقة بالإعلان والمحتوى الإعلامي وحماية المستهلك."
+          ]
+        },
+        {
+          "h": "الرعاية الصحية والقطاعات المنظمة الأخرى",
+          "p": [
+            "قد يتطلب الإعلان عن الخدمات الصحية والطبية والدوائية وإجراءات التجميل والخدمات المالية وغيرها من الخدمات المنظمة موافقة مسبقة من الجهة المختصة في الدولة (مثل هيئة الصحة بدبي أو دائرة الصحة أو وزارة الصحة ووقاية المجتمع للقطاع الصحي).",
+            "يجب أن تكون حاصلاً على أي موافقة مطلوبة وأن تقدمها عند الطلب. وتخضع الحملات في الفئات المنظمة لمراجعة امتثال، ولا يجوز نشرها قبل الموافقة عليها."
+          ]
+        },
+        {
+          "h": "ملكية المحتوى وحقوق الاستخدام",
+          "p": [
+            "يحتفظ صانع المحتوى بملكية المحتوى الذي ينتجه. وتحصل أنت على حقوق الاستخدام الموضحة في الخدمة أو عرض السعر (مثل النشر العضوي فقط، أو الاستخدام المدفوع لعدد محدد من الأيام). ويتطلب استخدام المحتوى بما يتجاوز هذه الحقوق — مثل الإعلانات المدفوعة أو النشر على قنواتك — موافقة صانع المحتوى كتابياً، وقد تترتب عليه تكلفة إضافية.",
+            "تمنح صانع المحتوى الإذن باستخدام اسمك وشعارك والمواد التي تقدمها لأغراض الحملة."
+          ]
+        },
+        {
+          "h": "الإلغاء والاسترداد",
+          "p": [
+            "قبل أن يبدأ صانع المحتوى العمل، يمكنك إلغاء الحجز واسترداد المبلغ وفق سياسة الإلغاء المعروضة عند إتمام الطلب. وبعد بدء العمل، يعتمد الاسترداد على ما تم تسليمه.",
+            "إذا لم يسلّم صانع المحتوى ما تم حجزه، فقد تسترد المبلغ كلياً أو جزئياً. وتُعاد المبالغ المستردة إلى وسيلة الدفع الأصلية، ويعتمد توقيتها على مزوّد الدفع."
+          ]
+        },
+        {
+          "h": "النزاعات",
+          "p": [
+            "إذا حدثت مشكلة، ارفع نزاعاً من صفحة الحملة مع التفاصيل والأدلة. وسيراجع InfluenceHub موقف الطرفين، وقد يقرر استرداد المبلغ كلياً أو جزئياً أو صرفه لصانع المحتوى.",
+            "يحكم قرارنا بشأن النزاع طريقة التعامل مع المبالغ المحتفظ بها على المنصة، ولا ينتقص من أي حقوق مقررة لك قانوناً."
+          ]
+        },
+        {
+          "h": "التعامل مع صناع المحتوى خارج المنصة",
+          "p": [
+            "بالنسبة للحجوزات مع صناع المحتوى الذين تعرفت عليهم عبر InfluenceHub، استخدم المنصة للاتفاق على الخدمات ودفع قيمتها لمدة 12 شهراً على الأقل من أول تواصل. وقد يؤدي ترتيب الدفع خارج المنصة لتجنب الرسوم إلى إيقاف الحساب.",
+            "تُقيَّد مشاركة بيانات الاتصال قبل الحجز لحماية الطرفين."
+          ]
+        },
+        {
+          "h": "السلوك والتقييمات",
+          "p": [
+            "عامل صناع المحتوى باحترام. ويُمنع التحرش والتمييز والرسائل المزعجة أو المسيئة. ويجب أن تكون التقييمات صادقة ومبنية على حملة حقيقية.",
+            "استخدم المعلومات الشخصية لصناع المحتوى لأغراض الحملة فقط وبما يتوافق مع قانون حماية البيانات."
+          ]
+        },
+        {
+          "h": "حماية البيانات",
+          "p": [
+            "نتعامل مع البيانات الشخصية كما هو موضح في سياسة الخصوصية وبما يتوافق مع قانون حماية البيانات الشخصية في دولة الإمارات. وأنت مسؤول عن استخدامك لأي بيانات شخصية تحصل عليها عبر المنصة."
+          ]
+        },
+        {
+          "h": "دورنا ومسؤوليتنا",
+          "p": [
+            "يوفر InfluenceHub المنصة فقط، ولسنا منشئي محتوى الحملات، ولا نضمن الوصول أو المشاهدات أو التفاعل أو المبيعات أو غيرها من النتائج.",
+            "في الحدود التي يسمح بها القانون، تقتصر مسؤوليتنا الإجمالية تجاهك على الرسوم التي دفعتها إلى InfluenceHub (رسوم التواصل ورسوم الخدمة، لا المبالغ المحولة لصناع المحتوى) خلال الأشهر الاثني عشر السابقة للمطالبة. ولا يحدّ أي شيء في هذه الشروط من المسؤولية التي لا يجوز تحديدها قانوناً."
+          ]
+        },
+        {
+          "h": "الإيقاف والإنهاء",
+          "p": [
+            "يجوز لنا إيقاف أو إغلاق أي حساب يخالف هذه الشروط أو القانون أو يعرّض سلامة الآخرين للخطر. ويمكنك إغلاق حسابك في أي وقت من الإعدادات، وتستمر الحجوزات والمدفوعات القائمة والتزامات حفظ السجلات القانونية بعد الإغلاق."
+          ]
+        },
+        {
+          "h": "التعديلات والقانون الواجب التطبيق والتواصل",
+          "p": [
+            "قد نحدّث هذه الشروط، وسنُخطرك قبل سريان أي تغييرات جوهرية. ويُسجَّل الإصدار الذي وافقت عليه في حسابك.",
+            "تخضع هذه الشروط لقوانين دولة الإمارات العربية المتحدة كما تُطبَّق في إمارة دبي، وتختص محاكم دبي بالنظر في أي نزاع، ما لم يُتفق كتابياً على جهة أخرى.",
+            "للاستفسارات: support@influencehub.example."
+          ]
+        }
+      ]
+    },
+    "creatorTerms": {
+      "title": "شروط صناع المحتوى",
+      "intro": "تنطبق شروط صناع المحتوى هذه عند استخدامك InfluenceHub بصفتك مؤثراً أو صانع محتوى لعرض خدماتك واستقبال الاستفسارات وتنفيذ حملات مدفوعة للشركات. وتُطبَّق إلى جانب شروط المنصة وسياسة الخصوصية. وفي حال التعارض، تسري شروط صناع المحتوى هذه على استخدامك بصفتك صانع محتوى.",
+      "sections": [
+        {
+          "h": "حسابك",
+          "p": [
+            "يجب ألا يقل عمرك عن 18 عاماً وأن تستخدم هويتك الحقيقية. ويحق لك امتلاك حساب صانع محتوى واحد فقط، ويجب أن تكون مخولاً بتمثيل كل حساب تواصل اجتماعي تربطه.",
+            "حافظ على دقة بياناتك وأمان بيانات الدخول. وقد نطلب منك التحقق من هويتك، وبعض الميزات أو الشارات لا تتاح إلا بعد التحقق."
+          ]
+        },
+        {
+          "h": "ربط حسابات التواصل الاجتماعي",
+          "p": [
+            "تربط حسابَي إنستغرام وتيك توك عبر تسجيل الدخول الرسمي لكل منهما، ولا تشارك أبداً كلمات مرور حساباتك مع InfluenceHub.",
+            "بربط أي حساب، تسمح لنا باسترجاع البيانات التي تأذن بها (مثل المتابعين والمحتوى والرؤى) لإنشاء ملفك وإحصاءاتك وتقييمك. ويمكنك فصل الحساب في أي وقت، وعندها نتوقف عن استرجاع البيانات ونحذف رموز الوصول، مع الاحتفاظ بالسجلات السابقة."
+          ]
+        },
+        {
+          "h": "الإحصاءات وتقييم الأداء",
+          "p": [
+            "يُحسب تقييمك من البيانات المتاحة وقد يتغير. وإذا لم تتوفر بيانات موثقة كافية، يظهر ملفك بعبارة «لم يُقيّم بعد».",
+            "لا يجوز تضخيم إحصاءاتك أو التلاعب بها، كشراء المتابعين أو المشاهدات أو التفاعل. وتُوسم الأرقام المُبلّغ عنها ذاتياً وتُراجع، وقد تُحذف البيانات المضللة وقد يؤدي ذلك إلى إيقاف الحساب.",
+            "تقييم الأداء ليس إثباتاً للهوية أو المؤهلات أو لتصريح قانوني."
+          ]
+        },
+        {
+          "h": "ملفك وخدماتك",
+          "p": [
+            "يجب أن تكون بيانات ملفك وخدماتك وأسعارك دقيقة. وأنت من يحدد أسعارك، والأسعار المقترحة استرشادية فقط.",
+            "تُعد الخدمة المعروضة عرضاً لتقديم المخرجات ومدة التسليم والتعديلات وحقوق الاستخدام الموضحة بالسعر المعروض. وحافظ على تحديث مواعيد توفرك."
+          ]
+        },
+        {
+          "h": "تصريح المعلن والامتثال القانوني",
+          "p": [
+            "أنت مسؤول عن الحصول على أي ترخيص أو تصريح معلن تحتاجه بموجب قوانين دولة الإمارات لنشر المحتوى المدفوع، وعن الالتزام بمعايير المحتوى الإعلامي وقواعد الإعلان في الدولة.",
+            "أفصح بوضوح عن كل منشور مدفوع أو مموّل (مثل «إعلان» أو «#ad»). وشارات التحقق على InfluenceHub ليست تصريحاً قانونياً."
+          ]
+        },
+        {
+          "h": "ممارسو الرعاية الصحية",
+          "p": [
+            "إذا قدّمت نفسك بصفتك طبيباً أو طبيب أسنان أو صيدلانياً أو غير ذلك من ممارسي الرعاية الصحية، فيجب أن تحمل ترخيصاً سارياً من الجهة المختصة (مثل هيئة الصحة بدبي أو دائرة الصحة أو وزارة الصحة ووقاية المجتمع) وأن تلتزم بنطاق ذلك الترخيص.",
+            "تخضع الحملات الصحية لمراجعة امتثال، ولا يجوز نشرها قبل الموافقة عليها، ويجب الالتزام بقواعد جهة الترخيص بشأن الإعلان."
+          ]
+        },
+        {
+          "h": "الاستفسارات وعروض الأسعار",
+          "p": [
+            "ردّ على الاستفسارات وطلبات عروض الأسعار خلال مدة معقولة. ويكون عرض السعر الذي تقدمه صالحاً للمدة التي تحددها، ويصبح ملزماً بمجرد قبول الشركة له ودفع قيمته."
+          ]
+        },
+        {
+          "h": "الحجوزات والتسليم",
+          "p": [
+            "بعد تأكيد الحجز، سلّم ما تم حجزه في الموعد المحدد والتزم بالموجز، بما في ذلك الإشارات والوسوم المطلوبة.",
+            "عندما تكون الموافقة مطلوبة، قدّم مسودتك ولا تنشر قبل موافقة الشركة. ونفّذ التعديلات ضمن العدد المشمول.",
+            "أبقِ محتوى الحملة المنشور متاحاً لمدة 30 يوماً على الأقل ما لم يُتفق على غير ذلك، وأضف رابط المنشور دليلاً على التسليم."
+          ]
+        },
+        {
+          "h": "العمولة والأرباح والمدفوعات",
+          "p": [
+            "يحتفظ InfluenceHub بعمولة على كل حجز، وتظهر النسبة وصافي أرباحك قبل قبولك للعمل.",
+            "تصبح الأرباح متاحة بعد اكتمال الحملة، بالإضافة إلى فترة احتفاظ قصيرة موضحة في قسم الأرباح، وبعد حل أي نزاع. وتُصرف المدفوعات بالدرهم الإماراتي إلى الحساب المصرفي الذي تحققت منه.",
+            "أنت مسؤول عن ضرائبك، بما في ذلك التسجيل في ضريبة القيمة المضافة إذا كان دخلك يستوجب ذلك."
+          ]
+        },
+        {
+          "h": "الإلغاء وعدم التسليم",
+          "p": [
+            "إذا ألغيت حجزاً مؤكداً أو لم تسلّم العمل، فقد تسترد الشركة المبلغ ويتم عكس الأرباح المرتبطة به. وقد يؤدي تكرار الإلغاء أو تفويت المواعيد إلى تقليل ظهورك أو إيقاف حسابك."
+          ]
+        },
+        {
+          "h": "ملكية المحتوى والتراخيص",
+          "p": [
+            "تحتفظ بملكية المحتوى الذي تنتجه، وتمنح الشركة حقوق الاستخدام الموضحة في الخدمة المحجوزة أو عرض السعر. وأي استخدام آخر يتطلب موافقتك كتابياً.",
+            "تؤكد أنك تملك الحقوق في كل ما يتضمنه محتواك، بما في ذلك الموسيقى والصور والمواقع والأشخاص الذين يظهرون فيه.",
+            "تسمح لـ InfluenceHub بعرض ملفك وإحصاءاتك العامة ونماذج من محتواك للترويج لخدماتك على المنصة."
+          ]
+        },
+        {
+          "h": "التعامل مع الشركات خارج المنصة",
+          "p": [
+            "بالنسبة للشركات التي تعرفت عليها عبر InfluenceHub، اتفق وتقاضَ مستحقاتك عبر المنصة لمدة 12 شهراً على الأقل من أول تواصل. وقد يؤدي تقاضي المبالغ خارج المنصة لتجنب العمولة إلى إيقاف الحساب.",
+            "تُقيَّد مشاركة بيانات الاتصال قبل الحجز لحماية الطرفين."
+          ]
+        },
+        {
+          "h": "السلوك والسرية",
+          "p": [
+            "يجب ألا يكون المحتوى الذي تنتجه للحملات كاذباً أو مضللاً أو مسيئاً أو مخالفاً للقانون، ويجب أن يحترم قوانين دولة الإمارات وقيمها العامة.",
+            "حافظ على سرية أي منتجات أو أسعار أو خطط غير معلنة تشاركها معك الشركة. ويُمنع التحرش والتمييز والرسائل المسيئة."
+          ]
+        },
+        {
+          "h": "التقييمات",
+          "p": [
+            "يمكن للشركات تقييم الحملات المكتملة، ويمكنك الرد مرة واحدة على كل تقييم. ولا يجوز شراء التقييمات أو تبادلها أو كتابتها من قبل أشخاص لم يشاركوا في الحملة."
+          ]
+        },
+        {
+          "h": "حماية البيانات",
+          "p": [
+            "نتعامل مع البيانات الشخصية كما هو موضح في سياسة الخصوصية وبما يتوافق مع قانون حماية البيانات الشخصية في دولة الإمارات. وأنت تتحكم في ظهور بيانات ملفك الاختيارية للعامة، ويمكنك تصدير بياناتك أو طلب حذفها من الإعدادات."
+          ]
+        },
+        {
+          "h": "دورنا ومسؤوليتنا",
+          "p": [
+            "يوفر InfluenceHub المنصة وآلية الدفع، ولا نضمن عدداً معيناً من الاستفسارات أو الحجوزات أو الأرباح.",
+            "في الحدود التي يسمح بها القانون، تقتصر مسؤوليتنا الإجمالية تجاهك على العمولة التي حصلنا عليها من حجوزاتك خلال الأشهر الاثني عشر السابقة للمطالبة. ولا يحدّ أي شيء في هذه الشروط من المسؤولية التي لا يجوز تحديدها قانوناً."
+          ]
+        },
+        {
+          "h": "الإيقاف والإنهاء",
+          "p": [
+            "يجوز لنا إيقاف أو إغلاق أي حساب يخالف هذه الشروط أو القانون أو يعرّض سلامة الآخرين للخطر. ويمكنك إغلاق حسابك في أي وقت من الإعدادات، وتستمر الحجوزات والمدفوعات القائمة والتزامات حفظ السجلات القانونية بعد الإغلاق."
+          ]
+        },
+        {
+          "h": "التعديلات والقانون الواجب التطبيق والتواصل",
+          "p": [
+            "قد نحدّث هذه الشروط، وسنُخطرك قبل سريان أي تغييرات جوهرية. ويُسجَّل الإصدار الذي وافقت عليه في حسابك.",
+            "تخضع هذه الشروط لقوانين دولة الإمارات العربية المتحدة كما تُطبَّق في إمارة دبي، وتختص محاكم دبي بالنظر في أي نزاع، ما لم يُتفق كتابياً على جهة أخرى.",
+            "للاستفسارات: support@influencehub.example."
+          ]
+        }
+      ]
+    }
+  },
+  "footer": {
+    "rights": "© {year} InfluenceHub. جميع الحقوق محفوظة.",
+    "madeIn": "صُمم لدولة الإمارات العربية المتحدة.",
+    "company": "الشركة",
+    "marketplace": "المنصة",
+    "legal": "قانوني"
+  },
+  "errors": {
+    "PAYMENT_REQUIRED": "يلزم دفع رسوم التواصل لمراسلة صانع المحتوى.",
+    "CONTACT_ENTITLEMENT_REQUIRED": "افتح التواصل مع صانع المحتوى أولاً.",
+    "CART_HAS_UNAVAILABLE_ITEMS": "بعض عناصر السلة لم تعد متاحة.",
+    "DISCOUNT_INVALID": "رمز الخصم غير صالح.",
+    "INVALID_TRANSITION": "هذا الإجراء غير متاح في هذه المرحلة.",
+    "COMPLIANCE_REVIEW_PENDING": "هذه الحملة الطبية بانتظار مراجعة الامتثال.",
+    "CONTACT_DETAILS_NOT_ALLOWED": "مشاركة بيانات الاتصال معطلة حتى يتم الحجز.",
+    "RATE_LIMITED": "تكررت المحاولة كثيراً. انتظر قليلاً.",
+    "SYNC_TOO_FREQUENT": "يرجى الانتظار 10 دقائق بين كل مزامنة يدوية.",
+    "NO_FREE_CONTACTS_LEFT": "لم يتبق لديك رصيد تواصل مجاني.",
+    "FILE_TYPE_NOT_ALLOWED": "نوع الملف غير مسموح.",
+    "FILE_TOO_LARGE": "حجم الملف كبير جداً.",
+    "CSRF_INVALID": "انتهت الجلسة. يرجى تحديث الصفحة.",
+    "UNAUTHENTICATED": "يرجى تسجيل الدخول للمتابعة.",
+    "FORBIDDEN": "ليس لديك صلاحية الوصول.",
+    "CATEGORY_REQUIRED_TO_PUBLISH": "اختر فئة واحدة على الأقل قبل النشر.",
+    "REVISION_LIMIT_REACHED": "تم استخدام جميع التعديلات المشمولة.",
+    "QUOTATION_EXPIRED": "انتهت صلاحية عرض السعر.",
+    "DAILY_LIMIT_REACHED": "تم بلوغ الحد اليومي للتواصل.",
+    "INSUFFICIENT_PERMISSION": "دورك الإداري لا يسمح بهذا الإجراء.",
+    "ADMIN_2FA_REQUIRED": "أكمل المصادقة الثنائية للمتابعة."
+  },
+  "portal": {
+    "groups": {
+      "marketplace": "المنصة",
+      "commerce": "التجارة",
+      "campaigns": "الحملات",
+      "account": "الحساب",
+      "profile": "الملف",
+      "services": "الخدمات",
+      "work": "العمل",
+      "money": "المال",
+      "users": "المستخدمون والثقة",
+      "catalogue": "الكتالوج والتسعير",
+      "operations": "العمليات",
+      "finance": "المالية",
+      "system": "النظام"
+    }
+  }
+}

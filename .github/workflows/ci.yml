@@ -1,0 +1,31 @@
+name: CI
+on:
+  push:
+  pull_request:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env: { POSTGRES_USER: influencehub, POSTGRES_PASSWORD: influencehub, POSTGRES_DB: influencehub_test }
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U influencehub" --health-interval 5s --health-retries 10
+    env:
+      DATABASE_URL: postgresql://influencehub:influencehub@localhost:5432/influencehub_test?schema=public
+      TEST_DATABASE_URL: postgresql://influencehub:influencehub@localhost:5432/influencehub_test?schema=public
+      SEED_ADMIN_PASSWORD: CiAdminPassword2026
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: pnpm }
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter @influencehub/shared build && pnpm --filter @influencehub/database build
+      - run: pnpm --filter @influencehub/database migrate:deploy && pnpm --filter @influencehub/database seed
+      - run: pnpm --filter @influencehub/shared test
+      - run: pnpm --filter @influencehub/localization test
+      - run: pnpm --filter @influencehub/api typecheck && pnpm --filter @influencehub/api test
+      - run: pnpm --filter @influencehub/web build
+        env: { API_INTERNAL_URL: http://localhost:4000 }

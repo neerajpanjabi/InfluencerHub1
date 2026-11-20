@@ -1,0 +1,14 @@
+{
+  "name": "@influencehub/worker",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Background workers (social sync, grading, maintenance schedulers). Runs the API's WorkerModule.",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "dev": "pnpm --filter @influencehub/api build && node --env-file-if-exists=../api/.env dist/main.js",
+    "start": "node dist/main.js",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": { "@influencehub/api": "workspace:*" },
+  "devDependencies": { "typescript": "^5.9.0", "@types/node": "^22.10.0" }
+}

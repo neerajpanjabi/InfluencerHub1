@@ -1,0 +1,40 @@
+{
+  "name": "influencehub",
+  "private": true,
+  "version": "0.1.0",
+  "description": "InfluenceHub \u2014 UAE influencer marketing marketplace",
+  "packageManager": "pnpm@10.28.0",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "setup:local": "node scripts/setup-env.mjs && pnpm db:generate && pnpm --filter @influencehub/shared build && pnpm db:migrate && pnpm db:seed && pnpm --filter @influencehub/database build && pnpm --filter @influencehub/api build",
+    "build": "pnpm -r --filter ./packages/** build && pnpm -r --filter ./apps/** build",
+    "dev": "pnpm -r --parallel --filter ./apps/** dev",
+    "dev:api": "pnpm --filter @influencehub/api dev",
+    "dev:web": "pnpm --filter @influencehub/web dev",
+    "dev:worker": "pnpm --filter @influencehub/worker dev",
+    "db:generate": "pnpm --filter @influencehub/database generate",
+    "db:migrate": "pnpm --filter @influencehub/database migrate:deploy",
+    "db:migrate:dev": "pnpm --filter @influencehub/database migrate:dev",
+    "db:seed": "pnpm --filter @influencehub/database seed",
+    "admin:reset": "pnpm --filter @influencehub/database admin:reset",
+    "typecheck": "pnpm -r typecheck",
+    "lint": "pnpm -r lint",
+    "test": "pnpm -r test",
+    "test:e2e": "pnpm --filter @influencehub/web test:e2e"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@prisma/client",
+      "@prisma/engines",
+      "prisma",
+      "argon2",
+      "esbuild",
+      "@nestjs/core",
+      "sharp",
+      "msgpackr-extract",
+      "unrs-resolver"
+    ]
+  }
+}
