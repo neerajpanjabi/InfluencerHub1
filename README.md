@@ -11,19 +11,22 @@ Businesses discover verified creators, unlock direct contact, request quotations
 | Data | PostgreSQL 16 · Prisma · RLS · immutable ledger · Redis/BullMQ |
 | Tests | Vitest · Jest/Supertest · Playwright |
 
-## Quick start (local)
+## Quick start (local — Windows, macOS or Linux)
+Prerequisites: **Node.js 22**, **Docker Desktop** (running), Git. Then, in a terminal (PowerShell on Windows):
 ```bash
+corepack enable          # makes the `pnpm` command available (run once; on Windows run the terminal as Administrator)
 pnpm install
-cp .env.example apps/api/.env          # set JWT_SECRET + ENCRYPTION_KEY (see comments)
-docker compose up -d postgres redis    # or use local Postgres 16 + Redis
-pnpm --filter @influencehub/shared build
-pnpm db:migrate
-SEED_DEMO_DATA=true SEED_ADMIN_PASSWORD='ChooseAStrongPassw0rd' pnpm db:seed
-pnpm --filter @influencehub/database build
-pnpm dev:api   # http://localhost:4000/api/docs
-pnpm dev:worker
-pnpm dev:web   # http://localhost:3000
+docker compose up -d postgres redis
+pnpm setup:local         # creates config files with fresh secrets, sets up the database, loads demo data, builds
 ```
+Then open **three** terminals in the project folder and run one command in each:
+```bash
+pnpm dev:api      # API on http://localhost:4000 (docs at /api/docs)
+pnpm dev:worker   # background jobs
+pnpm dev:web      # website on http://localhost:3000
+```
+Open **http://localhost:3000/en/login**. Admin login: **http://localhost:3000/en/admin/login** — `admin@influencehub.local` / `AdminPass2026!` (change `SEED_ADMIN_PASSWORD` in `packages/database/.env` before running setup if you want a different one).
+
 Demo accounts (sandbox data only): businesses `clinic@demo.influencehub.local`, `bistro@…`, `jewels@…`; creators `<slug>@demo.influencehub.local` (e.g. `dr-layla-haddad@demo.influencehub.local`) — password `DemoPass2026!`. Admin: `admin@influencehub.local` (2FA enrolment on first login at `/en/admin/login`).
 
 Sandbox providers simulate Instagram/TikTok OAuth and a hosted payment page so every flow works end-to-end locally. **They are labelled in the UI and are refused when `APP_ENV=production`.**

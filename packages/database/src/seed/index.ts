@@ -1,4 +1,10 @@
 /* eslint-disable no-console */
+// Load packages/database/.env (SEED_* settings) when present; Node 21.7+.
+try {
+  process.loadEnvFile('.env');
+} catch {
+  /* no .env file — rely on the environment */
+}
 import { PrismaClient, Prisma } from '@prisma/client';
 import * as argon2 from 'argon2';
 import { randomBytes } from 'crypto';
