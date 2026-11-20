@@ -5,7 +5,7 @@ import { useSearchParams } from 'next/navigation';
 import { useQueryClient } from '@tanstack/react-query';
 import { ShieldCheck } from 'lucide-react';
 import { useRouter } from '@/i18n/routing';
-import { api } from '@/lib/api';
+import { api, ApiError } from '@/lib/api';
 import { useMe } from '@/hooks/use-me';
 import { useErrorMessage } from '@/hooks/use-error';
 import { Logo } from '@/components/layout/logo';
@@ -23,7 +23,11 @@ function TwoFactorSetup() {
   const [code, setCode] = useState('');
   const [error, setError] = useState<string | null>(null);
   useEffect(() => {
-    api('/auth/2fa/setup', { method: 'POST' }).then(setSecret, (e) => setError(err(e)));
+    api('/auth/2fa/setup', { method: 'POST' }).then(setSecret, (e) => {
+      // Already enrolled (e.g. revisiting the setup link): go to the dashboard or sign in again.
+      if (e instanceof ApiError && e.code === 'TOTP_ALREADY_ENABLED') router.replace('/admin');
+      else setError(err(e));
+    });
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
   return (
     <div>
@@ -69,7 +73,7 @@ function AdminLogin() {
           <Logo />
           <span className="eyebrow">Admin</span>
         </div>
-        {setup && me?.type === 'ADMIN' ? <TwoFactorSetup /> : <LoginForm admin />}
+        {setup && me?.type === 'ADMIN' && !me.twoFactorEnabled ? <TwoFactorSetup /> : <LoginForm admin />}
       </div>
     </div>
   );

@@ -267,7 +267,8 @@
       "EMAIL_IN_USE": "An account with this email already exists.",
       "oauth_denied": "Sign-in was cancelled.",
       "oauth_failed": "Sign-in failed. Please try again.",
-      "google_login_business_only": "Google sign-in is available for business accounts."
+      "google_login_business_only": "Google sign-in is available for business accounts.",
+      "TOTP_ALREADY_ENABLED": "Two-factor authentication is already set up for this account. Sign in with your authenticator code."
     },
     "acceptTermsBusiness": "I agree to the <business>Business Terms</business>, <platform>Platform Terms</platform> and <privacy>Privacy Policy</privacy>.",
     "acceptTermsCreator": "I agree to the <creator>Creator Terms</creator>, <platform>Platform Terms</platform> and <privacy>Privacy Policy</privacy>.",

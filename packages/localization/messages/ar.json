@@ -267,7 +267,8 @@
       "EMAIL_IN_USE": "يوجد حساب بهذا البريد الإلكتروني.",
       "oauth_denied": "تم إلغاء تسجيل الدخول.",
       "oauth_failed": "فشل تسجيل الدخول. حاول مرة أخرى.",
-      "google_login_business_only": "تسجيل الدخول عبر Google متاح لحسابات الشركات."
+      "google_login_business_only": "تسجيل الدخول عبر Google متاح لحسابات الشركات.",
+      "TOTP_ALREADY_ENABLED": "المصادقة الثنائية مفعّلة بالفعل لهذا الحساب. سجّل الدخول باستخدام رمز تطبيق المصادقة."
     },
     "acceptTermsBusiness": "أوافق على <business>شروط الشركات</business> و<platform>شروط المنصة</platform> و<privacy>سياسة الخصوصية</privacy>.",
     "acceptTermsCreator": "أوافق على <creator>شروط صناع المحتوى</creator> و<platform>شروط المنصة</platform> و<privacy>سياسة الخصوصية</privacy>.",

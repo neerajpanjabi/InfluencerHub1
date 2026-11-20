@@ -355,8 +355,11 @@ export class AuthService {
   async setupTotp(userId: string) {
     const user = await this.prisma.user.findUniqueOrThrow({ where: { id: userId } });
     if (user.twoFactorEnabled) throw new BadRequestException({ code: 'TOTP_ALREADY_ENABLED' });
-    const secret = authenticator.generateSecret();
-    await this.prisma.user.update({ where: { id: userId }, data: { twoFactorSecret: this.crypto.encrypt(secret) } });
+    // Idempotent: concurrent or repeated calls (page reloads, React dev double effects) must all
+    // return the same pending secret, otherwise the key shown could differ from the one stored.
+    await this.prisma.user.updateMany({ where: { id: userId, twoFactorSecret: null }, data: { twoFactorSecret: this.crypto.encrypt(authenticator.generateSecret()) } });
+    const stored = await this.prisma.user.findUniqueOrThrow({ where: { id: userId }, select: { twoFactorSecret: true } });
+    const secret = this.crypto.decrypt(stored.twoFactorSecret!);
     return { secret, otpauthUrl: authenticator.keyuri(user.email, 'InfluenceHub Admin', secret) };
   }
 

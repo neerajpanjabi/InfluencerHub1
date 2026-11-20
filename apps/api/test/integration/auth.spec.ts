@@ -104,6 +104,27 @@ describe('Authentication', () => {
     expect(r.body.code).toBe('ADMIN_2FA_REQUIRED');
   });
 
+  it('returns the same pending 2FA secret for concurrent/repeated setup calls and rejects setup once enabled', async () => {
+    const app = await getApp();
+    const db = await prisma();
+    const argon2 = await import('argon2');
+    const email = `admin-setup-${uid()}@test.local`;
+    const role = await db.role.findUniqueOrThrow({ where: { key: 'SUPER_ADMIN' } });
+    await db.user.create({ data: { email, passwordHash: await argon2.hash(PASSWORD), type: 'ADMIN', roles: { create: { roleId: role.id } } } });
+    const c = new Client(app);
+    await c.post('/auth/login', { email, password: PASSWORD }, { csrf: false });
+    const [a, b] = await Promise.all([c.post('/auth/2fa/setup'), c.post('/auth/2fa/setup')]);
+    const again = await c.post('/auth/2fa/setup');
+    expect(a.body.secret).toBeTruthy();
+    expect(b.body.secret).toBe(a.body.secret);
+    expect(again.body.secret).toBe(a.body.secret);
+    const enable = await c.post('/auth/2fa/enable', { code: authenticator.generate(a.body.secret) });
+    expect(enable.status).toBe(201);
+    const after = await c.post('/auth/2fa/setup');
+    expect(after.status).toBe(400);
+    expect(after.body.code).toBe('TOTP_ALREADY_ENABLED');
+  });
+
   it('records acceptance of the type-specific terms with versions at registration', async () => {
     const app = await getApp();
     const db = await prisma();
