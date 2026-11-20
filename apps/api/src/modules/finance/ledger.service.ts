@@ -44,7 +44,7 @@ export class LedgerService {
   }
 }
 
-export async function nextNumber(tx: Prisma.TransactionClient | { $queryRawUnsafe: any }, seq: 'order_number_seq' | 'invoice_number_seq' | 'campaign_number_seq' | 'quotation_number_seq', prefix: string) {
+export async function nextNumber(tx: Prisma.TransactionClient | { $queryRawUnsafe: any }, seq: 'order_number_seq' | 'invoice_number_seq' | 'campaign_number_seq' | 'quotation_number_seq' | 'agreement_number_seq', prefix: string) {
   // `seq` is a fixed internal identifier from the union type above — never user input.
   const rows = (await (tx as any).$queryRawUnsafe(`SELECT nextval('${seq}') AS n`)) as Array<{ n: bigint }>;
   const n = Number(rows[0].n);

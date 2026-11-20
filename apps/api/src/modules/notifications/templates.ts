@@ -30,6 +30,12 @@ export const TEMPLATES: Record<string, { en: T; ar: T }> = {
   REFUND_UPDATED: { en: { title: 'Refund {status}', body: 'Refund of AED {amount} is {status}.' }, ar: { title: 'الاسترداد {status}', body: 'استرداد مبلغ {amount} درهم: {status}.' } },
   PAYOUT_UPDATED: { en: { title: 'Payout {status}', body: 'Payout of AED {amount} is {status}.' }, ar: { title: 'الدفعة {status}', body: 'دفعة بقيمة {amount} درهم: {status}.' } },
   DISPUTE_UPDATED: { en: { title: 'Dispute update', body: 'Dispute on campaign {campaign} is now {status}.' }, ar: { title: 'تحديث النزاع', body: 'النزاع على الحملة {campaign} أصبح {status}.' } },
+  AGREEMENT_SENT: { en: { title: 'Agreement {number} to review', body: '{name} sent you an agreement to review and sign.' }, ar: { title: 'اتفاقية {number} للمراجعة', body: 'أرسل إليك {name} اتفاقية لمراجعتها وتوقيعها.' } },
+  AGREEMENT_REVISED: { en: { title: 'Agreement {number} changed', body: '{name} edited the agreement. Earlier signatures no longer apply — please review the new version.' }, ar: { title: 'تم تعديل الاتفاقية {number}', body: 'عدّل {name} الاتفاقية، ولم تعد التوقيعات السابقة سارية — يرجى مراجعة الإصدار الجديد.' } },
+  AGREEMENT_SIGNED: { en: { title: 'Agreement {number} signed by {name}', body: 'Your signature is needed to complete the agreement.' }, ar: { title: 'وقّع {name} الاتفاقية {number}', body: 'يلزم توقيعك لإتمام الاتفاقية.' } },
+  AGREEMENT_EXECUTED: { en: { title: 'Agreement {number} fully signed', body: 'Both parties have signed. A signed copy is available in Agreements.' }, ar: { title: 'تم توقيع الاتفاقية {number} من الطرفين', body: 'وقّع الطرفان، ونسخة موقعة متاحة في قسم الاتفاقيات.' } },
+  AGREEMENT_DECLINED: { en: { title: 'Agreement {number} declined', body: '{name} declined the agreement.' }, ar: { title: 'تم رفض الاتفاقية {number}', body: 'رفض {name} الاتفاقية.' } },
+  AGREEMENT_CANCELLED: { en: { title: 'Agreement {number} cancelled', body: '{name} cancelled the agreement.' }, ar: { title: 'تم إلغاء الاتفاقية {number}', body: 'ألغى {name} الاتفاقية.' } },
   PHONE_OTP: { en: { title: 'Your InfluenceHub code', body: 'Your verification code is {code}. It expires in 10 minutes.' }, ar: { title: 'رمز InfluenceHub', body: 'رمز التحقق الخاص بك هو {code}. تنتهي صلاحيته خلال 10 دقائق.' } },
 };
 

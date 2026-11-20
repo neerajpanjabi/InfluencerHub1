@@ -49,6 +49,8 @@ import { AdminService } from './modules/admin/admin.service';
 import { AdminController } from './modules/admin/admin.controller';
 import { HealthController } from './modules/health/health.controller';
 import { FinanceController } from './modules/finance/finance.controller';
+import { AgreementsService } from './modules/agreements/agreements.service';
+import { AgreementsController, AdminAgreementsController } from './modules/agreements/agreements.controller';
 
 /** Infrastructure + domain services shared by the API and the worker. */
 @Global()
@@ -57,13 +59,13 @@ import { FinanceController } from './modules/finance/finance.controller';
     PrismaService, CryptoService, AuditService, SettingsService, QueueService, EmailService, NotificationsService,
     GradingService, SocialService, InfluencersService, InfluencerSearchService, ServicesService, LedgerService, FinanceService,
     PaymentsService, FulfilmentService, CommerceService, ContactService, QuotationsService, CampaignsService, MessagingService,
-    UploadsService, AiService, PrivacyService, AdminService,
+    UploadsService, AiService, PrivacyService, AdminService, AgreementsService,
   ],
   exports: [
     PrismaService, CryptoService, AuditService, SettingsService, QueueService, EmailService, NotificationsService,
     GradingService, SocialService, InfluencersService, InfluencerSearchService, ServicesService, LedgerService, FinanceService,
     PaymentsService, FulfilmentService, CommerceService, ContactService, QuotationsService, CampaignsService, MessagingService,
-    UploadsService, AiService, PrivacyService, AdminService,
+    UploadsService, AiService, PrivacyService, AdminService, AgreementsService,
   ],
 })
 export class CoreModule {}
@@ -79,7 +81,7 @@ export class CoreModule {}
   ],
   controllers: [
     NotificationsController, SocialController, InfluencersController, ServicesController, PaymentsController, CommerceController,
-    QuotationsController, CampaignsController, MessagingController, UploadsController, AiController, PrivacyController, AdminController, HealthController, FinanceController,
+    QuotationsController, CampaignsController, MessagingController, UploadsController, AiController, PrivacyController, AdminController, HealthController, FinanceController, AgreementsController, AdminAgreementsController,
   ],
   providers: [
     { provide: APP_GUARD, useClass: AppThrottlerGuard },

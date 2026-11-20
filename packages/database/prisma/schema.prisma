@@ -330,6 +330,24 @@ enum ComplianceStatus {
   REJECTED
 }
 
+enum AgreementStatus {
+  DRAFT
+  PENDING_SIGNATURE
+  SIGNED
+  DECLINED
+  CANCELLED
+}
+
+enum AgreementParty {
+  BUSINESS
+  INFLUENCER
+}
+
+enum SignatureMethod {
+  TYPED
+  DRAWN
+}
+
 enum ReportStatus {
   OPEN
   ACTIONED
@@ -339,45 +357,45 @@ enum ReportStatus {
 // ───────────────────────────── IDENTITY ─────────────────────────────
 
 model User {
-  id                String     @id @default(uuid()) @db.Uuid
-  email             String     @unique // always stored lower-cased
-  emailVerifiedAt   DateTime?  @db.Timestamptz(6)
-  phone             String?
-  phoneVerifiedAt   DateTime?  @db.Timestamptz(6)
-  passwordHash      String?
-  type              UserType
-  status            UserStatus @default(ACTIVE)
-  locale            Locale     @default(en)
-  twoFactorSecret   String? // AES-256-GCM encrypted TOTP secret
-  twoFactorEnabled  Boolean    @default(false)
-  failedLoginCount  Int        @default(0)
-  lockedUntil       DateTime?  @db.Timestamptz(6)
-  lastLoginAt       DateTime?  @db.Timestamptz(6)
-  createdAt         DateTime   @default(now()) @db.Timestamptz(6)
-  updatedAt         DateTime   @updatedAt @db.Timestamptz(6)
-  deletedAt         DateTime?  @db.Timestamptz(6)
+  id               String     @id @default(uuid()) @db.Uuid
+  email            String     @unique // always stored lower-cased
+  emailVerifiedAt  DateTime?  @db.Timestamptz(6)
+  phone            String?
+  phoneVerifiedAt  DateTime?  @db.Timestamptz(6)
+  passwordHash     String?
+  type             UserType
+  status           UserStatus @default(ACTIVE)
+  locale           Locale     @default(en)
+  twoFactorSecret  String? // AES-256-GCM encrypted TOTP secret
+  twoFactorEnabled Boolean    @default(false)
+  failedLoginCount Int        @default(0)
+  lockedUntil      DateTime?  @db.Timestamptz(6)
+  lastLoginAt      DateTime?  @db.Timestamptz(6)
+  createdAt        DateTime   @default(now()) @db.Timestamptz(6)
+  updatedAt        DateTime   @updatedAt @db.Timestamptz(6)
+  deletedAt        DateTime?  @db.Timestamptz(6)
 
-  roles              UserRole[]
-  sessions           Session[]
-  authAccounts       AuthAccount[]
-  oneTimeTokens      OneTimeToken[]
-  businessProfile    BusinessProfile?
-  influencerProfile  InfluencerProfile?
-  preferences        UserPreference?
-  verificationRecords VerificationRecord[] @relation("VerificationSubject")
-  reviewedVerifications VerificationRecord[] @relation("VerificationReviewer")
-  notifications      Notification[]
-  notificationPrefs  NotificationPreference[]
+  roles                    UserRole[]
+  sessions                 Session[]
+  authAccounts             AuthAccount[]
+  oneTimeTokens            OneTimeToken[]
+  businessProfile          BusinessProfile?
+  influencerProfile        InfluencerProfile?
+  preferences              UserPreference?
+  verificationRecords      VerificationRecord[]      @relation("VerificationSubject")
+  reviewedVerifications    VerificationRecord[]      @relation("VerificationReviewer")
+  notifications            Notification[]
+  notificationPrefs        NotificationPreference[]
   conversationParticipants ConversationParticipant[]
-  messages           Message[]
-  attachments        Attachment[]
-  auditLogs          AuditLog[]
-  consentRecords     ConsentRecord[]
-  deletionRequests   DataDeletionRequest[]
-  aiSearchLogs       AiSearchLog[]
-  blocksMade         UserBlock[] @relation("Blocker")
-  blocksReceived     UserBlock[] @relation("Blocked")
-  reportsMade        ContentReport[] @relation("Reporter")
+  messages                 Message[]
+  attachments              Attachment[]
+  auditLogs                AuditLog[]
+  consentRecords           ConsentRecord[]
+  deletionRequests         DataDeletionRequest[]
+  aiSearchLogs             AiSearchLog[]
+  blocksMade               UserBlock[]               @relation("Blocker")
+  blocksReceived           UserBlock[]               @relation("Blocked")
+  reportsMade              ContentReport[]           @relation("Reporter")
 
   @@index([type, status])
   @@map("users")
@@ -398,8 +416,8 @@ model Role {
 }
 
 model Permission {
-  id          String   @id @default(uuid()) @db.Uuid
-  key         String   @unique // e.g. users.read, finance.refund
+  id          String  @id @default(uuid()) @db.Uuid
+  key         String  @unique // e.g. users.read, finance.refund
   description String?
 
   roles RolePermission[]
@@ -480,47 +498,47 @@ model OneTimeToken {
 
 /// OAuth state + PKCE verifier store (server side, single use, short TTL).
 model OAuthState {
-  id           String    @id @default(uuid()) @db.Uuid
-  stateHash    String    @unique
+  id           String       @id @default(uuid()) @db.Uuid
+  stateHash    String       @unique
   provider     AuthProvider
   purpose      String // LOGIN | LINK
-  userId       String?   @db.Uuid
+  userId       String?      @db.Uuid
   codeVerifier String? // encrypted PKCE verifier
   redirectPath String?
   userType     UserType?
-  expiresAt    DateTime  @db.Timestamptz(6)
-  consumedAt   DateTime? @db.Timestamptz(6)
-  createdAt    DateTime  @default(now()) @db.Timestamptz(6)
+  expiresAt    DateTime     @db.Timestamptz(6)
+  consumedAt   DateTime?    @db.Timestamptz(6)
+  createdAt    DateTime     @default(now()) @db.Timestamptz(6)
 
   @@map("oauth_states")
 }
 
 model BusinessProfile {
-  id                  String             @id @default(uuid()) @db.Uuid
-  userId              String             @unique @db.Uuid
-  businessName        String
-  contactPerson       String
-  businessEmail       String
-  phone               String?
-  country             Country            @default(AE)
-  emirate             Emirate?
-  city                String?
-  website             String?
-  description         String?
-  logoUrl             String?
-  tradeLicenceNumber  String?
+  id                    String             @id @default(uuid()) @db.Uuid
+  userId                String             @unique @db.Uuid
+  businessName          String
+  contactPerson         String
+  businessEmail         String
+  phone                 String?
+  country               Country            @default(AE)
+  emirate               Emirate?
+  city                  String?
+  website               String?
+  description           String?
+  logoUrl               String?
+  tradeLicenceNumber    String?
   tradeLicenceAuthority String?
-  tradeLicenceExpiry  DateTime?          @db.Date
-  trnNumber           String? // UAE VAT Tax Registration Number
-  verificationStatus  VerificationStatus @default(UNVERIFIED)
-  campaignPreferences Json?
-  onboardingCompleted Boolean            @default(false)
-  freeContactCredits  Int                @default(0)
-  createdAt           DateTime           @default(now()) @db.Timestamptz(6)
-  updatedAt           DateTime           @updatedAt @db.Timestamptz(6)
-  deletedAt           DateTime?          @db.Timestamptz(6)
+  tradeLicenceExpiry    DateTime?          @db.Date
+  trnNumber             String? // UAE VAT Tax Registration Number
+  verificationStatus    VerificationStatus @default(UNVERIFIED)
+  campaignPreferences   Json?
+  onboardingCompleted   Boolean            @default(false)
+  freeContactCredits    Int                @default(0)
+  createdAt             DateTime           @default(now()) @db.Timestamptz(6)
+  updatedAt             DateTime           @updatedAt @db.Timestamptz(6)
+  deletedAt             DateTime?          @db.Timestamptz(6)
 
-  user                User                @relation(fields: [userId], references: [id], onDelete: Restrict)
+  user                User                 @relation(fields: [userId], references: [id], onDelete: Restrict)
   categories          BusinessCategory[]
   savedInfluencers    SavedInfluencer[]
   contactEntitlements ContactEntitlement[]
@@ -531,77 +549,79 @@ model BusinessProfile {
   campaigns           Campaign[]
   reviews             Review[]
   aiRecommendations   AiRecommendation[]
+  agreements          Agreement[]
 
   @@index([emirate])
   @@map("business_profiles")
 }
 
 model InfluencerProfile {
-  id                    String             @id @default(uuid()) @db.Uuid
-  userId                String             @unique @db.Uuid
-  slug                  String             @unique
-  fullName              String
-  displayName           String
-  displayNameAr         String?
-  profileImageUrl       String?
-  coverImageUrl         String?
-  bio                   String?
-  bioAr                 String?
-  phone                 String?
-  country               Country            @default(AE)
-  emirate               Emirate?
-  city                  String?
-  gender                Gender             @default(UNDISCLOSED)
-  languages             String[] // ISO 639-1 codes e.g. en, ar, hi, ml, ur, tl
-  specialities          String[]
-  contentNiches         String[]
-  audienceLocations     String[] // ISO country / emirate codes
-  isPublic              Boolean            @default(false)
-  visibility            Json? // per-field public visibility toggles
-  identityStatus        VerificationStatus @default(UNVERIFIED)
-  isMedicalProfessional Boolean            @default(false)
-  medicalStatus         VerificationStatus @default(UNVERIFIED)
+  id                     String             @id @default(uuid()) @db.Uuid
+  userId                 String             @unique @db.Uuid
+  slug                   String             @unique
+  fullName               String
+  displayName            String
+  displayNameAr          String?
+  profileImageUrl        String?
+  coverImageUrl          String?
+  bio                    String?
+  bioAr                  String?
+  phone                  String?
+  country                Country            @default(AE)
+  emirate                Emirate?
+  city                   String?
+  gender                 Gender             @default(UNDISCLOSED)
+  languages              String[] // ISO 639-1 codes e.g. en, ar, hi, ml, ur, tl
+  specialities           String[]
+  contentNiches          String[]
+  audienceLocations      String[] // ISO country / emirate codes
+  isPublic               Boolean            @default(false)
+  visibility             Json? // per-field public visibility toggles
+  identityStatus         VerificationStatus @default(UNVERIFIED)
+  isMedicalProfessional  Boolean            @default(false)
+  medicalStatus          VerificationStatus @default(UNVERIFIED)
   advertiserPermitNumber String?
-  advertiserPermitExpiry DateTime?         @db.Date
+  advertiserPermitExpiry DateTime?          @db.Date
   advertiserPermitStatus VerificationStatus @default(UNVERIFIED)
-  isFeatured            Boolean            @default(false)
-  acceptingBookings     Boolean            @default(true)
-  minimumBudget         Decimal?           @db.Decimal(14, 2)
+  isFeatured             Boolean            @default(false)
+  acceptingBookings      Boolean            @default(true)
+  minimumBudget          Decimal?           @db.Decimal(14, 2)
   // Denormalised search fields — maintained by the grading/sync services
-  currentScore          Decimal?           @db.Decimal(5, 2)
-  currentGrade          Grade              @default(NOT_RATED)
-  totalFollowers        Int                @default(0)
-  avgReelViews          Int?
-  avgStoryViews         Int?
-  avgVideoViews         Int?
-  engagementRate        Decimal?           @db.Decimal(6, 3)
-  startingPrice         Decimal?           @db.Decimal(14, 2)
-  ratingAverage         Decimal?           @db.Decimal(3, 2)
-  ratingCount           Int                @default(0)
-  searchText            String? // lower-cased EN+AR text for search
-  onboardingCompleted   Boolean            @default(false)
-  createdAt             DateTime           @default(now()) @db.Timestamptz(6)
-  updatedAt             DateTime           @updatedAt @db.Timestamptz(6)
-  deletedAt             DateTime?          @db.Timestamptz(6)
+  currentScore           Decimal?           @db.Decimal(5, 2)
+  currentGrade           Grade              @default(NOT_RATED)
+  totalFollowers         Int                @default(0)
+  avgReelViews           Int?
+  avgStoryViews          Int?
+  avgVideoViews          Int?
+  engagementRate         Decimal?           @db.Decimal(6, 3)
+  startingPrice          Decimal?           @db.Decimal(14, 2)
+  ratingAverage          Decimal?           @db.Decimal(3, 2)
+  ratingCount            Int                @default(0)
+  searchText             String? // lower-cased EN+AR text for search
+  onboardingCompleted    Boolean            @default(false)
+  createdAt              DateTime           @default(now()) @db.Timestamptz(6)
+  updatedAt              DateTime           @updatedAt @db.Timestamptz(6)
+  deletedAt              DateTime?          @db.Timestamptz(6)
 
-  user               User                  @relation(fields: [userId], references: [id], onDelete: Restrict)
-  categories         InfluencerCategory[]
-  socialAccounts     SocialAccount[]
-  services           InfluencerService[]
-  packages           ServicePackage[]
-  scores             InfluencerScore[]
-  scoreHistory       InfluencerScoreHistory[]
-  savedBy            SavedInfluencer[]
+  user                User                     @relation(fields: [userId], references: [id], onDelete: Restrict)
+  categories          InfluencerCategory[]
+  socialAccounts      SocialAccount[]
+  services            InfluencerService[]
+  packages            ServicePackage[]
+  scores              InfluencerScore[]
+  scoreHistory        InfluencerScoreHistory[]
+  savedBy             SavedInfluencer[]
   contactEntitlements ContactEntitlement[]
-  contactPurchases   ContactPurchase[]
-  quotations         Quotation[]
-  orderItems         OrderItem[]
-  campaigns          Campaign[]
-  reviews            Review[]
-  payouts            Payout[]
-  availability       AvailabilitySlot[]
-  medicalCredentials MedicalCredential[]
-  aiRecommendations  AiRecommendation[]
+  contactPurchases    ContactPurchase[]
+  quotations          Quotation[]
+  orderItems          OrderItem[]
+  campaigns           Campaign[]
+  reviews             Review[]
+  payouts             Payout[]
+  availability        AvailabilitySlot[]
+  medicalCredentials  MedicalCredential[]
+  aiRecommendations   AiRecommendation[]
+  agreements          Agreement[]
 
   @@index([isPublic, currentGrade])
   @@index([emirate])
@@ -611,21 +631,21 @@ model InfluencerProfile {
 }
 
 model MedicalCredential {
-  id                  String             @id @default(uuid()) @db.Uuid
-  influencerId        String             @db.Uuid
-  profession          String
-  speciality          String?
-  licensingAuthority  String // DHA | DOH | MOHAP | other
-  licenceNumber       String
-  licenceExpiry       DateTime?          @db.Date
-  documentId          String?            @db.Uuid
-  status              VerificationStatus @default(PENDING)
-  reviewNotes         String?
-  reviewedById        String?            @db.Uuid
-  reviewedAt          DateTime?          @db.Timestamptz(6)
-  createdAt           DateTime           @default(now()) @db.Timestamptz(6)
-  updatedAt           DateTime           @updatedAt @db.Timestamptz(6)
-  influencer          InfluencerProfile  @relation(fields: [influencerId], references: [id], onDelete: Cascade)
+  id                 String             @id @default(uuid()) @db.Uuid
+  influencerId       String             @db.Uuid
+  profession         String
+  speciality         String?
+  licensingAuthority String // DHA | DOH | MOHAP | other
+  licenceNumber      String
+  licenceExpiry      DateTime?          @db.Date
+  documentId         String?            @db.Uuid
+  status             VerificationStatus @default(PENDING)
+  reviewNotes        String?
+  reviewedById       String?            @db.Uuid
+  reviewedAt         DateTime?          @db.Timestamptz(6)
+  createdAt          DateTime           @default(now()) @db.Timestamptz(6)
+  updatedAt          DateTime           @updatedAt @db.Timestamptz(6)
+  influencer         InfluencerProfile  @relation(fields: [influencerId], references: [id], onDelete: Cascade)
 
   @@index([status])
   @@map("medical_credentials")
@@ -681,20 +701,20 @@ model AvailabilitySlot {
 // ───────────────────────────── CATEGORIES ─────────────────────────────
 
 model Category {
-  id            String    @id @default(uuid()) @db.Uuid
-  slug          String    @unique
-  parentId      String?   @db.Uuid
-  nameEn        String
-  nameAr        String
-  descriptionEn String?
-  descriptionAr String?
-  icon          String?
-  sortOrder     Int       @default(0)
-  isActive      Boolean   @default(true)
-  requiresMedicalCompliance Boolean @default(false)
-  commissionRate Decimal? @db.Decimal(5, 2) // optional category-specific commission %
-  createdAt     DateTime  @default(now()) @db.Timestamptz(6)
-  updatedAt     DateTime  @updatedAt @db.Timestamptz(6)
+  id                        String   @id @default(uuid()) @db.Uuid
+  slug                      String   @unique
+  parentId                  String?  @db.Uuid
+  nameEn                    String
+  nameAr                    String
+  descriptionEn             String?
+  descriptionAr             String?
+  icon                      String?
+  sortOrder                 Int      @default(0)
+  isActive                  Boolean  @default(true)
+  requiresMedicalCompliance Boolean  @default(false)
+  commissionRate            Decimal? @db.Decimal(5, 2) // optional category-specific commission %
+  createdAt                 DateTime @default(now()) @db.Timestamptz(6)
+  updatedAt                 DateTime @updatedAt @db.Timestamptz(6)
 
   parent      Category?            @relation("CategoryTree", fields: [parentId], references: [id], onDelete: Restrict)
   children    Category[]           @relation("CategoryTree")
@@ -753,13 +773,13 @@ model SocialAccount {
   createdAt         DateTime            @default(now()) @db.Timestamptz(6)
   updatedAt         DateTime            @updatedAt @db.Timestamptz(6)
 
-  influencer      InfluencerProfile     @relation(fields: [influencerId], references: [id], onDelete: Cascade)
-  tokens          SocialOAuthToken[]
-  snapshots       SocialMetricSnapshot[]
-  posts           SocialMediaPost[]
+  influencer       InfluencerProfile      @relation(fields: [influencerId], references: [id], onDelete: Cascade)
+  tokens           SocialOAuthToken[]
+  snapshots        SocialMetricSnapshot[]
+  posts            SocialMediaPost[]
   audienceInsights AudienceInsight[]
-  syncLogs        SocialSyncLog[]
-  permissions     SocialPermission[]
+  syncLogs         SocialSyncLog[]
+  permissions      SocialPermission[]
 
   // One platform account can only be linked to one creator (prevents fraudulent duplicate links)
   @@unique([platform, providerAccountId])
@@ -809,23 +829,23 @@ model SocialMetricSnapshot {
 }
 
 model SocialMediaPost {
-  id                String        @id @default(uuid()) @db.Uuid
-  socialAccountId   String        @db.Uuid
-  providerMediaId   String
-  mediaType         String // IMAGE | VIDEO | CAROUSEL_ALBUM | REEL | STORY | TIKTOK_VIDEO
-  caption           String?
-  permalink         String?
-  thumbnailUrl      String?
-  publishedAt       DateTime?     @db.Timestamptz(6)
-  likes             Int?
-  comments          Int?
-  shares            Int?
-  saves             Int?
-  views             Int?
-  reach             Int?
-  source            MetricSource
-  fetchedAt         DateTime      @db.Timestamptz(6)
-  socialAccount     SocialAccount @relation(fields: [socialAccountId], references: [id], onDelete: Cascade)
+  id              String        @id @default(uuid()) @db.Uuid
+  socialAccountId String        @db.Uuid
+  providerMediaId String
+  mediaType       String // IMAGE | VIDEO | CAROUSEL_ALBUM | REEL | STORY | TIKTOK_VIDEO
+  caption         String?
+  permalink       String?
+  thumbnailUrl    String?
+  publishedAt     DateTime?     @db.Timestamptz(6)
+  likes           Int?
+  comments        Int?
+  shares          Int?
+  saves           Int?
+  views           Int?
+  reach           Int?
+  source          MetricSource
+  fetchedAt       DateTime      @db.Timestamptz(6)
+  socialAccount   SocialAccount @relation(fields: [socialAccountId], references: [id], onDelete: Cascade)
 
   @@unique([socialAccountId, providerMediaId])
   @@index([socialAccountId, publishedAt])
@@ -833,15 +853,15 @@ model SocialMediaPost {
 }
 
 model AudienceInsight {
-  id              String             @id @default(uuid()) @db.Uuid
-  socialAccountId String             @db.Uuid
-  dimension       String // COUNTRY | CITY | AGE | GENDER
-  key             String
-  value           Decimal            @db.Decimal(8, 4) // share 0..1
-  source          MetricSource
+  id                 String             @id @default(uuid()) @db.Uuid
+  socialAccountId    String             @db.Uuid
+  dimension          String // COUNTRY | CITY | AGE | GENDER
+  key                String
+  value              Decimal            @db.Decimal(8, 4) // share 0..1
+  source             MetricSource
   verificationStatus MetricVerification
-  collectedAt     DateTime           @db.Timestamptz(6)
-  socialAccount   SocialAccount      @relation(fields: [socialAccountId], references: [id], onDelete: Cascade)
+  collectedAt        DateTime           @db.Timestamptz(6)
+  socialAccount      SocialAccount      @relation(fields: [socialAccountId], references: [id], onDelete: Cascade)
 
   @@index([socialAccountId, dimension, collectedAt])
   @@map("audience_insights")
@@ -879,25 +899,25 @@ model SocialPermission {
 // ───────────────────────────── GRADING ─────────────────────────────
 
 model GradingRule {
-  id        String               @id @default(uuid()) @db.Uuid
-  key       String               @unique // "default"
-  name      String
-  activeVersionId String?        @db.Uuid
-  createdAt DateTime             @default(now()) @db.Timestamptz(6)
-  versions  GradingRuleVersion[]
+  id              String               @id @default(uuid()) @db.Uuid
+  key             String               @unique // "default"
+  name            String
+  activeVersionId String?              @db.Uuid
+  createdAt       DateTime             @default(now()) @db.Timestamptz(6)
+  versions        GradingRuleVersion[]
 
   @@map("grading_rules")
 }
 
 model GradingRuleVersion {
-  id          String      @id @default(uuid()) @db.Uuid
-  ruleId      String      @db.Uuid
+  id          String            @id @default(uuid()) @db.Uuid
+  ruleId      String            @db.Uuid
   version     Int
   config      Json // weights, thresholds, min samples, freshness, benchmarks
   notes       String?
-  createdById String?     @db.Uuid
-  createdAt   DateTime    @default(now()) @db.Timestamptz(6)
-  rule        GradingRule @relation(fields: [ruleId], references: [id], onDelete: Restrict)
+  createdById String?           @db.Uuid
+  createdAt   DateTime          @default(now()) @db.Timestamptz(6)
+  rule        GradingRule       @relation(fields: [ruleId], references: [id], onDelete: Restrict)
   scores      InfluencerScore[]
 
   @@unique([ruleId, version])
@@ -905,17 +925,17 @@ model GradingRuleVersion {
 }
 
 model InfluencerScore {
-  id                String             @id @default(uuid()) @db.Uuid
-  influencerId      String             @db.Uuid
-  ruleVersionId     String             @db.Uuid
-  score             Decimal?           @db.Decimal(5, 2)
-  grade             Grade
-  breakdown         Json // explainable component scores
-  dataCoverage      Decimal            @db.Decimal(4, 3)
-  isCurrent         Boolean            @default(true)
-  computedAt        DateTime           @default(now()) @db.Timestamptz(6)
-  influencer        InfluencerProfile  @relation(fields: [influencerId], references: [id], onDelete: Cascade)
-  ruleVersion       GradingRuleVersion @relation(fields: [ruleVersionId], references: [id], onDelete: Restrict)
+  id            String             @id @default(uuid()) @db.Uuid
+  influencerId  String             @db.Uuid
+  ruleVersionId String             @db.Uuid
+  score         Decimal?           @db.Decimal(5, 2)
+  grade         Grade
+  breakdown     Json // explainable component scores
+  dataCoverage  Decimal            @db.Decimal(4, 3)
+  isCurrent     Boolean            @default(true)
+  computedAt    DateTime           @default(now()) @db.Timestamptz(6)
+  influencer    InfluencerProfile  @relation(fields: [influencerId], references: [id], onDelete: Cascade)
+  ruleVersion   GradingRuleVersion @relation(fields: [ruleVersionId], references: [id], onDelete: Restrict)
 
   @@index([influencerId, isCurrent])
   @@map("influencer_scores")
@@ -939,20 +959,20 @@ model InfluencerScoreHistory {
 
 /// Platform-defined service types (Single Story, Reel, UGC Video, ...).
 model ServiceCatalog {
-  id              String       @id @default(uuid()) @db.Uuid
-  key             String       @unique
-  platform        Platform
-  nameEn          String
-  nameAr          String
-  descriptionEn   String?
-  descriptionAr   String?
+  id                  String   @id @default(uuid()) @db.Uuid
+  key                 String   @unique
+  platform            Platform
+  nameEn              String
+  nameAr              String
+  descriptionEn       String?
+  descriptionAr       String?
   defaultDeliverables Json // [{type, quantity, platform}]
-  complexityFactor Decimal     @default(1) @db.Decimal(4, 2)
-  sortOrder       Int          @default(0)
-  isActive        Boolean      @default(true)
-  commissionRate  Decimal?     @db.Decimal(5, 2) // optional service-specific commission %
-  createdAt       DateTime     @default(now()) @db.Timestamptz(6)
-  updatedAt       DateTime     @updatedAt @db.Timestamptz(6)
+  complexityFactor    Decimal  @default(1) @db.Decimal(4, 2)
+  sortOrder           Int      @default(0)
+  isActive            Boolean  @default(true)
+  commissionRate      Decimal? @db.Decimal(5, 2) // optional service-specific commission %
+  createdAt           DateTime @default(now()) @db.Timestamptz(6)
+  updatedAt           DateTime @updatedAt @db.Timestamptz(6)
 
   influencerServices InfluencerService[]
   benchmarks         PricingBenchmark[]
@@ -961,35 +981,35 @@ model ServiceCatalog {
 }
 
 model InfluencerService {
-  id              String            @id @default(uuid()) @db.Uuid
-  influencerId    String            @db.Uuid
-  catalogId       String            @db.Uuid
+  id              String        @id @default(uuid()) @db.Uuid
+  influencerId    String        @db.Uuid
+  catalogId       String        @db.Uuid
   title           String
   titleAr         String?
   description     String?
   descriptionAr   String?
   platform        Platform
   deliverables    Json
-  price           Decimal           @db.Decimal(14, 2)
-  promoPrice      Decimal?          @db.Decimal(14, 2)
-  promoEndsAt     DateTime?         @db.Timestamptz(6)
-  minimumPrice    Decimal?          @db.Decimal(14, 2)
-  suggestedPrice  Decimal?          @db.Decimal(14, 2) // recommendation at time of save, for reference only
-  currency        String            @default("AED")
+  price           Decimal       @db.Decimal(14, 2)
+  promoPrice      Decimal?      @db.Decimal(14, 2)
+  promoEndsAt     DateTime?     @db.Timestamptz(6)
+  minimumPrice    Decimal?      @db.Decimal(14, 2)
+  suggestedPrice  Decimal?      @db.Decimal(14, 2) // recommendation at time of save, for reference only
+  currency        String        @default("AED")
   deliveryDays    Int
-  revisions       Int               @default(1)
+  revisions       Int           @default(1)
   usageRights     String? // e.g. "Organic only, 30 days"
   usageRightsDays Int?
   exclusivityDays Int?
   addOns          Json? // [{key, name, price}]
-  taxTreatment    TaxTreatment      @default(STANDARD)
-  status          ServiceStatus     @default(ACTIVE)
-  createdAt       DateTime          @default(now()) @db.Timestamptz(6)
-  updatedAt       DateTime          @updatedAt @db.Timestamptz(6)
-  deletedAt       DateTime?         @db.Timestamptz(6)
+  taxTreatment    TaxTreatment  @default(STANDARD)
+  status          ServiceStatus @default(ACTIVE)
+  createdAt       DateTime      @default(now()) @db.Timestamptz(6)
+  updatedAt       DateTime      @updatedAt @db.Timestamptz(6)
+  deletedAt       DateTime?     @db.Timestamptz(6)
 
-  influencer     InfluencerProfile @relation(fields: [influencerId], references: [id], onDelete: Cascade)
-  catalog        ServiceCatalog    @relation(fields: [catalogId], references: [id], onDelete: Restrict)
+  influencer     InfluencerProfile    @relation(fields: [influencerId], references: [id], onDelete: Cascade)
+  catalog        ServiceCatalog       @relation(fields: [catalogId], references: [id], onDelete: Restrict)
   pricingHistory PricingHistory[]
   packageItems   ServicePackageItem[]
   cartItems      CartItem[]
@@ -1001,20 +1021,20 @@ model InfluencerService {
 }
 
 model ServicePackage {
-  id            String               @id @default(uuid()) @db.Uuid
-  influencerId  String               @db.Uuid
-  title         String
-  titleAr       String?
-  description   String?
-  price         Decimal              @db.Decimal(14, 2)
-  currency      String               @default("AED")
-  deliveryDays  Int
-  status        ServiceStatus        @default(ACTIVE)
-  createdAt     DateTime             @default(now()) @db.Timestamptz(6)
-  updatedAt     DateTime             @updatedAt @db.Timestamptz(6)
-  influencer    InfluencerProfile    @relation(fields: [influencerId], references: [id], onDelete: Cascade)
-  items         ServicePackageItem[]
-  cartItems     CartItem[]
+  id           String               @id @default(uuid()) @db.Uuid
+  influencerId String               @db.Uuid
+  title        String
+  titleAr      String?
+  description  String?
+  price        Decimal              @db.Decimal(14, 2)
+  currency     String               @default("AED")
+  deliveryDays Int
+  status       ServiceStatus        @default(ACTIVE)
+  createdAt    DateTime             @default(now()) @db.Timestamptz(6)
+  updatedAt    DateTime             @updatedAt @db.Timestamptz(6)
+  influencer   InfluencerProfile    @relation(fields: [influencerId], references: [id], onDelete: Cascade)
+  items        ServicePackageItem[]
+  cartItems    CartItem[]
 
   @@map("service_packages")
 }
@@ -1032,70 +1052,70 @@ model ServicePackageItem {
 
 /// Editable UAE market benchmark. Rows seeded as SAMPLE until real research is recorded.
 model PricingBenchmark {
-  id            String    @id @default(uuid()) @db.Uuid
-  categoryId    String?   @db.Uuid
-  subcategory   String?
-  emirate       Emirate?
-  platform      Platform
-  catalogId     String?   @db.Uuid
-  grade         Grade?
-  followersMin  Int?
-  followersMax  Int?
-  avgViewsMin   Int?
-  avgViewsMax   Int?
-  minRate       Decimal   @db.Decimal(14, 2)
-  medianRate    Decimal   @db.Decimal(14, 2)
-  maxRate       Decimal   @db.Decimal(14, 2)
-  currency      String    @default("AED")
-  isSample      Boolean   @default(true)
+  id             String          @id @default(uuid()) @db.Uuid
+  categoryId     String?         @db.Uuid
+  subcategory    String?
+  emirate        Emirate?
+  platform       Platform
+  catalogId      String?         @db.Uuid
+  grade          Grade?
+  followersMin   Int?
+  followersMax   Int?
+  avgViewsMin    Int?
+  avgViewsMax    Int?
+  minRate        Decimal         @db.Decimal(14, 2)
+  medianRate     Decimal         @db.Decimal(14, 2)
+  maxRate        Decimal         @db.Decimal(14, 2)
+  currency       String          @default("AED")
+  isSample       Boolean         @default(true)
   researchSource String
-  researchedAt  DateTime? @db.Date
-  createdAt     DateTime  @default(now()) @db.Timestamptz(6)
-  updatedAt     DateTime  @updatedAt @db.Timestamptz(6)
-  category      Category?       @relation(fields: [categoryId], references: [id], onDelete: SetNull)
-  catalog       ServiceCatalog? @relation(fields: [catalogId], references: [id], onDelete: SetNull)
+  researchedAt   DateTime?       @db.Date
+  createdAt      DateTime        @default(now()) @db.Timestamptz(6)
+  updatedAt      DateTime        @updatedAt @db.Timestamptz(6)
+  category       Category?       @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  catalog        ServiceCatalog? @relation(fields: [catalogId], references: [id], onDelete: SetNull)
 
   @@index([platform, catalogId, grade])
   @@map("pricing_benchmarks")
 }
 
 model PricingHistory {
-  id         String            @id @default(uuid()) @db.Uuid
-  serviceId  String            @db.Uuid
-  oldPrice   Decimal?          @db.Decimal(14, 2)
-  newPrice   Decimal           @db.Decimal(14, 2)
-  suggested  Decimal?          @db.Decimal(14, 2)
-  changedById String?          @db.Uuid
-  changedAt  DateTime          @default(now()) @db.Timestamptz(6)
-  service    InfluencerService @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+  id          String            @id @default(uuid()) @db.Uuid
+  serviceId   String            @db.Uuid
+  oldPrice    Decimal?          @db.Decimal(14, 2)
+  newPrice    Decimal           @db.Decimal(14, 2)
+  suggested   Decimal?          @db.Decimal(14, 2)
+  changedById String?           @db.Uuid
+  changedAt   DateTime          @default(now()) @db.Timestamptz(6)
+  service     InfluencerService @relation(fields: [serviceId], references: [id], onDelete: Cascade)
 
   @@index([serviceId, changedAt])
   @@map("pricing_history")
 }
 
 model Quotation {
-  id            String          @id @default(uuid()) @db.Uuid
-  number        String          @unique
-  businessId    String          @db.Uuid
-  influencerId  String          @db.Uuid
-  campaignId    String?         @db.Uuid
-  status        QuotationStatus @default(REQUESTED)
-  brief         String
-  requestedBudget Decimal?      @db.Decimal(14, 2)
-  subtotal      Decimal?        @db.Decimal(14, 2)
-  currency      String          @default("AED")
-  validUntil    DateTime?       @db.Timestamptz(6)
-  influencerNote String?
-  submittedAt   DateTime?       @db.Timestamptz(6)
-  respondedAt   DateTime?       @db.Timestamptz(6)
-  createdAt     DateTime        @default(now()) @db.Timestamptz(6)
-  updatedAt     DateTime        @updatedAt @db.Timestamptz(6)
-  business      BusinessProfile   @relation(fields: [businessId], references: [id], onDelete: Restrict)
-  influencer    InfluencerProfile @relation(fields: [influencerId], references: [id], onDelete: Restrict)
-  campaign      Campaign?         @relation(fields: [campaignId], references: [id], onDelete: SetNull)
-  items         QuotationItem[]
-  cartItems     CartItem[]
-  orderItems    OrderItem[]
+  id              String            @id @default(uuid()) @db.Uuid
+  number          String            @unique
+  businessId      String            @db.Uuid
+  influencerId    String            @db.Uuid
+  campaignId      String?           @db.Uuid
+  status          QuotationStatus   @default(REQUESTED)
+  brief           String
+  requestedBudget Decimal?          @db.Decimal(14, 2)
+  subtotal        Decimal?          @db.Decimal(14, 2)
+  currency        String            @default("AED")
+  validUntil      DateTime?         @db.Timestamptz(6)
+  influencerNote  String?
+  submittedAt     DateTime?         @db.Timestamptz(6)
+  respondedAt     DateTime?         @db.Timestamptz(6)
+  createdAt       DateTime          @default(now()) @db.Timestamptz(6)
+  updatedAt       DateTime          @updatedAt @db.Timestamptz(6)
+  business        BusinessProfile   @relation(fields: [businessId], references: [id], onDelete: Restrict)
+  influencer      InfluencerProfile @relation(fields: [influencerId], references: [id], onDelete: Restrict)
+  campaign        Campaign?         @relation(fields: [campaignId], references: [id], onDelete: SetNull)
+  items           QuotationItem[]
+  cartItems       CartItem[]
+  orderItems      OrderItem[]
 
   @@index([businessId, status])
   @@index([influencerId, status])
@@ -1149,19 +1169,19 @@ model ContactEntitlement {
 }
 
 model ContactPurchase {
-  id             String            @id @default(uuid()) @db.Uuid
-  businessId     String            @db.Uuid
-  influencerId   String            @db.Uuid
-  amount         Decimal           @db.Decimal(14, 2)
-  vatAmount      Decimal           @db.Decimal(14, 2)
-  totalAmount    Decimal           @db.Decimal(14, 2)
-  currency       String            @default("AED")
-  status         PaymentStatus     @default(CREATED)
-  idempotencyKey String            @unique
-  createdAt      DateTime          @default(now()) @db.Timestamptz(6)
-  updatedAt      DateTime          @updatedAt @db.Timestamptz(6)
-  business       BusinessProfile   @relation(fields: [businessId], references: [id], onDelete: Restrict)
-  influencer     InfluencerProfile @relation(fields: [influencerId], references: [id], onDelete: Restrict)
+  id             String              @id @default(uuid()) @db.Uuid
+  businessId     String              @db.Uuid
+  influencerId   String              @db.Uuid
+  amount         Decimal             @db.Decimal(14, 2)
+  vatAmount      Decimal             @db.Decimal(14, 2)
+  totalAmount    Decimal             @db.Decimal(14, 2)
+  currency       String              @default("AED")
+  status         PaymentStatus       @default(CREATED)
+  idempotencyKey String              @unique
+  createdAt      DateTime            @default(now()) @db.Timestamptz(6)
+  updatedAt      DateTime            @updatedAt @db.Timestamptz(6)
+  business       BusinessProfile     @relation(fields: [businessId], references: [id], onDelete: Restrict)
+  influencer     InfluencerProfile   @relation(fields: [influencerId], references: [id], onDelete: Restrict)
   entitlement    ContactEntitlement?
   payments       Payment[]
 
@@ -1203,42 +1223,42 @@ model CartItem {
 }
 
 model DiscountCode {
-  id           String    @id @default(uuid()) @db.Uuid
-  code         String    @unique
-  percentOff   Decimal?  @db.Decimal(5, 2)
-  amountOff    Decimal?  @db.Decimal(14, 2)
+  id             String    @id @default(uuid()) @db.Uuid
+  code           String    @unique
+  percentOff     Decimal?  @db.Decimal(5, 2)
+  amountOff      Decimal?  @db.Decimal(14, 2)
   maxRedemptions Int?
-  redemptions  Int       @default(0)
-  validFrom    DateTime? @db.Timestamptz(6)
-  validUntil   DateTime? @db.Timestamptz(6)
-  isActive     Boolean   @default(true)
-  createdAt    DateTime  @default(now()) @db.Timestamptz(6)
+  redemptions    Int       @default(0)
+  validFrom      DateTime? @db.Timestamptz(6)
+  validUntil     DateTime? @db.Timestamptz(6)
+  isActive       Boolean   @default(true)
+  createdAt      DateTime  @default(now()) @db.Timestamptz(6)
 
   @@map("discount_codes")
 }
 
 model Order {
-  id              String          @id @default(uuid()) @db.Uuid
-  number          String          @unique
-  businessId      String          @db.Uuid
-  status          OrderStatus     @default(PENDING_PAYMENT)
-  currency        String          @default("AED")
-  subtotal        Decimal         @db.Decimal(14, 2)
-  discountTotal   Decimal         @default(0) @db.Decimal(14, 2)
-  businessCommissionTotal Decimal @default(0) @db.Decimal(14, 2)
-  vatTotal        Decimal         @db.Decimal(14, 2)
-  grandTotal      Decimal         @db.Decimal(14, 2)
-  discountCode    String?
-  idempotencyKey  String          @unique
-  vatRate         Decimal         @db.Decimal(5, 2)
-  paidAt          DateTime?       @db.Timestamptz(6)
-  createdAt       DateTime        @default(now()) @db.Timestamptz(6)
-  updatedAt       DateTime        @updatedAt @db.Timestamptz(6)
-  business        BusinessProfile @relation(fields: [businessId], references: [id], onDelete: Restrict)
-  items           OrderItem[]
-  payments        Payment[]
-  invoices        Invoice[]
-  refunds         Refund[]
+  id                      String          @id @default(uuid()) @db.Uuid
+  number                  String          @unique
+  businessId              String          @db.Uuid
+  status                  OrderStatus     @default(PENDING_PAYMENT)
+  currency                String          @default("AED")
+  subtotal                Decimal         @db.Decimal(14, 2)
+  discountTotal           Decimal         @default(0) @db.Decimal(14, 2)
+  businessCommissionTotal Decimal         @default(0) @db.Decimal(14, 2)
+  vatTotal                Decimal         @db.Decimal(14, 2)
+  grandTotal              Decimal         @db.Decimal(14, 2)
+  discountCode            String?
+  idempotencyKey          String          @unique
+  vatRate                 Decimal         @db.Decimal(5, 2)
+  paidAt                  DateTime?       @db.Timestamptz(6)
+  createdAt               DateTime        @default(now()) @db.Timestamptz(6)
+  updatedAt               DateTime        @updatedAt @db.Timestamptz(6)
+  business                BusinessProfile @relation(fields: [businessId], references: [id], onDelete: Restrict)
+  items                   OrderItem[]
+  payments                Payment[]
+  invoices                Invoice[]
+  refunds                 Refund[]
 
   @@index([businessId, status])
   @@index([createdAt])
@@ -1246,35 +1266,35 @@ model Order {
 }
 
 model OrderItem {
-  id               String             @id @default(uuid()) @db.Uuid
-  orderId          String             @db.Uuid
-  influencerId     String             @db.Uuid
-  serviceId        String?            @db.Uuid
-  quotationId      String?            @db.Uuid
-  packageId        String?            @db.Uuid
-  description      String
-  platform         Platform
-  quantity         Int
-  unitPrice        Decimal            @db.Decimal(14, 2)
-  addOnsTotal      Decimal            @default(0) @db.Decimal(14, 2)
-  discount         Decimal            @default(0) @db.Decimal(14, 2)
-  grossAmount      Decimal            @db.Decimal(14, 2) // creator price * qty + add-ons - discount
-  commissionRate   Decimal            @db.Decimal(5, 2)
-  commissionPayer  CommissionPayer
-  businessCommission   Decimal        @db.Decimal(14, 2)
-  influencerCommission Decimal        @db.Decimal(14, 2)
-  vatAmount        Decimal            @db.Decimal(14, 2)
-  influencerNet    Decimal            @db.Decimal(14, 2)
-  taxTreatment     TaxTreatment
-  deliveryDays     Int
-  snapshot         Json // immutable copy of service details at purchase time
-  refundedAmount   Decimal            @default(0) @db.Decimal(14, 2)
-  order            Order              @relation(fields: [orderId], references: [id], onDelete: Restrict)
-  influencer       InfluencerProfile  @relation(fields: [influencerId], references: [id], onDelete: Restrict)
-  service          InfluencerService? @relation(fields: [serviceId], references: [id], onDelete: SetNull)
-  quotation        Quotation?         @relation(fields: [quotationId], references: [id], onDelete: SetNull)
-  campaign         Campaign?
-  commission       Commission?
+  id                   String             @id @default(uuid()) @db.Uuid
+  orderId              String             @db.Uuid
+  influencerId         String             @db.Uuid
+  serviceId            String?            @db.Uuid
+  quotationId          String?            @db.Uuid
+  packageId            String?            @db.Uuid
+  description          String
+  platform             Platform
+  quantity             Int
+  unitPrice            Decimal            @db.Decimal(14, 2)
+  addOnsTotal          Decimal            @default(0) @db.Decimal(14, 2)
+  discount             Decimal            @default(0) @db.Decimal(14, 2)
+  grossAmount          Decimal            @db.Decimal(14, 2) // creator price * qty + add-ons - discount
+  commissionRate       Decimal            @db.Decimal(5, 2)
+  commissionPayer      CommissionPayer
+  businessCommission   Decimal            @db.Decimal(14, 2)
+  influencerCommission Decimal            @db.Decimal(14, 2)
+  vatAmount            Decimal            @db.Decimal(14, 2)
+  influencerNet        Decimal            @db.Decimal(14, 2)
+  taxTreatment         TaxTreatment
+  deliveryDays         Int
+  snapshot             Json // immutable copy of service details at purchase time
+  refundedAmount       Decimal            @default(0) @db.Decimal(14, 2)
+  order                Order              @relation(fields: [orderId], references: [id], onDelete: Restrict)
+  influencer           InfluencerProfile  @relation(fields: [influencerId], references: [id], onDelete: Restrict)
+  service              InfluencerService? @relation(fields: [serviceId], references: [id], onDelete: SetNull)
+  quotation            Quotation?         @relation(fields: [quotationId], references: [id], onDelete: SetNull)
+  campaign             Campaign?
+  commission           Commission?
 
   @@index([orderId])
   @@index([influencerId])
@@ -1284,27 +1304,27 @@ model OrderItem {
 // ───────────────────────────── FINANCE ─────────────────────────────
 
 model Payment {
-  id                 String          @id @default(uuid()) @db.Uuid
-  purpose            PaymentPurpose
-  orderId            String?         @db.Uuid
-  contactPurchaseId  String?         @db.Uuid
-  provider           String // sandbox | stripe | checkout_com | telr | network_international
-  providerPaymentId  String?
-  providerSessionId  String?
-  checkoutUrl        String?
-  amount             Decimal         @db.Decimal(14, 2)
-  currency           String          @default("AED")
-  status             PaymentStatus   @default(CREATED)
-  processingFee      Decimal?        @db.Decimal(14, 2)
-  idempotencyKey     String          @unique
-  failureReason      String?
-  succeededAt        DateTime?       @db.Timestamptz(6)
-  createdAt          DateTime        @default(now()) @db.Timestamptz(6)
-  updatedAt          DateTime        @updatedAt @db.Timestamptz(6)
-  order              Order?           @relation(fields: [orderId], references: [id], onDelete: Restrict)
-  contactPurchase    ContactPurchase? @relation(fields: [contactPurchaseId], references: [id], onDelete: Restrict)
-  events             PaymentEvent[]
-  refunds            Refund[]
+  id                String           @id @default(uuid()) @db.Uuid
+  purpose           PaymentPurpose
+  orderId           String?          @db.Uuid
+  contactPurchaseId String?          @db.Uuid
+  provider          String // sandbox | stripe | checkout_com | telr | network_international
+  providerPaymentId String?
+  providerSessionId String?
+  checkoutUrl       String?
+  amount            Decimal          @db.Decimal(14, 2)
+  currency          String           @default("AED")
+  status            PaymentStatus    @default(CREATED)
+  processingFee     Decimal?         @db.Decimal(14, 2)
+  idempotencyKey    String           @unique
+  failureReason     String?
+  succeededAt       DateTime?        @db.Timestamptz(6)
+  createdAt         DateTime         @default(now()) @db.Timestamptz(6)
+  updatedAt         DateTime         @updatedAt @db.Timestamptz(6)
+  order             Order?           @relation(fields: [orderId], references: [id], onDelete: Restrict)
+  contactPurchase   ContactPurchase? @relation(fields: [contactPurchaseId], references: [id], onDelete: Restrict)
+  events            PaymentEvent[]
+  refunds           Refund[]
 
   @@unique([provider, providerSessionId])
   @@index([orderId])
@@ -1353,59 +1373,59 @@ model Refund {
 }
 
 model Payout {
-  id              String            @id @default(uuid()) @db.Uuid
-  influencerId    String            @db.Uuid
-  amount          Decimal           @db.Decimal(14, 2)
-  currency        String            @default("AED")
-  status          PayoutStatus      @default(PENDING)
-  method          String? // bank_transfer
-  reference       String?
-  commissionIds   String[]
-  scheduledFor    DateTime?         @db.Timestamptz(6)
-  paidAt          DateTime?         @db.Timestamptz(6)
-  createdAt       DateTime          @default(now()) @db.Timestamptz(6)
-  updatedAt       DateTime          @updatedAt @db.Timestamptz(6)
-  influencer      InfluencerProfile @relation(fields: [influencerId], references: [id], onDelete: Restrict)
+  id            String            @id @default(uuid()) @db.Uuid
+  influencerId  String            @db.Uuid
+  amount        Decimal           @db.Decimal(14, 2)
+  currency      String            @default("AED")
+  status        PayoutStatus      @default(PENDING)
+  method        String? // bank_transfer
+  reference     String?
+  commissionIds String[]
+  scheduledFor  DateTime?         @db.Timestamptz(6)
+  paidAt        DateTime?         @db.Timestamptz(6)
+  createdAt     DateTime          @default(now()) @db.Timestamptz(6)
+  updatedAt     DateTime          @updatedAt @db.Timestamptz(6)
+  influencer    InfluencerProfile @relation(fields: [influencerId], references: [id], onDelete: Restrict)
 
   @@index([influencerId, status])
   @@map("payouts")
 }
 
 model Commission {
-  id                   String    @id @default(uuid()) @db.Uuid
-  orderItemId          String    @unique @db.Uuid
-  influencerId         String    @db.Uuid
-  grossAmount          Decimal   @db.Decimal(14, 2)
-  rate                 Decimal   @db.Decimal(5, 2)
-  payer                CommissionPayer
-  businessPortion      Decimal   @db.Decimal(14, 2)
-  influencerPortion    Decimal   @db.Decimal(14, 2)
-  totalCommission      Decimal   @db.Decimal(14, 2)
-  influencerNet        Decimal   @db.Decimal(14, 2)
-  releasedAt           DateTime? @db.Timestamptz(6) // when campaign completed and payout eligible
-  payoutId             String?   @db.Uuid
-  reversedAmount       Decimal   @default(0) @db.Decimal(14, 2)
-  createdAt            DateTime  @default(now()) @db.Timestamptz(6)
-  orderItem            OrderItem @relation(fields: [orderItemId], references: [id], onDelete: Restrict)
+  id                String          @id @default(uuid()) @db.Uuid
+  orderItemId       String          @unique @db.Uuid
+  influencerId      String          @db.Uuid
+  grossAmount       Decimal         @db.Decimal(14, 2)
+  rate              Decimal         @db.Decimal(5, 2)
+  payer             CommissionPayer
+  businessPortion   Decimal         @db.Decimal(14, 2)
+  influencerPortion Decimal         @db.Decimal(14, 2)
+  totalCommission   Decimal         @db.Decimal(14, 2)
+  influencerNet     Decimal         @db.Decimal(14, 2)
+  releasedAt        DateTime?       @db.Timestamptz(6) // when campaign completed and payout eligible
+  payoutId          String?         @db.Uuid
+  reversedAmount    Decimal         @default(0) @db.Decimal(14, 2)
+  createdAt         DateTime        @default(now()) @db.Timestamptz(6)
+  orderItem         OrderItem       @relation(fields: [orderItemId], references: [id], onDelete: Restrict)
 
   @@index([influencerId])
   @@map("commissions")
 }
 
 model Invoice {
-  id          String   @id @default(uuid()) @db.Uuid
-  number      String   @unique
-  orderId     String?  @db.Uuid
-  contactPurchaseId String? @db.Uuid
-  issuedTo    Json // snapshot of business billing details
-  issuedBy    Json // snapshot of platform legal entity
-  lines       Json
-  subtotal    Decimal  @db.Decimal(14, 2)
-  vatTotal    Decimal  @db.Decimal(14, 2)
-  total       Decimal  @db.Decimal(14, 2)
-  currency    String   @default("AED")
-  issuedAt    DateTime @default(now()) @db.Timestamptz(6)
-  order       Order?   @relation(fields: [orderId], references: [id], onDelete: Restrict)
+  id                String   @id @default(uuid()) @db.Uuid
+  number            String   @unique
+  orderId           String?  @db.Uuid
+  contactPurchaseId String?  @db.Uuid
+  issuedTo          Json // snapshot of business billing details
+  issuedBy          Json // snapshot of platform legal entity
+  lines             Json
+  subtotal          Decimal  @db.Decimal(14, 2)
+  vatTotal          Decimal  @db.Decimal(14, 2)
+  total             Decimal  @db.Decimal(14, 2)
+  currency          String   @default("AED")
+  issuedAt          DateTime @default(now()) @db.Timestamptz(6)
+  order             Order?   @relation(fields: [orderId], references: [id], onDelete: Restrict)
 
   @@map("invoices")
 }
@@ -1433,16 +1453,16 @@ model FinancialLedger {
 }
 
 model ReconciliationRecord {
-  id             String   @id @default(uuid()) @db.Uuid
-  provider       String
-  periodStart    DateTime @db.Timestamptz(6)
-  periodEnd      DateTime @db.Timestamptz(6)
-  ledgerTotal    Decimal  @db.Decimal(14, 2)
-  providerTotal  Decimal? @db.Decimal(14, 2)
-  difference     Decimal? @db.Decimal(14, 2)
-  status         String // MATCHED | MISMATCH | PENDING_PROVIDER_DATA
-  details        Json?
-  createdAt      DateTime @default(now()) @db.Timestamptz(6)
+  id            String   @id @default(uuid()) @db.Uuid
+  provider      String
+  periodStart   DateTime @db.Timestamptz(6)
+  periodEnd     DateTime @db.Timestamptz(6)
+  ledgerTotal   Decimal  @db.Decimal(14, 2)
+  providerTotal Decimal? @db.Decimal(14, 2)
+  difference    Decimal? @db.Decimal(14, 2)
+  status        String // MATCHED | MISMATCH | PENDING_PROVIDER_DATA
+  details       Json?
+  createdAt     DateTime @default(now()) @db.Timestamptz(6)
 
   @@map("reconciliation_records")
 }
@@ -1450,13 +1470,13 @@ model ReconciliationRecord {
 // ───────────────────────────── COMMUNICATION ─────────────────────────────
 
 model Conversation {
-  id               String    @id @default(uuid()) @db.Uuid
-  businessUserId   String    @db.Uuid
-  influencerUserId String    @db.Uuid
-  campaignId       String?   @db.Uuid
-  lastMessageAt    DateTime? @db.Timestamptz(6)
-  isLocked         Boolean   @default(false)
-  createdAt        DateTime  @default(now()) @db.Timestamptz(6)
+  id               String                    @id @default(uuid()) @db.Uuid
+  businessUserId   String                    @db.Uuid
+  influencerUserId String                    @db.Uuid
+  campaignId       String?                   @db.Uuid
+  lastMessageAt    DateTime?                 @db.Timestamptz(6)
+  isLocked         Boolean                   @default(false)
+  createdAt        DateTime                  @default(now()) @db.Timestamptz(6)
   participants     ConversationParticipant[]
   messages         Message[]
 
@@ -1494,22 +1514,22 @@ model Message {
 }
 
 model Attachment {
-  id          String    @id @default(uuid()) @db.Uuid
-  ownerId     String    @db.Uuid
-  messageId   String?   @db.Uuid
-  deliverableId String? @db.Uuid
-  purpose     String // MESSAGE | DELIVERABLE | VERIFICATION | AVATAR | LOGO
-  storageKey  String    @unique
-  fileName    String
-  mimeType    String
-  sizeBytes   Int
-  sha256      String
-  scanStatus  String    @default("PENDING") // PENDING | CLEAN | INFECTED | SKIPPED
-  isPrivate   Boolean   @default(true)
-  createdAt   DateTime  @default(now()) @db.Timestamptz(6)
-  owner       User      @relation(fields: [ownerId], references: [id], onDelete: Restrict)
-  message     Message?  @relation(fields: [messageId], references: [id], onDelete: SetNull)
-  deliverable CampaignDeliverable? @relation(fields: [deliverableId], references: [id], onDelete: SetNull)
+  id            String               @id @default(uuid()) @db.Uuid
+  ownerId       String               @db.Uuid
+  messageId     String?              @db.Uuid
+  deliverableId String?              @db.Uuid
+  purpose       String // MESSAGE | DELIVERABLE | VERIFICATION | AVATAR | LOGO
+  storageKey    String               @unique
+  fileName      String
+  mimeType      String
+  sizeBytes     Int
+  sha256        String
+  scanStatus    String               @default("PENDING") // PENDING | CLEAN | INFECTED | SKIPPED
+  isPrivate     Boolean              @default(true)
+  createdAt     DateTime             @default(now()) @db.Timestamptz(6)
+  owner         User                 @relation(fields: [ownerId], references: [id], onDelete: Restrict)
+  message       Message?             @relation(fields: [messageId], references: [id], onDelete: SetNull)
+  deliverable   CampaignDeliverable? @relation(fields: [deliverableId], references: [id], onDelete: SetNull)
 
   @@map("attachments")
 }
@@ -1526,17 +1546,17 @@ model UserBlock {
 }
 
 model ContentReport {
-  id          String       @id @default(uuid()) @db.Uuid
-  reporterId  String       @db.Uuid
-  targetType  String // MESSAGE | USER | PROFILE | REVIEW
-  targetId    String       @db.Uuid
-  reason      String
-  details     String?
-  status      ReportStatus @default(OPEN)
-  resolvedById String?     @db.Uuid
-  resolvedAt  DateTime?    @db.Timestamptz(6)
-  createdAt   DateTime     @default(now()) @db.Timestamptz(6)
-  reporter    User         @relation("Reporter", fields: [reporterId], references: [id], onDelete: Cascade)
+  id           String       @id @default(uuid()) @db.Uuid
+  reporterId   String       @db.Uuid
+  targetType   String // MESSAGE | USER | PROFILE | REVIEW
+  targetId     String       @db.Uuid
+  reason       String
+  details      String?
+  status       ReportStatus @default(OPEN)
+  resolvedById String?      @db.Uuid
+  resolvedAt   DateTime?    @db.Timestamptz(6)
+  createdAt    DateTime     @default(now()) @db.Timestamptz(6)
+  reporter     User         @relation("Reporter", fields: [reporterId], references: [id], onDelete: Cascade)
 
   @@index([status])
   @@map("content_reports")
@@ -1573,39 +1593,40 @@ model NotificationPreference {
 // ───────────────────────────── CAMPAIGNS ─────────────────────────────
 
 model Campaign {
-  id               String            @id @default(uuid()) @db.Uuid
-  number           String            @unique
-  businessId       String            @db.Uuid
-  influencerId     String            @db.Uuid
-  orderItemId      String?           @unique @db.Uuid
+  id               String                @id @default(uuid()) @db.Uuid
+  number           String                @unique
+  businessId       String                @db.Uuid
+  influencerId     String                @db.Uuid
+  orderItemId      String?               @unique @db.Uuid
   title            String
   brief            String?
-  status           CampaignStatus    @default(DRAFT)
+  status           CampaignStatus        @default(DRAFT)
   platforms        Platform[]
   requiredMentions String[]
   requiredHashtags String[]
-  postingDeadline  DateTime?         @db.Timestamptz(6)
-  requiresApproval Boolean           @default(true)
+  postingDeadline  DateTime?             @db.Timestamptz(6)
+  requiresApproval Boolean               @default(true)
   usageRights      String?
   contractTerms    String?
-  complianceStatus ComplianceStatus  @default(NOT_REQUIRED)
+  complianceStatus ComplianceStatus      @default(NOT_REQUIRED)
   complianceNotes  String?
-  agreedAmount     Decimal?          @db.Decimal(14, 2)
-  currency         String            @default("AED")
-  startedAt        DateTime?         @db.Timestamptz(6)
-  completedAt      DateTime?         @db.Timestamptz(6)
-  cancelledAt      DateTime?         @db.Timestamptz(6)
-  createdAt        DateTime          @default(now()) @db.Timestamptz(6)
-  updatedAt        DateTime          @updatedAt @db.Timestamptz(6)
-  business         BusinessProfile   @relation(fields: [businessId], references: [id], onDelete: Restrict)
-  influencer       InfluencerProfile @relation(fields: [influencerId], references: [id], onDelete: Restrict)
-  orderItem        OrderItem?        @relation(fields: [orderItemId], references: [id], onDelete: Restrict)
+  agreedAmount     Decimal?              @db.Decimal(14, 2)
+  currency         String                @default("AED")
+  startedAt        DateTime?             @db.Timestamptz(6)
+  completedAt      DateTime?             @db.Timestamptz(6)
+  cancelledAt      DateTime?             @db.Timestamptz(6)
+  createdAt        DateTime              @default(now()) @db.Timestamptz(6)
+  updatedAt        DateTime              @updatedAt @db.Timestamptz(6)
+  business         BusinessProfile       @relation(fields: [businessId], references: [id], onDelete: Restrict)
+  influencer       InfluencerProfile     @relation(fields: [influencerId], references: [id], onDelete: Restrict)
+  orderItem        OrderItem?            @relation(fields: [orderItemId], references: [id], onDelete: Restrict)
   deliverables     CampaignDeliverable[]
   approvals        CampaignApproval[]
   events           CampaignEvent[]
   reviews          Review[]
   disputes         Dispute[]
   quotations       Quotation[]
+  agreements       Agreement[]
 
   @@index([businessId, status])
   @@index([influencerId, status])
@@ -1613,22 +1634,22 @@ model Campaign {
 }
 
 model CampaignDeliverable {
-  id            String            @id @default(uuid()) @db.Uuid
-  campaignId    String            @db.Uuid
+  id            String             @id @default(uuid()) @db.Uuid
+  campaignId    String             @db.Uuid
   type          String // REEL | STORY | TIKTOK_VIDEO | POST | UGC_VIDEO ...
   platform      Platform
-  quantity      Int               @default(1)
-  dueAt         DateTime?         @db.Timestamptz(6)
-  status        DeliverableStatus @default(PENDING)
+  quantity      Int                @default(1)
+  dueAt         DateTime?          @db.Timestamptz(6)
+  status        DeliverableStatus  @default(PENDING)
   draftUrl      String?
   draftNotes    String?
   publishedUrl  String?
-  publishedAt   DateTime?         @db.Timestamptz(6)
-  revisionCount Int               @default(0)
-  maxRevisions  Int               @default(1)
-  createdAt     DateTime          @default(now()) @db.Timestamptz(6)
-  updatedAt     DateTime          @updatedAt @db.Timestamptz(6)
-  campaign      Campaign          @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  publishedAt   DateTime?          @db.Timestamptz(6)
+  revisionCount Int                @default(0)
+  maxRevisions  Int                @default(1)
+  createdAt     DateTime           @default(now()) @db.Timestamptz(6)
+  updatedAt     DateTime           @updatedAt @db.Timestamptz(6)
+  campaign      Campaign           @relation(fields: [campaignId], references: [id], onDelete: Cascade)
   approvals     CampaignApproval[]
   attachments   Attachment[]
 
@@ -1702,21 +1723,96 @@ model Dispute {
   @@map("disputes")
 }
 
+// ───────────────────────────── AGREEMENTS ─────────────────────────────
+
+/// Custom legal & financial agreement between one business and one creator, negotiated in
+/// immutable versions and executed when both parties e-sign the same version (same content hash).
+model Agreement {
+  id               String               @id @default(uuid()) @db.Uuid
+  number           String               @unique
+  businessId       String               @db.Uuid
+  influencerId     String               @db.Uuid
+  campaignId       String?              @db.Uuid
+  createdById      String               @db.Uuid
+  status           AgreementStatus      @default(DRAFT)
+  currentVersionId String?              @unique @db.Uuid
+  executedAt       DateTime?            @db.Timestamptz(6)
+  declinedReason   String?
+  closedAt         DateTime?            @db.Timestamptz(6)
+  createdAt        DateTime             @default(now()) @db.Timestamptz(6)
+  updatedAt        DateTime             @updatedAt @db.Timestamptz(6)
+  business         BusinessProfile      @relation(fields: [businessId], references: [id], onDelete: Restrict)
+  influencer       InfluencerProfile    @relation(fields: [influencerId], references: [id], onDelete: Restrict)
+  campaign         Campaign?            @relation(fields: [campaignId], references: [id], onDelete: SetNull)
+  currentVersion   AgreementVersion?    @relation("CurrentVersion", fields: [currentVersionId], references: [id], onDelete: Restrict)
+  versions         AgreementVersion[]   @relation("AgreementVersions")
+  signatures       AgreementSignature[]
+
+  @@index([businessId, status])
+  @@index([influencerId, status])
+  @@map("agreements")
+}
+
+/// Immutable snapshot of the agreement text and financial terms (UPDATE/DELETE blocked by trigger).
+model AgreementVersion {
+  id             String               @id @default(uuid()) @db.Uuid
+  agreementId    String               @db.Uuid
+  version        Int
+  title          String
+  clauses        Json // [{heading, body}]
+  financialTerms Json // {totalAmount, currency, vatTreatment, paymentSchedule[], ...}
+  contentHash    String // sha256 of the canonical document — what signers sign
+  authorId       String               @db.Uuid
+  authorParty    AgreementParty
+  changeNote     String?
+  createdAt      DateTime             @default(now()) @db.Timestamptz(6)
+  agreement      Agreement            @relation("AgreementVersions", fields: [agreementId], references: [id], onDelete: Restrict)
+  currentOf      Agreement?           @relation("CurrentVersion")
+  signatures     AgreementSignature[]
+
+  @@unique([agreementId, version])
+  @@map("agreement_versions")
+}
+
+/// Electronic signature evidence (UPDATE/DELETE blocked by trigger).
+model AgreementSignature {
+  id             String           @id @default(uuid()) @db.Uuid
+  agreementId    String           @db.Uuid
+  versionId      String           @db.Uuid
+  userId         String           @db.Uuid
+  party          AgreementParty
+  signerName     String
+  signerTitle    String?
+  method         SignatureMethod
+  signatureImage String? // data:image/png;base64 (drawn signatures only)
+  contentHash    String
+  consentText    String
+  ipAddress      String?
+  userAgent      String?
+  signedAt       DateTime         @default(now()) @db.Timestamptz(6)
+  agreement      Agreement        @relation(fields: [agreementId], references: [id], onDelete: Restrict)
+  version        AgreementVersion @relation(fields: [versionId], references: [id], onDelete: Restrict)
+
+  @@unique([versionId, party])
+  @@index([agreementId])
+  @@map("agreement_signatures")
+}
+
 // ───────────────────────────── AI ─────────────────────────────
 
 model AiSearchLog {
-  id            String   @id @default(uuid()) @db.Uuid
-  userId        String?  @db.Uuid
-  sessionKey    String?
-  query         String
-  locale        Locale
-  parser        String // RULES | LLM:<provider>
-  parsedFilters Json
-  resultCount   Int
-  latencyMs     Int
-  error         String?
-  createdAt     DateTime @default(now()) @db.Timestamptz(6)
-  user          User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  id              String             @id @default(uuid()) @db.Uuid
+  userId          String?            @db.Uuid
+  sessionKey      String?
+  query           String
+  locale          Locale
+  parser          String // RULES | LLM:<provider>
+  parsedFilters   Json
+  resultCount     Int
+  latencyMs       Int
+  error           String?
+  createdAt       DateTime           @default(now()) @db.Timestamptz(6)
+  user            User?              @relation(fields: [userId], references: [id], onDelete: SetNull)
   recommendations AiRecommendation[]
 
   @@index([createdAt])
@@ -1724,17 +1820,17 @@ model AiSearchLog {
 }
 
 model AiRecommendation {
-  id           String            @id @default(uuid()) @db.Uuid
-  searchLogId  String            @db.Uuid
-  businessId   String?           @db.Uuid
-  influencerId String            @db.Uuid
+  id           String                     @id @default(uuid()) @db.Uuid
+  searchLogId  String                     @db.Uuid
+  businessId   String?                    @db.Uuid
+  influencerId String                     @db.Uuid
   rank         Int
-  score        Decimal           @db.Decimal(6, 3)
+  score        Decimal                    @db.Decimal(6, 3)
   reasons      Json
-  createdAt    DateTime          @default(now()) @db.Timestamptz(6)
-  searchLog    AiSearchLog       @relation(fields: [searchLogId], references: [id], onDelete: Cascade)
-  business     BusinessProfile?  @relation(fields: [businessId], references: [id], onDelete: SetNull)
-  influencer   InfluencerProfile @relation(fields: [influencerId], references: [id], onDelete: Cascade)
+  createdAt    DateTime                   @default(now()) @db.Timestamptz(6)
+  searchLog    AiSearchLog                @relation(fields: [searchLogId], references: [id], onDelete: Cascade)
+  business     BusinessProfile?           @relation(fields: [businessId], references: [id], onDelete: SetNull)
+  influencer   InfluencerProfile          @relation(fields: [influencerId], references: [id], onDelete: Cascade)
   feedback     AiRecommendationFeedback[]
 
   @@index([searchLogId])
@@ -1828,16 +1924,16 @@ model DataDeletionRequest {
 }
 
 model EmailOutbox {
-  id          String    @id @default(uuid()) @db.Uuid
-  toAddress   String
-  locale      Locale
-  template    String
-  params      Json
-  status      String    @default("QUEUED") // QUEUED | SENT | FAILED
-  attempts    Int       @default(0)
-  lastError   String?
-  sentAt      DateTime? @db.Timestamptz(6)
-  createdAt   DateTime  @default(now()) @db.Timestamptz(6)
+  id        String    @id @default(uuid()) @db.Uuid
+  toAddress String
+  locale    Locale
+  template  String
+  params    Json
+  status    String    @default("QUEUED") // QUEUED | SENT | FAILED
+  attempts  Int       @default(0)
+  lastError String?
+  sentAt    DateTime? @db.Timestamptz(6)
+  createdAt DateTime  @default(now()) @db.Timestamptz(6)
 
   @@index([status, createdAt])
   @@map("email_outbox")
