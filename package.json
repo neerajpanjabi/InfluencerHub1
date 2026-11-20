@@ -18,6 +18,7 @@
     "db:migrate": "pnpm --filter @influencehub/database migrate:deploy",
     "db:migrate:dev": "pnpm --filter @influencehub/database migrate:dev",
     "db:seed": "pnpm --filter @influencehub/database seed",
+    "admin:reset": "pnpm --filter @influencehub/database admin:reset",
     "typecheck": "pnpm -r typecheck",
     "lint": "pnpm -r lint",
     "test": "pnpm -r test",
